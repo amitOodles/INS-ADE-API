@@ -79,8 +79,8 @@ app.service('ChartServiceHc', function() {
             },
             plotOptions: {
                 series: {
-                    borderWidth: 0,
-
+                    borderWidth: 0, 
+                    animation : false
                 }
             },
             tooltip: {

@@ -25,10 +25,10 @@ var webshotOptions = {
   //   width: 768
   // , height: 2010
   // },
-	// shotSize: {
- //    width:700
- //  , height: "all"
- //  }
+	shotSize: {
+    width:900
+  , height: "all"
+  }
 };
 
 app.listen(3001, function() {
@@ -39,9 +39,9 @@ app.listen(3001, function() {
 //     res.send("first get");
 // })
 
-// app.get('/file', (req, res) => {
-//     res.sendFile(__dirname + '/index.html');
-// });
+app.get('/file', (req, res) => {
+    res.sendFile(__dirname + '/index.html');
+});
 
 // app.post('/quotes', (req, res) => {
 
@@ -74,7 +74,9 @@ app.get('/query', function(req, res) {
 
 
 app.post('/webshot', function(req, res, callback){
+
     postData = req.body;
+    // console.log(postData);
 
 //      postData = {
 // 	"age":50,
