@@ -1,4 +1,4 @@
-app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator','ChartServiceHc','PdfMaker', function($scope, $timeout, AgeCalculator, ChartServiceHc, PdfMaker) {
+app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator','ChartServiceHc',function($scope, $timeout, AgeCalculator, ChartServiceHc) {
 
     $scope.grossAnnualIncome = insObj.grossAnnualIncome;
     $scope.homeMortgage = insObj.liabilities.homeMortgage;
@@ -31,7 +31,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator','ChartSer
     $scope.spouseOption = insObj.hasSpouse;
     // $scope.smokeOption = false;
     $scope.spouseWorkOption = insObj.spouseDetails.isWorking;
-    $scope.buyOption = insObj.spouseDetails.moveToSmallerProperty;
+    $scope.buyOption = insObj.hasSpouse && insObj.spouseDetails.moveToSmallerProperty;
 
 
     $scope.sickLeaves = insObj.sickLeaves;
@@ -96,7 +96,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator','ChartSer
             }
         }
         //PVExpenseSpouse=1243994.6;
-        console.log("PVExpenseSpouse", PVExpenseSpouse);
+        // console.log("PVExpenseSpouse", PVExpenseSpouse);
         var PVExpenseChildren = 0;
         var ageChild = insObj.childrenDetails.ages;
 
@@ -111,7 +111,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator','ChartSer
             }
         }
         // PVExpenseChildren=80156.1983032635+74793.54924005;
-        console.log("PVExpenseChildren", PVExpenseChildren);
+        // console.log("PVExpenseChildren", PVExpenseChildren);
 
         $scope.D34 = Math.pow(1 + $scope.rateOfReturn/100, Number((100 / 1200).toFixed(2))) - 1;
         $scope.saleProceeds = $scope.homeValue - $scope.homeMortgage;
@@ -159,8 +159,8 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator','ChartSer
                 waiting: 30
             };
         };
-        console.log("Result 1", $scope.resultS1);
-        console.log("Result 2", $scope.resultS2);
+        // console.log("Result 1", $scope.resultS1);
+        // console.log("Result 2", $scope.resultS2);
 
         $scope.resultTemp = $scope.buyOption ? $scope.resultS2 : $scope.resultS1;
 

@@ -1,11 +1,10 @@
 {
-	"age":50,
+	"age":49,
 	"grossAnnualIncome":120000,
 	"funeralCost":20000,
 	"familyLivingCostPerYear":90000,
 	"hasSpouse":true,
-	"hasChildren":true,
-	"sickLeaves" : 20,
+	"sickLeaves" : 10,
 	"assets" : {
 		"homeValue" : 800000,
 		"cashAtBank" : 20000,
@@ -13,7 +12,7 @@
 		"superBalance" : 100000
 	},
 	"existingCovers":{
-		"life" : 20000,
+		"life" : 250000,
 		"TPD" : 0,
 		"IP" : 0,
 		"trauma" : 0
@@ -23,11 +22,11 @@
 		"rateOfReturn" : 5
 	},
 	"liabilities":{
-		"homeMortgage" : 20000,
-		"investmentPropertyMortgage" : 10000,
-		"creditCardDebt" : 3000,
+		"homeMortgage" : 500000,
+		"investmentPropertyMortgage" : 0,
+		"creditCardDebt" : 2000,
 		"carLoan" : 20000,
-		"personalLoan" : 10000,
+		"personalLoan" : 0,
 		"otherLoan" : 0
 	},
 	"spouseDetails":{
@@ -40,7 +39,7 @@
 	},
 	"childrenDetails":{
 		"numChildren":2,
-		"ages":[3,7],
-		"educationExpensePerYearPerChild":2000
+		"ages":[3,5],
+		"educationExpensePerYearPerChild":5000
 	}
 }

@@ -35,41 +35,22 @@ app.listen(3001, function() {
     console.log('listening on 3001');
 })
 
-// app.get('/', (req, res) => {
-//     res.send("first get");
-// })
 
-app.get('/file', (req, res) => {
-    res.sendFile(__dirname + '/index.html');
-});
-
-// app.post('/quotes', (req, res) => {
-
-//     // var str = '{ "name": "John Doe", "age": 42 }';
-//     // var obj = JSON.parse(str);
-//     // console.log(obj);
-//     var alas = req.body;
-//     console.log(alas.name);
-//     // console.log(JSON.parse(req.body))
-//     // console.log(JSON.parse('{"name":"amit", marks:10}'));	
-//     // res.send({redirectUrl : '/file'});
-// })
+// app.get('/file', (req, res) => {
+//     res.sendFile(__dirname + '/index.html');
+//     // res.send(data);
+//     // res.sendFile(__dirname + '/index.html');    
+//     // res.sendFile(path.join(__dirname + '/views/index.html'));
+// });
 
 app.get('/query', function(req, res) {
 
     var data = postData;
 
-    // console.log("ld",data);
-
     res.render(__dirname + '/index.ejs', {
         data : data,
     });
 
-    // res.send(data);
-	// res.sendFile(__dirname + '/index.html');    
-
-    // res.sendFile(path.join(__dirname + '/views/index.html'));
-    // res.redirect('/image');
 });
 
 
@@ -125,8 +106,6 @@ app.post('/webshot', function(req, res, callback){
 // 	}
 // };
     // console.log("server",postData);
-
-    // var queryStringWs = "query?fy=" + fyWs + "&age=" + ageWs + "&cses=" + csesWs + "&thp=" + thpWs;
 
     var timeS = new Date;
     var name = timeS.getTime() + ".png";
