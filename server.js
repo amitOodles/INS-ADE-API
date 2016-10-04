@@ -45,7 +45,7 @@ app.listen(3001, function() {
 
 app.get('/query', function(req, res) {
 
-    var data = postData;
+    var data = postDataIAC;
 
     res.render(__dirname + '/index.ejs', {
         data : data,
@@ -56,7 +56,7 @@ app.get('/query', function(req, res) {
 
 app.post('/webshot', function(req, res, callback){
 
-    postData = req.body;
+    postDataIAC = req.body;
 
 
     var timeS = new Date;
@@ -87,3 +87,36 @@ app.post('/webshot', function(req, res, callback){
 
     // res.redirect("/query");
 });
+
+// app.post('/webshot2', function(req, res, callback){
+
+//     postDataIAC = req.body;
+
+
+//     var timeS = new Date;
+//     var name = timeS.getTime() + "SFC.png";
+
+//     function f1() {
+//         webshot('http://localhost:3001/query', 'uploads/' + name, webshotOptions, function(err, data) {
+//             // res.write("error saving");
+
+//             if (err) {
+//                 var resErr = new Error("Unable to generate Insurance Adequacy chart");
+//                 resErr.status = 400;
+//                 console.log("error occured", resErr);
+//                 callback(resErr);
+//             } else {
+//                 var img = fs.readFileSync('uploads/' + name);
+//                 console.log('uploads/' + name);
+//                 fs.unlink('uploads/' + name);
+//                 res.writeHead(200, { 'Content-Type': 'image/png' });
+//                 res.end(img, 'binary');
+//             }
+
+
+//         });
+//     }
+
+//     f1();
+
+// });
