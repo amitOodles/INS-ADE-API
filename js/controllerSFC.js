@@ -1,4 +1,4 @@
-app.controller("SFCController", ['$scope', '$timeout', 'AgeCalculator','ChartServiceHcSFC', 'DonutChartServiceHcSFC', function($scope, $timeout, AgeCalculator, ChartServiceHc, DonutChartServiceHc) {
+app.controller("SFCController", ['$scope', '$timeout', 'AgeCalculator','ChartServiceHcSFC', function($scope, $timeout, AgeCalculator, ChartServiceHc) {
 
 $scope.fundsOb = [
 { id: 0, name: 'Asgard Infinity Ewrap Super', annualPercentageFee: 1.25 },
@@ -309,940 +309,81 @@ $scope.fundsOb = [
 
     var dt = new Date();
 
-    $scope.fy = dt.getMonth() > 5 ? dt.getFullYear() : dt.getFullYear()-1;
+    var fy = dt.getMonth() > 5 ? dt.getFullYear() : dt.getFullYear()-1;
 
-	$scope.age = sfcObj.age;
+    // console.log(sfcObj);
 
-	$scope.annualSalary = sfcObj.annualSalary;
+	var age = sfcObj.age;
 
-	$scope.retirementAge = sfcObj.retirementAge;
+	var annualSalary = sfcObj.annualSalary;
 
-	$scope.superBalance = sfcObj.superBalance;
+	var retirementAge = sfcObj.retirementAge;
 
-	$scope.cc = sfcObj.cc;
+	var superBalance = sfcObj.superBalance;
 
-	$scope.ncc = sfcObj.ncc;
+	var cc = sfcObj.cc;
 
-	$scope.ecLevel = sfcObj.ecLevel;
+	var ncc = sfcObj.ncc;
 
-	$scope.inflation = sfcObj.annualSalary;
+	var employerContributionLevel = sfcObj.ecLevel;
 
-	$scope.wageIncrease = sfcObj.wageIncrease;
+	var inflation = sfcObj.inflation;
 
-	$scope.insurancePremiumPerYear = sfcObj.insurancePremiumPerYear;
+	var wageIncrease = sfcObj.wageIncrease;
 
-	$scope.netReturnRate = sfcObj.netReturnRate;
+	var insurancePremium = sfcObj.insurancePremiumPerYear;
 
-	$scope.specifiedFundA = sfcObj.specifiedFundA;
+	var netReturnRate = sfcObj.netReturnRate;
 
-	$scope.specifiedFundB = sfcObj.specifiedFundB;
+	var specifiedFundA = sfcObj.specifiedFundA;
 
-	$scope.specifiedFeeA = sfcObj.specifiedFeeA;	
+	var specifiedFundB = sfcObj.specifiedFundB;
 
-	$scope.specifiedFeeB = sfcObj.specifiedFeeB;	
+	var specifiedFeeA = sfcObj.specifiedFeeA;	
 
-	$scope.specifiedNameA = sfcObj.specifiedNameA;	
+	var specifiedFeeB = sfcObj.specifiedFeeB;	
 
-	$scope.specifiedNameB = sfcObj.specifiedNameB;
+	var specifiedNameA = sfcObj.specifiedNameA;	
 
-	$scope.fundIndexA = sfcObj.fundIndexA;
+	var specifiedNameB = sfcObj.specifiedNameB;
 
-	$scope.fundIndexB = sfcObj.fundIndexB;
+	var fundIndexA = sfcObj.fundIndexA;
 
-	$scope.superTaxRate = 15;	
+	var fundIndexB = sfcObj.fundIndexB;
+
+	var superTaxRate = 15;
+
+	$scope.fundA;
+
+	$scope.fundB;
+
+	$scope.chartOneOpen =true; 	
 	
+	if(!specifiedFundA){
+    $scope.fundA = $scope.fundsOb[fundIndexA];
+	}else{
+	$scope.fundA = {
+		name : specifiedNameA,
+		annualPercentageFee : specifiedFeeA
+	};	
+	}
+
+	if(!specifiedFundB){
+    $scope.fundB = $scope.fundsOb[fundIndexB];
+	}else{
+	$scope.fundB = {
+		name : specifiedNameB,
+		annualPercentageFee : specifiedFeeB
+	};	
+	}
 
-    $scope.fundA = $scope.fundsOb[$scope.fundIndexA];
 
-    $scope.fundB = $scope.fundsOb[$scope.fundIndexB];
-
-    var tempFundA = $scope.fundsOb[0];
-
-    var tempFundB = $scope.fundsOb[1];
-
-    $scope.fundNotFoundA = false;
-
-    $scope.fundNotFoundB = false;
-
-    $scope.fundNameA = "Fund A";
-
-    $scope.fundNameB = "Fund B";
-
-
-
-
-    // String.prototype.replaceAll = function(search, replacement) {
-    //     var target = this;
-    //     return target.split(search).join(replacement);
-    // };
-
-
-    // $('#demolist li').on('click', function() {
-    //     $('#datebox').val($(this).text());
-    // });
-    // $scope.resultWithSS = [0, 0, 0];
-    // $scope.resultWithoutSS = [0, 0, 0];
-
-    // var initDate = new Date();
-    // initDate.setYear(1969);
-    // initDate.setMonth(6);
-    // initDate.setDate(1);
-    // $scope.dob = initDate;
-
-    // $('#kartik').tooltip();
-
-    $scope.chartOneOpen = true;
-
-    // $scope.infoShow = function(value) {
-    //         if (value) {
-    //             document.getElementsByClassName("information-overlay")[0].style.visibility = "visible";
-    //             document.getElementsByClassName("information-overlay")[0].style.zIndex = "9999";
-    //             document.getElementsByClassName("information-overlay")[0].style.position = "inline-block";
-    //             document.getElementsByClassName("information-overlay")[0].style.height = "" + (document.getElementsByClassName("otrp-calculator")[0].clientHeight - 10) + "px";
-    //         } else {
-    //             document.getElementsByClassName("information-overlay")[0].style.visibility = "hidden";
-    //         }
-    //     }
-        // $scope.unattainableTHP = false;
-
-    // $scope.firstDP = function() {
-    //     $scope.dateOptions.maxDate = new Date($scope.fy - 18, 5, 30);
-    //     $scope.dateOptions.minDate = new Date(1950, 0, 1);
-    // }
-
-    // $scope.secondDp = function() {
-    //     delete $scope.dateOptions.maxDate;
-    // }
-
-    // $scope.today = function() {
-    //     $scope.dt = new Date();
-    // };
-    // $scope.today();
-
-    // $scope.clear = function() {
-    //     $scope.dt = null;
-    // };
-
-    // $scope.inlineOptions = {
-    //     customClass: getDayClass,
-    //     // minDate: new Date(),
-    //     showWeeks: true
-    // };
-
-    // $scope.dateOptions = {
-    //     // dateDisabled: disabled,
-    //     formatYear: 'yy',
-    //     // maxDate: new Date(2020, 5, 22),
-    //     // minDate: new Date(),
-    //     startingDay: 1,
-    //     showWeeks: false
-    // };
-
-    // $scope.toggleMin = function() {
-    //   $scope.inlineOptions.minDate = $scope.inlineOptions.minDate ? null : new Date();
-    //   $scope.dateOptions.minDate = $scope.inlineOptions.minDate;
-    // };
-
-    // $scope.toggleMin();
-
-    // $scope.open1 = function() {
-    //     $scope.popup1.opened = true;
-    //     $scope.firstDP();
-    // };
-
-    // $scope.open2 = function() {
-    //     $scope.secondDp();
-    //     $scope.popup2.opened = true;
-    // };
-
-    // $scope.setDate = function(year, month, day) {
-    //     $scope.dt = new Date(year, month, day);
-    // };
-
-    // $scope.formats = ['dd-MMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate', 'dd/MM/yyyy', 'd!/M!/yyyy'];
-    // $scope.format = $scope.formats[5];
-    // // $scope.altInputFormats = ['d!/M!/yyyy'];
-
-    // $scope.popup1 = {
-    //     opened: false
-    // };
-
-    // $scope.popup2 = {
-    //     opened: false
-    // };
-
-    // var tomorrow = new Date();
-    // tomorrow.setDate(tomorrow.getDate() + 1);
-    // var afterTomorrow = new Date();
-    // afterTomorrow.setDate(tomorrow.getDate() + 1);
-    // $scope.events = [{
-    //     date: tomorrow,
-    //     status: 'full'
-    // }, {
-    //     date: afterTomorrow,
-    //     status: 'partially'
-    // }];
-
-    // function getDayClass(data) {
-    //     var date = data.date,
-    //         mode = data.mode;
-    //     if (mode === 'day') {
-    //         var dayToCheck = new Date(date).setHours(0, 0, 0, 0);
-
-    //         for (var i = 0; i < $scope.events.length; i++) {
-    //             var currentDay = new Date($scope.events[i].date).setHours(0, 0, 0, 0);
-
-    //             if (dayToCheck === currentDay) {
-    //                 return $scope.events[i].status;
-    //             }
-    //         }
-    //     }
-
-    //     return '';
-    // }
-
-    // $scope.overlay = false;
-
-
-    // $scope.age = 42;
-
-
-
-    // $scope.age = AgeCalculator.getAge($scope.dob, $scope.fy);
-
-    // $scope.retirementAge = 67;
-
-    // $scope.annualSalary = 60000;
-
-    // $scope.cc = 10000;
-
-    // $scope.ncc = 10000;
-
-    // $scope.employerContributionLevel = 9.50;
-
-    // $scope.inflation = 2.50;
-
-    // $scope.superBalance = 100000;
-
-    // $scope.rateOfReturn = 5.58;
-
-    // $scope.wageIncrease = 3.50;
-
-    // $scope.insurancePremium = 200;
-
-    
-
-    $scope.annualFeeA = 1.50;
-
-    // $scope.netReturnA = 1.50;
-
-    $scope.annualFeeB = 1.50;
-
-    $scope.netReturn = 1.50;
-
-    // $scope.memberFee = 80;
-
-    // var retirementAgeSlider = document.getElementById('retirementAgeSlider'),
-    //     annualSalarySlider = document.getElementById('annualSalarySlider'),
-    //     employerContributionLevelSlider = document.getElementById('employerContributionLevelSlider'),
-    //     superBalanceSlider = document.getElementById('superBalanceSlider'),
-    //     // rateOfReturnSlider = document.getElementById('rateOfReturnSlider'),
-    //     inflationSlider = document.getElementById('inflationSlider'),
-    //     wageIncreaseSlider = document.getElementById('wageIncreaseSlider'),
-    //     insurancePremiumSlider = document.getElementById('insurancePremiumSlider'),
-    //     superTaxRateSlider = document.getElementById('superTaxRateSlider'),
-    //     annualFeeASlider = document.getElementById('annualFeeASlider'),
-    //     // netReturnASlider = document.getElementById('netReturnASlider'),
-    //     annualFeeBSlider = document.getElementById('annualFeeBSlider'),
-    //     netReturnSlider = document.getElementById('netReturnSlider'),
-    //     // memberFeeSlider = document.getElementById('memberFeeSlider'),
-    //     ccSlider = document.getElementById('ccSlider'),
-    //     nccSlider = document.getElementById('nccSlider');
-
-
-    // noUiSlider.create(retirementAgeSlider, {
-    //     start: [$scope.retirementAge],
-    //     range: {
-    //         'min': [60],
-    //         'max': [75]
-    //     },
-    //     step: 1,
-    //     format: wNumb({
-    //         decimals: 0,
-    //     }),
-    //     connect: 'lower'
-    // });
-
-    // noUiSlider.create(annualSalarySlider, {
-    //     start: [$scope.annualSalary],
-    //     range: {
-    //         'min': [0],
-    //         'max': [600000]
-    //     },
-    //     step: 500,
-    //     format: wNumb({
-    //         decimals: 0,
-    //         prefix: '$',
-    //         thousand: ','
-
-    //     }),
-    //     connect: 'lower'
-    // });
-
-    // noUiSlider.create(employerContributionLevelSlider, {
-    //     start: [$scope.employerContributionLevel],
-    //     range: {
-    //         'min': [9],
-    //         'max': [20]
-    //     },
-    //     step: 0.5,
-    //     format: wNumb({
-    //         decimals: 2,
-    //         postfix: '%',
-    //         // thousand: ','
-    //     }),
-    //     connect: 'lower'
-    // });
-
-    // noUiSlider.create(inflationSlider, {
-    //     start: [$scope.inflation],
-    //     range: {
-    //         'min': [0],
-    //         'max': [10]
-    //     },
-    //     step: 0.5,
-    //     format: wNumb({
-    //         decimals: 2,
-    //         postfix: '%',
-    //     }),
-    //     connect: 'lower'
-    // });
-
-    // noUiSlider.create(superBalanceSlider, {
-    //     start: [$scope.superBalance],
-    //     range: {
-    //         'min': [0],
-    //         'max': [3000000]
-    //     },
-    //     step: 1000,
-    //     format: wNumb({
-    //         decimals: 0,
-    //         prefix: '$',
-    //         thousand: ','
-    //     }),
-    //     connect: 'lower'
-    // });
-
-    // // noUiSlider.create(rateOfReturnSlider, {
-    // //     start: [$scope.rateOfReturn],
-    // //     range: {
-    // //         'min': [0],
-    // //         'max': [50]
-    // //     },
-    // //     step: 0.5,
-    // //     format: wNumb({
-    // //         decimals: 2,
-    // //         postfix: '%',
-    // //     }),
-    // //     connect: 'lower'
-    // // });
-
-    // noUiSlider.create(wageIncreaseSlider, {
-    //     start: [$scope.wageIncrease],
-    //     range: {
-    //         'min': [0],
-    //         'max': [10]
-    //     },
-    //     step: 0.5,
-    //     format: wNumb({
-    //         decimals: 2,
-    //         postfix: '%',
-    //     }),
-    //     connect: 'lower'
-    // });
-
-
-    // noUiSlider.create(insurancePremiumSlider, {
-    //     start: [$scope.insurancePremium],
-    //     range: {
-    //         'min': [0],
-    //         'max': [200000]
-    //     },
-    //     step: 100,
-    //     format: wNumb({
-    //         decimals: 0,
-    //         prefix: '$',
-    //         thousand: ','
-    //     }),
-    //     connect: 'lower'
-    // });
-
-    // noUiSlider.create(superTaxRateSlider, {
-    //     start: [$scope.superTaxRate],
-    //     range: {
-    //         'min': [0],
-    //         'max': [15]
-    //     },
-    //     step: 0.5,
-    //     format: wNumb({
-    //         decimals: 2,
-    //         postfix: '%',
-    //     }),
-    //     connect: 'lower'
-    // });
-
-    // noUiSlider.create(annualFeeASlider, {
-    //     start: [$scope.annualFeeA],
-    //     range: {
-    //         'min': [0],
-    //         'max': [10]
-    //     },
-    //     step: 0.5,
-    //     format: wNumb({
-    //         decimals: 2,
-    //         postfix: '%',
-    //     }),
-    //     connect: 'lower'
-    // });
-
-    // // noUiSlider.create(netReturnASlider, {
-    // //     start: [$scope.netReturnA],
-    // //     range: {
-    // //         'min': [0],
-    // //         'max': [10]
-    // //     },
-    // //     step: 0.5,
-    // //     format: wNumb({
-    // //         decimals: 2,
-    // //         postfix: '%',
-    // //     }),
-    // //     connect: 'lower'
-    // // });
-
-    // noUiSlider.create(annualFeeBSlider, {
-    //     start: [$scope.annualFeeB],
-    //     range: {
-    //         'min': [0],
-    //         'max': [10]
-    //     },
-    //     step: 0.5,
-    //     format: wNumb({
-    //         decimals: 2,
-    //         postfix: '%',
-    //     }),
-    //     connect: 'lower'
-    // });
-
-    // noUiSlider.create(netReturnSlider, {
-    //     start: [$scope.netReturn],
-    //     range: {
-    //         'min': [0],
-    //         'max': [10]
-    //     },
-    //     step: 0.1,
-    //     format: wNumb({
-    //         decimals: 2,
-    //         postfix: '%',
-    //     }),
-    //     connect: 'lower'
-    // });
-
-    // // noUiSlider.create(memberFeeSlider, {
-    // //     start: [$scope.memberFee],
-    // //     range: {
-    // //         'min': [0],
-    // //         'max': [4000]
-    // //     },
-    // //     step: 100,
-    // //     format: wNumb({
-    // //         decimals: 0,
-    // //         prefix: '$',
-    // //         thousand: ','
-    // //     }),
-    // //     connect: 'lower'
-    // // });
-
-    // noUiSlider.create(ccSlider, {
-    //     start: [$scope.cc],
-    //     range: {
-    //         'min': [0],
-    //         'max': [30000]
-    //     },
-    //     step: 100,
-    //     format: wNumb({
-    //         decimals: 0,
-    //         prefix: '$',
-    //         thousand: ','
-
-    //     }),
-    //     connect: 'lower'
-    // });
-
-    // noUiSlider.create(nccSlider, {
-    //     start: [$scope.ncc],
-    //     range: {
-    //         'min': [0],
-    //         'max': [180000]
-    //     },
-    //     step: 500,
-    //     format: wNumb({
-    //         decimals: 0,
-    //         prefix: '$',
-    //         thousand: ','
-
-    //     }),
-    //     connect: 'lower'
-    // });
-
-    // superTaxRateSlider.setAttribute('disabled',true);
-
-
-
-    // var ageInput = document.getElementById('ageInput'),
-    //     retirementAgeInput = document.getElementById('retirementAgeInput'),
-    //     annualSalaryInput = document.getElementById('annualSalaryInput'),
-    //     employerContributionLevelInput = document.getElementById('employerContributionLevelInput'),
-    //     superBalanceInput = document.getElementById('superBalanceInput'),
-    //     // rateOfReturnInput = document.getElementById('rateOfReturnInput'),
-    //     inflationInput = document.getElementById('inflationInput'),
-    //     wageIncreaseInput = document.getElementById('wageIncreaseInput'),
-    //     insurancePremiumInput = document.getElementById('insurancePremiumInput'),
-    //     superTaxRateInput = document.getElementById('superTaxRateInput'),
-    //     annualFeeAInput = document.getElementById('annualFeeAInput'),
-    //     // netReturnAInput = document.getElementById('netReturnAInput'),
-    //     annualFeeBInput = document.getElementById('annualFeeBInput'),
-    //     netReturnInput = document.getElementById('netReturnInput'),
-    //     // memberFeeInput = document.getElementById('memberFeeInput'),
-    //     ccInput = document.getElementById('ccInput'),
-    //     nccInput = document.getElementById('nccInput');
-
-    // retirementAgeSlider.noUiSlider.on('update', function(values, handle) {
-    //     retirementAgeInput.value = values[handle];
-    //     $scope.retirementAge = (values[handle]);
-    // });
-
-    // annualSalarySlider.noUiSlider.on('update', function(values, handle) {
-    //     annualSalaryInput.value = values[handle];
-    //     $scope.annualSalary = (values[handle]);
-    // });
-
-    // employerContributionLevelSlider.noUiSlider.on('update', function(values, handle) {
-    //     employerContributionLevelInput.value = values[handle];
-    //     $scope.employerContributionLevel = (values[handle]);
-    // });
-
-    // superBalanceSlider.noUiSlider.on('update', function(values, handle) {
-    //     superBalanceInput.value = values[handle];
-    //     $scope.superBalance = (values[handle]);
-    // });
-
-    // // rateOfReturnSlider.noUiSlider.on('update', function(values, handle) {
-    // //     rateOfReturnInput.value = values[handle];
-    // //     $scope.rateOfReturn = (values[handle]);
-    // // });
-
-    // inflationSlider.noUiSlider.on('update', function(values, handle) {
-    //     inflationInput.value = values[handle];
-    //     $scope.inflation = (values[handle]);
-    // });
-
-    // wageIncreaseSlider.noUiSlider.on('update', function(values, handle) {
-    //     wageIncreaseInput.value = values[handle];
-    //     $scope.wageIncrease = (values[handle]);
-    // });
-
-    // insurancePremiumSlider.noUiSlider.on('update', function(values, handle) {
-    //     insurancePremiumInput.value = values[handle];
-    //     $scope.insurancePremium = (values[handle]);
-    // });
-
-    // superTaxRateSlider.noUiSlider.on('update', function(values, handle) {
-    //     superTaxRateInput.value = values[handle];
-    //     $scope.superTaxRate = (values[handle]);
-    // });
-
-    // annualFeeASlider.noUiSlider.on('update', function(values, handle) {
-    //     annualFeeAInput.value = values[handle];
-    //     $scope.annualFeeA = (values[handle]);
-    // });
-
-    // // netReturnASlider.noUiSlider.on('update', function(values, handle) {
-    // //     netReturnAInput.value = values[handle];
-    // //     $scope.netReturnA = (values[handle]);
-    // // });
-
-    // annualFeeBSlider.noUiSlider.on('update', function(values, handle) {
-    //     annualFeeBInput.value = values[handle];
-    //     $scope.annualFeeB = (values[handle]);
-    // });
-
-    // netReturnSlider.noUiSlider.on('update', function(values, handle) {
-    //     netReturnInput.value = values[handle];
-    //     $scope.netReturn = (values[handle]);
-    // });
-
-    // // memberFeeSlider.noUiSlider.on('update', function(values, handle) {
-    // //     memberFeeInput.value = values[handle];
-    // //     $scope.memberFee = (values[handle]);
-    // // });
-
-    // ccSlider.noUiSlider.on('update', function(values, handle) {
-    //     ccInput.value = values[handle];
-    //     $scope.cc = (values[handle]);
-    // });
-
-    // nccSlider.noUiSlider.on('update', function(values, handle) {
-    //     nccInput.value = values[handle];
-    //     $scope.ncc = (values[handle]);
-    // });
-
-    // $scope.ageChange = function() {
-
-    //     var dobText = document.getElementById("dobText");
-    //     var dateString = dobText.value;
-    //     var dateArr = dateString.split("/");
-
-    //     var date_regex = /^([1-9]|0[1-9]|1\d|2\d|3[01])\/(0[1-9]|[1-9]|1[0-2])\/(19[5-9][0-9])$/;
-    //     var correct = date_regex.test(dobText.value);
-    //     var fd = new Date(dateArr[2], dateArr[1] - 1, dateArr[0]);
-
-    //     if (((fd.getMonth() + 1) === Number(dateArr[1]) && fd.getDate() === Number(dateArr[0])) && correct) {
-    //         $scope.dob = fd;
-    //     } else {
-    //         $scope.dob = initDate;
-    //     }
-    //     $scope.age = AgeCalculator.getAge($scope.dob, $scope.fy);
-        
-    //     if($scope.age>59){
-    //         retirementAgeSlider.noUiSlider.updateOptions({  
-    //             range: {
-    //                 'min': ($scope.age+1),
-    //                 'max': 75
-    //             }
-    //         });
-    //     }else{
-    //         retirementAgeSlider.noUiSlider.updateOptions({  
-    //             range: {
-    //                 'min': 60,
-    //                 'max': 75
-    //             }
-    //         });
-    //     }
-    //     changeCCLimit();
-        
-    //     // $scope.submitForm2(true);
-    // }
-
-    // retirementAgeInput.addEventListener("change", function() {
-    //     retirementAgeSlider.noUiSlider.set($scope.retirementAge);
-    // });
-
-    // annualSalaryInput.addEventListener("change", function() {
-    //     annualSalarySlider.noUiSlider.set($scope.annualSalary);
-    // });
-
-    // employerContributionLevelInput.addEventListener("change", function() {
-    //     employerContributionLevelSlider.noUiSlider.set($scope.employerContributionLevel);
-    // });
-
-    // superBalanceInput.addEventListener("change", function() {
-    //     superBalanceSlider.noUiSlider.set($scope.superBalance);
-    // });
-
-    // // rateOfReturnInput.addEventListener("change", function() {
-    // //     rateOfReturnSlider.noUiSlider.set($scope.rateOfReturn);
-    // // });
-
-    // inflationInput.addEventListener("change", function() {
-    //     inflationSlider.noUiSlider.set($scope.inflation);
-    // });
-
-    // wageIncreaseInput.addEventListener("change", function() {
-    //     wageIncreaseSlider.noUiSlider.set($scope.wageIncrease);
-    // });
-
-    // insurancePremiumInput.addEventListener("change", function() {
-    //     insurancePremiumSlider.noUiSlider.set($scope.insurancePremium);
-    // });
-
-    // superTaxRateInput.addEventListener("change", function() {
-    //     superTaxRateSlider.noUiSlider.set($scope.superTaxRate);
-    // });
-
-    // annualFeeAInput.addEventListener("change", function() {
-    //     annualFeeASlider.noUiSlider.set($scope.annualFeeA);
-    // });
-
-    // // netReturnAInput.addEventListener("change", function() {
-    // //     netReturnASlider.noUiSlider.set($scope.netReturnA);
-    // // });
-
-    // annualFeeBInput.addEventListener("change", function() {
-    //     annualFeeBSlider.noUiSlider.set($scope.annualFeeB);
-    // });
-
-    // netReturnInput.addEventListener("change", function() {
-    //     netReturnSlider.noUiSlider.set($scope.netReturnB);
-    // });
-
-    // // memberFeeInput.addEventListener("change", function() {
-    // //     memberFeeSlider.noUiSlider.set($scope.memberFee);
-    // // });
-
-    // ccInput.addEventListener("change", function() {
-    //     ccSlider.noUiSlider.set($scope.cc);
-    // });
-
-    // nccInput.addEventListener("change", function() {
-    //     nccSlider.noUiSlider.set($scope.ncc);
-    // });
-
-    // retirementAgeSlider.noUiSlider.on('set', function(values, handle) {
-    //     retirementAgeInput.value = values[handle];
-    //     $scope.retirementAge = (values[handle]);
-    //     calculateFinal();
-    //     $timeout(0);
-    // });
-
-    // annualSalarySlider.noUiSlider.on('set', function(values, handle) {
-    //     annualSalaryInput.value = values[handle];
-    //     $scope.annualSalary = (values[handle]);
-    //     changeCCLimit();
-    //     calculateFinal();
-    //     $timeout(0);
-    // });
-
-    // employerContributionLevelSlider.noUiSlider.on('set', function(values, handle) {
-    //     employerContributionLevelInput.value = values[handle];
-    //     $scope.employerContributionLevel = (values[handle]);
-    //     changeCCLimit();
-    //     calculateFinal();
-    //     $timeout(0);
-    // });
-
-    // superBalanceSlider.noUiSlider.on('set', function(values, handle) {
-    //     superBalanceInput.value = values[handle];
-    //     $scope.superBalance = (values[handle]);
-    //     calculateFinal();
-    //     $timeout(0);
-    // });
-
-    // // rateOfReturnSlider.noUiSlider.on('set', function(values, handle) {
-    // //     rateOfReturnInput.value = values[handle];
-    // //     $scope.rateOfReturn = (values[handle]);
-    // //     // calculateFinal();
-    // //     $timeout(0);
-    // // });
-
-    // inflationSlider.noUiSlider.on('set', function(values, handle) {
-    //     inflationInput.value = values[handle];
-    //     $scope.inflation = (values[handle]);
-    //     calculateFinal();
-    //     $timeout(0);
-    // });
-
-    // wageIncreaseSlider.noUiSlider.on('set', function(values, handle) {
-    //     wageIncreaseInput.value = values[handle];
-    //     $scope.wageIncrease = (values[handle]);
-    //     calculateFinal();
-    //     $timeout(0);
-    // });
-
-    // insurancePremiumSlider.noUiSlider.on('set', function(values, handle) {
-    //     insurancePremiumInput.value = values[handle];
-    //     $scope.insurancePremium = (values[handle]);
-    //     calculateFinal();
-    //     $timeout(0);
-    // });
-
-    // superTaxRateSlider.noUiSlider.on('set', function(values, handle) {
-    //     superTaxRateInput.value = values[handle];
-    //     $scope.superTaxRate = (values[handle]);
-    //     calculateFinal();
-    //     $timeout(0);
-    // });
-
-    // annualFeeASlider.noUiSlider.on('set', function(values, handle) {
-    //     annualFeeAInput.value = values[handle];
-    //     $scope.annualFeeA = (values[handle]);
-    //     $scope.fundA.annualPercentageFee = Number($scope.annualFeeA.replaceAll('%', '')),
-    //         calculateFinal();
-    //     $timeout(0);
-    // });
-
-    // // netReturnASlider.noUiSlider.on('set', function(values, handle) {
-    // //     netReturnAInput.value = values[handle];
-    // //     $scope.netReturnA = (values[handle]);
-    // //     $scope.fundA.netReturn = Number($scope.netReturnA.replaceAll('%', '')),
-    // //         calculateFinal();
-    // //     $timeout(0);
-    // // });
-
-    // annualFeeBSlider.noUiSlider.on('set', function(values, handle) {
-    //     annualFeeBInput.value = values[handle];
-    //     $scope.annualFeeB = (values[handle]);
-    //     $scope.fundB.annualPercentageFee = Number($scope.annualFeeB.replaceAll('%', '')),
-    //         calculateFinal();
-    //     $timeout(0);
-    // });
-
-    // netReturnSlider.noUiSlider.on('set', function(values, handle) {
-    //     netReturnInput.value = values[handle];
-    //     $scope.netReturn = (values[handle]);
-    //     // $scope.fundB.netReturn = Number($scope.netReturnB.replaceAll('%', '')),
-    //         calculateFinal();
-    //     $timeout(0);
-    // });
-
-    // // memberFeeSlider.noUiSlider.on('set', function(values, handle) {
-    // //     memberFeeInput.value = values[handle];
-    // //     $scope.memberFee = (values[handle]);
-    // //     // calculateFinal();
-    // //     $timeout(0);
-    // // });
-
-    // ccSlider.noUiSlider.on('set', function(values, handle) {
-    //     ccInput.value = values[handle];
-    //     $scope.cc = (values[handle]);
-    //     calculateFinal();
-    //     $timeout(0);
-    // });
-
-    // nccSlider.noUiSlider.on('set', function(values, handle) {
-    //     nccInput.value = values[handle];
-    //     $scope.ncc = (values[handle]);
-    //     calculateFinal();
-    //     $timeout(0);
-    // });
-
-    // // var nameA = 
-
-    // document.getElementById('fundNameA').addEventListener("change", function() {
-    //     $scope.fundA.name = document.getElementById('fundNameA').value;
-    //     calculateFinal();
-    //     $timeout(0);
-    // });
-
-    // document.getElementById('fundNameB').addEventListener("change", function() {
-    //     $scope.fundB.name = document.getElementById('fundNameB').value;
-    //     calculateFinal();
-    //     $timeout(0);
-    // });
-
-    // // $scope.fundNameChangeA = function(){
-
-    // // }
-
-    // $timeout(function() {
-    //     $('.selectpicker').selectpicker({
-    //         style: 'btn-info',
-    //         size: 10
-    //     });
-    //     $('.sp2 option[value="1"]').attr("selected",true);
-    //     $('.sp2').selectpicker('refresh');
-    //     $timeout(0);
-    // });
-
-    // var selected1 = 0;
-    // var selected2 = 1;
-
-    // $('.sp1').on('shown.bs.select', function(e) {
-    //     // $scope.fundNotFoundA=false;
-    //     if($scope.fundNotFoundB){
-    //         // $('.sp1 option[value=' + selected2 + ']').attr('disabled', false);   
-    //         // $('.sp1').selectpicker('refresh');      
-    //     }else{
-    //     $('.sp1 option[value=' + selected2 + ']').attr('disabled', true);
-    //     $('.sp1').selectpicker('refresh');
-    // }
-    // });
-
-    // $('.sp1').on('hidden.bs.select', function(e) {
-    //     $('.sp1 option[value=' + selected2 + ']').attr('disabled', false);
-    //     $('.sp1').selectpicker('refresh');
-    // });
-
-    // $('.sp2').on('shown.bs.select', function(e) {
-        
-    //     if($scope.fundNotFoundA){
-    //         // $('.sp2 option[value=' + selected1 + ']').attr('disabled', false); 
-    //         // $('.sp2').selectpicker('refresh');             
-    //     }else{
-    //     $('.sp2 option[value=' + selected1 + ']').attr('disabled', true);
-    //     $('.sp2').selectpicker('refresh');
-    // }
-    // });
-
-    // $('.sp2').on('hidden.bs.select', function(e) {
-    //     $('.sp2 option[value=' + selected1 + ']').attr('disabled', false);
-    //     $('.sp2').selectpicker('refresh');
-    // });
-
-
-    // $('.sp1').on('change', function() {
-    //     $scope.fundNotFoundA=false;
-    //     selected1 = $('.sp1 option:selected').val();
-    //     $scope.fundA = $scope.fundsOb[selected1];
-    //     tempFundA = $scope.fundsOb[selected1];
-    //     calculateFinal();
-    // });
-
-    // $('.sp2').on('change', function() {
-    //     $scope.fundNotFoundB=false;
-    //     selected2 = $('.sp2 option:selected').val();
-    //     $scope.fundB = $scope.fundsOb[selected2];
-    //     tempFundB = $scope.fundsOb[selected2];
-    //     calculateFinal();
-    // });
-
-    // changeCCLimit();
-
-    // function changeCCLimit() {
-    //     var salary = Number($scope.annualSalary.replaceAll('$', '').replaceAll(',', ''));
-    //     var empContributionPerc = Number($scope.employerContributionLevel.replaceAll('%', ''));
-    //     var empContribution = salary * (empContributionPerc / 100) > 19615.60 ? 19615.60 : salary * (empContributionPerc / 100) ;
-    //     var ccLimit = $scope.age >= 49 ? 35000 - empContribution : 30000 - empContribution;
-    //     // if (ccLimit < 0) {
-    //     //     ccLimit = 0.4;
-    //     // }
-    //     // ccSlider.noUiSlider.updateOptions({
-    //     //     range: {
-    //     //         'min': 0,
-    //     //         'max': ccLimit
-    //     //     }
-    //     // });
-        
-    // }
 
     function fundCalculation(fundReturn, fundFee) {
 
-        // console.log(fundReturn,fundFee);
-
-        var annualSalary = Number($scope.annualSalary.replaceAll('$', '').replaceAll(',', ''));
-
-        var superBalance = Number($scope.superBalance.replaceAll('$', '').replaceAll(',', ''));
-
-        var retirementAge = $scope.retirementAge;
-
-        var employerContributionLevel = Number($scope.employerContributionLevel.replaceAll('%', ''));
-
-        // var rateOfReturn = Number($scope.rateOfReturn.replaceAll('%',''));
-
-        var superTaxRate = Number($scope.superTaxRate.replaceAll('%', ''));
-
-        var inflation = Number($scope.inflation.replaceAll('%', ''));
-
-        var wageIncrease = Number($scope.wageIncrease.replaceAll('%', ''));
-
-        var insurancePremium = Number($scope.insurancePremium.replaceAll('$', '').replaceAll(',', ''));
-
-        var cc = Number($scope.cc.replaceAll('$', '').replaceAll(',', ''));
-
-        var ncc = Number($scope.ncc.replaceAll('$', '').replaceAll(',', ''));
-
         var year = 0;
 
-        var yearLimit = $scope.retirementAge - $scope.age;
+        var yearLimit = retirementAge - age;
 
         var cpi;
 
@@ -1250,7 +391,7 @@ $scope.fundsOb = [
 
         var count = 0;
 
-        ageL = $scope.age;
+        ageL = age;
 
         var balanceArray = [superBalance];
 
@@ -1261,7 +402,6 @@ $scope.fundsOb = [
             adjustedSalary = annualSalary * Math.pow(1 + (wageIncrease / 100), year);
             netContribution = (adjustedSalary * employerContributionLevel / 100 + cc) * (1 - superTaxRate / 100) + ncc;
             earnings = balanceArray[count] * (Math.pow(1 + (fundReturn / 100), 0.5) - 1) + ((balanceArray[count] * Math.pow(1 + (fundReturn / 100), 0.5) + netContribution) * (Math.pow(1 + (fundReturn / 100), 0.5) - 1));
-
             if(fundFee > 100){
             fees = fundFee;
             }else{
@@ -1283,47 +423,14 @@ $scope.fundsOb = [
 
         }
 
-
         return biArray.slice(-1)[0];
-    }
-
-    $scope.fundNotFoundAChange=function(valueA){
-        $scope.fundNotFoundA=valueA;
-        if ($scope.fundNotFoundA) {
-            $scope.fundA = {
-                name: $scope.fundNameA,
-                annualPercentageFee: Number($scope.annualFeeA.replaceAll('%', '')),
-                // netReturn: Number($scope.netReturnA.replaceAll('%', ''))
-            };
-        } else {
-            $scope.fundA = tempFundA;
-        }
-        calculateFinal();
-    }
-
-    $scope.fundNotFoundBChange=function(valueB){
-        $scope.fundNotFoundB=valueB;
-        if ($scope.fundNotFoundB) {
-            $scope.fundB = {
-                name: $scope.fundNameB,
-                annualPercentageFee: Number($scope.annualFeeB.replaceAll('%', '')),
-                // netReturn: Number($scope.netReturnB.replaceAll('%', ''))
-            };
-        } else {
-            $scope.fundB = tempFundB;
-        }
-        calculateFinal();
     }
 
     function calculateFinal() {
 
-        $timeout(0);
+        $scope.resultFundOne = fundCalculation(netReturnRate,$scope.fundA.annualPercentageFee);
 
-        var netReturn = Number($scope.netReturn.replaceAll('%',''));
-
-        $scope.resultFundOne = fundCalculation(netReturn,$scope.fundA.annualPercentageFee);
-
-        $scope.resultFundTwo = fundCalculation(netReturn, $scope.fundB.annualPercentageFee);
+        $scope.resultFundTwo = fundCalculation(netReturnRate,$scope.fundB.annualPercentageFee);
 
         if ($scope.resultFundTwo > $scope.resultFundOne) {
             $scope.savings = $scope.resultFundTwo - $scope.resultFundOne;
@@ -1334,69 +441,11 @@ $scope.fundsOb = [
         }
 
         ChartServiceHc.createChart("#container", Number($scope.resultFundOne.toFixed(2)), Number($scope.resultFundTwo.toFixed(2)), Number($scope.savings.toFixed(2)), false);
-        ChartServiceHc.createChart("#containerR", Number($scope.resultFundOne.toFixed(2)), Number($scope.resultFundTwo.toFixed(2)), Number($scope.savings.toFixed(2)), false);
-        DonutChartServiceHc.createChart(Number($scope.resultFundOne.toFixed(2)), Number($scope.resultFundTwo.toFixed(2)), Number($scope.savings.toFixed(2)));
 
     }
 
      calculateFinal();
 
-
-
-
-
-    // document.getElementById("download").addEventListener("click", function() {
-    //     var annualSalary = Number($scope.annualSalary.replaceAll('$', '').replaceAll(',', ''));
-
-    //     var superBalance = Number($scope.superBalance.replaceAll('$', '').replaceAll(',', ''));
-
-    //     var retirementAge = $scope.retirementAge;
-
-    //     var employerContributionLevel = Number($scope.employerContributionLevel.replaceAll('%', ''));
-
-    //     // var rateOfReturn = Number($scope.rateOfReturn.replaceAll('%',''));
-
-    //     var superTaxRate = Number($scope.superTaxRate.replaceAll('%', ''));
-
-    //     var inflation = Number($scope.inflation.replaceAll('%', ''));
-
-    //     var wageIncrease = Number($scope.wageIncrease.replaceAll('%', ''));
-
-    //     var insurancePremium = Number($scope.insurancePremium.replaceAll('$', '').replaceAll(',', ''));
-
-    //     var cc = Number($scope.cc.replaceAll('$', '').replaceAll(',', ''));
-
-    //     var ncc = Number($scope.ncc.replaceAll('$', '').replaceAll(',', ''));
-
-    //     var personalDetails = {
-    //         dob: $scope.dob,
-    //         age: $scope.age,
-    //         annualSalary: annualSalary,
-    //         superBalance: superBalance,
-    //         retirementAge: retirementAge,
-    //         cc: cc,
-    //         ncc: ncc
-    //     }
-
-    //     var assumptions = {
-    //         ecLevel: employerContributionLevel,
-    //         superTaxRate: superTaxRate,
-    //         inflation: inflation,
-    //         wageIncrease: wageIncrease,
-    //         insurancePremium: insurancePremium
-    //     }
-
-    //     var result = {
-    //         fundA: $scope.fundA,
-    //         fundB: $scope.fundB,
-    //         resultFundOne: $scope.resultFundOne,
-    //         resultFundTwo: $scope.resultFundTwo,
-    //         savings: $scope.savings
-    //     }
-
-
-    //     PdfMaker.createChart(personalDetails, assumptions, result);
-    // });
 
 
 }]);

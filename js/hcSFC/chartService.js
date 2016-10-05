@@ -1,6 +1,7 @@
 app.service('ChartServiceHcSFC',function(){
   this.createChart = function(container,fundA,fundB,saving,changeTheme){
 
+
     if (changeTheme) {
             Highcharts.theme.chart.style.fontFamily = 'Arial';
             Highcharts.theme.title.style.fontWeight = 'normal';
@@ -55,6 +56,7 @@ app.service('ChartServiceHcSFC',function(){
         plotOptions: {
             series: {
                 borderWidth: 0,
+                animation:false
                 // dataLabels: {
                 //     enabled: true,
                 //     format: '{point.y:.1f}%'

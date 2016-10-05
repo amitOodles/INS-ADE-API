@@ -1,11 +1,12 @@
 .otrp-calculator{
 	    display: block;
 	    max-width: 614px;
-	    border: 1px solid #e2e2e2;
+	    /*border: 1px solid #e2e2e2;*/
 	    font-size: 12px;
 	    line-height: normal;
-		margin-top:20px;
+		/*margin-top:20px;*/
         -webkit-print-color-adjust: exact;
+        margin-left:0px;
 }
 .otrp-clear
 {
@@ -391,7 +392,9 @@ input[type=number] {
     border:0px;
 }
 .comp-logo{
-    float:right;
+    /*float:right;*/
+    display: block;
+    margin:0 auto;
 }
 
 
