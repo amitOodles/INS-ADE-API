@@ -12,7 +12,7 @@ Highcharts.createElement('link', {
 
 
 Highcharts.theme = {
-	colors: ["#7CB5EC","#434348"],
+	// colors: ["#7CB5EC","#434348"],
 		
 	chart: {
 		backgroundColor: null,

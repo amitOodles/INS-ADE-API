@@ -45,9 +45,41 @@ app.listen(3001, function() {
 
 app.get('/query', function(req, res) {
 
-    var data = postData;
+    var data = postDataIAC;
 
     res.render(__dirname + '/index.ejs', {
+        data : data,
+    });
+
+});
+
+app.get('/querySFC', function(req, res) {
+
+    var data = postDataSFC;
+
+    // var data = {
+    // "age" : 47,
+    // "retirementAge" : 67,
+    // "annualSalary" : 60000,
+    // "superBalance" : 100000,
+    // "cc" : 10000,
+    // "ncc" : 10000,
+    // "ecLevel" : 9.5,
+    // "inflation" : 2.5,
+    // "wageIncrease" : 3.5,
+    // "insurancePremiumPerYear" : 200,
+    // "netReturnRate":1.50,
+    // "fundIndexA":0,
+    // "fundIndexB":1,
+    // "specifiedFundA":false,
+    // "specifiedNameA":"a",
+    // "specifiedFeeA":1.50,
+    // "specifiedFundB":false,
+    // "specifiedNameB":"b",
+    // "specifiedFeeB":1.50,
+    // };
+
+    res.render(__dirname + '/indexSFC.ejs', {
         data : data,
     });
 
@@ -56,13 +88,13 @@ app.get('/query', function(req, res) {
 
 app.post('/webshot', function(req, res, callback){
 
-    postData = req.body;
+    postDataIAC = req.body;
 
 
     var timeS = new Date;
     var name = timeS.getTime() + ".png";
 
-    function f1() {
+    function generateImage() {
         webshot('http://localhost:3001/query', 'uploads/' + name, webshotOptions, function(err, data) {
             // res.write("error saving");
 
@@ -83,7 +115,40 @@ app.post('/webshot', function(req, res, callback){
         });
     }
 
-    f1();
+    generateImage();
 
     // res.redirect("/query");
+});
+
+app.post('/webshotSFC', function(req, res, callback){
+
+    postDataSFC = req.body;
+
+
+    var timeS = new Date;
+    var name = timeS.getTime() + "SFC.png";
+
+    function generateImage() {
+        webshot('http://localhost:3001/querySFC', 'uploads/' + name,{shotSize: {width:630, height:520}}, function(err, data) {
+            // res.write("error saving");
+
+            if (err) {
+                var resErr = new Error("Unable to generate Insurance Adequacy chart");
+                resErr.status = 400;
+                console.log("error occured", resErr);
+                callback(resErr);
+            } else {
+                var img = fs.readFileSync('uploads/' + name);
+                console.log('uploads/' + name);
+                fs.unlink('uploads/' + name);
+                res.writeHead(200, { 'Content-Type': 'image/png' });
+                res.end(img, 'binary');
+            }
+
+
+        });
+    }
+
+    generateImage();
+
 });

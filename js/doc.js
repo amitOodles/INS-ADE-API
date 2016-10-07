@@ -43,3 +43,25 @@
 		"educationExpensePerYearPerChild":5000
 	}
 }
+
+{
+	"age" : 47,
+	"retirementAge" : 67,
+	"annualSalary" : 60000,
+	"superBalance" : 100000,
+	"cc" : 10000,
+	"ncc" : 10000,
+	"ecLevel" : 9.5,
+	"inflation" : 2.5,
+	"wageIncrease" : 3.5,
+	"insurancePremiumPerYear" : 200,
+	"netReturnRate":1.50,
+	"fundIndexA":0,
+	"fundIndexB":1,
+	"specifiedFundA":false,
+	"specifiedNameA":"a",
+	"specifiedFeeA":1.50,
+	"specifiedFundB":false,
+	"specifiedNameB":"b",
+	"specifiedFeeB":1.50,
+}
