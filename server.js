@@ -129,7 +129,7 @@ app.post('/webshotSFC', function(req, res, callback){
     var name = timeS.getTime() + "SFC.png";
 
     function generateImage() {
-        webshot('http://localhost:3001/querySFC', 'uploads/' + name,{shotSize: {width:630, height:500}}, function(err, data) {
+        webshot('http://localhost:3001/querySFC', 'uploads/' + name,{shotSize: {width:630, height:520}}, function(err, data) {
             // res.write("error saving");
 
             if (err) {
