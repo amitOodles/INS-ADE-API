@@ -152,3 +152,61 @@ app.post('/webshotSFC', function(req, res, callback){
     generateImage();
 
 });
+
+app.get('/webshotTTR', function(req, res, callback){
+
+    // postDataSFC = req.body;
+
+    var ageWs = req.query.age;
+    var csesWs = req.query.cses;
+    var nraWs = req.query.nra;
+    var nrpWs = req.query.nrp;
+    var tfpWs = req.query.tfp;
+    var balanceWs = req.query.balance;
+    var fyWs = req.query.fy;
+    var thpWs = req.query.thp;
+
+    var queryString = "?fy=" + fyWs + "&age=" + ageWs + "&cses=" + csesWs +"&thp=" + thpWs + "&nrp=" + nrpWs + "&nra=" + nraWs + "&balance=" + balanceWs + "&tfp=" + tfpWs;
+
+    var timeS = new Date;
+    var name = timeS.getTime() + "TTR.png";
+
+    function generateImage() {
+        webshot('http://localhost:3001/queryTTR' + queryString, 'uploads/' + name,{shotSize: {width:630, height:550}}, function(err, data) {
+            // res.write("error saving");
+
+            if (err) {
+                var resErr = new Error("Unable to generate TTR chart");
+                resErr.status = 400;
+                console.log("error occured", resErr);
+                callback(resErr);
+            } else {
+                var img = fs.readFileSync('uploads/' + name);
+                console.log('uploads/' + name);
+                fs.unlink('uploads/' + name);
+                res.writeHead(200, { 'Content-Type': 'image/png' });
+                res.end(img, 'binary');
+            }
+
+
+        });
+    }
+
+    generateImage();
+
+});
+
+app.get('/queryTTR', function(req, res) {
+
+    res.render(__dirname + '/indexTTR.ejs', {
+        ageQ : req.query.age,
+        fyQ : req.query.fy,
+        csesQ : req.query.cses,
+        balanceQ : req.query.balance,
+        nraQ : req.query.nra,
+        nrpQ :  req.query.nrp,
+        tfpQ : req.query.tfp,
+        thpQ : req.query.thp
+    });
+
+});

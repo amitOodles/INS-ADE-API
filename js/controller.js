@@ -1,4 +1,4 @@
-app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator','ChartServiceHc',function($scope, $timeout, AgeCalculator, ChartServiceHc) {
+app.controller("IAController", ['$scope', '$timeout', 'AgeCalculator','ChartServiceHc',function($scope, $timeout, AgeCalculator, ChartServiceHc) {
 
     $scope.grossAnnualIncome = insObj.grossAnnualIncome;
     $scope.homeMortgage = insObj.liabilities.homeMortgage;
