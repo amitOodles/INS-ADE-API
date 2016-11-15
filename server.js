@@ -21,8 +21,8 @@ app.use("/fonts", express.static(__dirname + '/fonts'));
 app.set('view engine','ejs');
 
 var webshotOptions = {
-    // phantomPath: require('phantomjs2').path,
-    phantomConfig: { 'ssl-protocol':'tlsv1', 'ignore-ssl-errors': 'true' },
+    phantomPath: require('phantomjs2').path,
+    phantomConfig: {'ignore-ssl-errors': 'yes' },
   // screenSize: {
   //   width: 768
   // , height: 2010
