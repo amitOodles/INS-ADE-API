@@ -101,6 +101,7 @@ app.post('/webshot', function(req, res, callback){
             // res.write("error saving");
 
             if (err) {
+                console.log("error is",err);
                 var resErr = new Error("Unable to generate Insurance Adequacy chart");
                 resErr.status = 400;
                 console.log("error occured", resErr);
