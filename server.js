@@ -95,7 +95,7 @@ app.post('/webshot', function(req, res, callback){
     var name = timeS.getTime() + ".png";
 
     function generateImage() {
-        webshot('http://localhost:3001/query', 'uploads/' + name, webshotOptions, function(err, data) {
+        webshot('http://180.151.85.194:3001/query', 'uploads/' + name, webshotOptions, function(err, data) {
             // res.write("error saving");
 
             if (err) {
@@ -129,7 +129,7 @@ app.post('/webshotSFC', function(req, res, callback){
     var name = timeS.getTime() + "SFC.png";
 
     function generateImage() {
-        webshot('http://localhost:3001/querySFC', 'uploads/' + name,{shotSize: {width:630, height:520}}, function(err, data) {
+        webshot('http://180.151.85.194:3001/querySFC', 'uploads/' + name,{shotSize: {width:630, height:520}}, function(err, data) {
             // res.write("error saving");
 
             if (err) {
@@ -172,7 +172,7 @@ app.get('/webshotTTR', function(req, res, callback){
     var name = timeS.getTime() + "TTR.png";
 
     function generateImage() {
-        webshot('http://localhost:3001/queryTTR' + queryString, 'uploads/' + name,{shotSize: {width:630, height:550}}, function(err, data) {
+        webshot('http://180.151.85.194:3001/queryTTR' + queryString, 'uploads/' + name,{shotSize: {width:630, height:550}}, function(err, data) {
             // res.write("error saving");
 
             if (err) {
