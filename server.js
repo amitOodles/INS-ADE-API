@@ -21,8 +21,8 @@ app.use("/fonts", express.static(__dirname + '/fonts'));
 app.set('view engine','ejs');
 
 var webshotOptions = {
-    phantomPath: require('phantomjs2').path,
-    phantomConfig: { "ssl-protocol":"ANY", 'ignore-ssl-errors': 'true' },
+    // phantomPath: require('phantomjs2').path,
+    phantomConfig: { 'ssl-protocol':'tlsv1', 'ignore-ssl-errors': 'true' },
   // screenSize: {
   //   width: 768
   // , height: 2010
@@ -97,7 +97,7 @@ app.post('/webshot', function(req, res, callback){
     var name = timeS.getTime() + ".png";
 
     function generateImage() {
-        webshot('localhost:3001/query', 'uploads/' + name, webshotOptions, function(err, data) {
+        webshot('http://localhost:3001/query', 'uploads/' + name, webshotOptions, function(err, data) {
             // res.write("error saving");
 
             if (err) {
