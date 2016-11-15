@@ -21,6 +21,7 @@ app.use("/fonts", express.static(__dirname + '/fonts'));
 app.set('view engine','ejs');
 
 var webshotOptions = {
+    phantomPath: require('phantomjs2').path,
   // screenSize: {
   //   width: 768
   // , height: 2010
