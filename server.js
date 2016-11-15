@@ -97,7 +97,7 @@ app.post('/webshot', function(req, res, callback){
     var name = timeS.getTime() + ".png";
 
     function generateImage() {
-        webshot('http://localhost:3001/query', 'uploads/' + name, webshotOptions, function(err, data) {
+        webshot('localhost:3001/query', 'uploads/' + name, webshotOptions, function(err, data) {
             // res.write("error saving");
 
             if (err) {
