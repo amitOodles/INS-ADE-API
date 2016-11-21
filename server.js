@@ -210,3 +210,47 @@ app.get('/queryTTR', function(req, res) {
     });
 
 });
+
+
+app.get('/queryRA', function(req, res) {
+
+    var data = postDataRA;
+
+    res.render(__dirname + '/indexRA.ejs', {
+        data : data,
+    });
+
+});    
+
+app.post('/webshotRA', function(req, res, callback){
+
+    postDataRA= req.body;
+
+
+    var timeS = new Date;
+    var name = timeS.getTime() + "RA.png";
+
+    function generateImage() {
+        webshot('http://180.151.85.194:3001/queryRA', 'uploads/' + name,{shotSize: {width:630, height:520}}, function(err, data) {
+            // res.write("error saving");
+
+            if (err) {
+                var resErr = new Error("Unable to generate Insurance Adequacy chart");
+                resErr.status = 400;
+                console.log("error occured", resErr);
+                callback(resErr);
+            } else {
+                var img = fs.readFileSync('uploads/' + name);
+                console.log('uploads/' + name);
+                fs.unlink('uploads/' + name);
+                res.writeHead(200, { 'Content-Type': 'image/png' });
+                res.end(img, 'binary');
+            }
+
+
+        });
+    }
+
+    generateImage();
+
+});
