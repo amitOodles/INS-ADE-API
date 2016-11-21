@@ -1,0 +1,979 @@
+<!doctype html>
+<html lang="en" ng-app="TTRApp">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, minimum-scale=1">
+    <meta name="description" content="Calculator 1">
+    <link rel="icon" href="images/favicon.ico">
+    <title>Retirement Adequacy Calculator</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="css/customRA.css">
+    <link rel="stylesheet" href="css/font-awesome.css">
+    <link rel="stylesheet" href="css/nouislider.min.css">
+    <!-- <link rel="stylesheet" href="bower_components/angularPrint/angularPrint.css"> -->
+    <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+</head>
+
+<body print-section ng-cloak>
+    <div class="otrp-calculator container-fluid " ng-controller="RAController">
+        <div class=" row title ">
+            <div class="col-xs-8 col-sm-9 col-lg-9">
+                <h1>Retirement Adequacy Calculator</h1>
+            </div>
+            <div print-hide class=" button-wrapper col-xs-4 col-sm-3 col-md-3">
+                <button type="button" class="buttons button print-icon print-doc"></button>
+                <button type="button" class="buttons button save-button" id="download" title="Save as PDF" role="button" aria-controls="email-overlay"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
+                <button type="button" class="buttons button info-icon" ng-click="infoShow(true)" title="Information"></button>
+            </div>
+        </div>
+        <div class="row content">
+            <div class="col-xs-12 col-sm-12 col-lg-12">
+                <div class="row input-div">
+                    <div class="col-xs-12 col-sm-12 col-lg-12">
+                        <div class="row title-div">
+                            <span class="number-wrapper">1</span>
+                            <span class="title-wrapper">Your Details</span>
+                            <div class="otrp-clear"></div>
+                        </div>
+                        <form name="forms.ttrForm" class="ttr-form" novalidate 
+                        ng-submit="calculateFinal(forms.ttrForm.$valid)">
+                        <div class="row">
+                                <div class="col-xs-6">
+                                    <div class="form-group">
+                                        <label for="first-name">First Name *</label>
+                                        <input type="text" class="form-control" ng-model="personalDetails.firstName" name="firstName" id="first-name" ng-pattern="/^[a-zA-Z\s]*$/" onClick="this.select();" required>
+                                        <p class="err-msg" ng-show="!forms.ttrForm.firstName.$pristine && forms.ttrForm.firstName.$invalid">Please provide a valid first name.</p>
+                                    </div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <div class="form-group">
+                                        <label for="last-name">Last Name *</label>
+                                        <input type="text" name="lastName" ng-model="personalDetails.lastName" class="form-control" id="last-name" ng-pattern="/^[a-zA-Z\s]*$/" onClick="this.select();" required>
+                                        <p class="err-msg" ng-show="(!forms.ttrForm.lastName.$pristine && forms.ttrForm.lastName.$invalid)">Please provide a valid last name.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <div class="form-group">
+                                        <label for="email">Email Address *</label>
+                                        <input type="email" name="email" ng-model="personalDetails.email" class="form-control" id="email" onClick="this.select();" required>
+                                        <p class="err-msg" ng-show="(!forms.ttrForm.email.$pristine && forms.ttrForm.email.$invalid)">Enter a valid email address</p>
+                                    </div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <div class="form-group">
+                                        <label for="mobile-number">Mobile Number *</label>
+                                        <input type="number" name="mobile" ng-model="personalDetails.mobile" class="form-control mob-input" id="mobile-number" required onClick="this.select();" ng-pattern="/^(04)\d{8}$/g">
+                                        <p class="err-msg" ng-show="(!forms.ttrForm.mobile.$pristine && forms.ttrForm.mobile.$invalid)">Enter a valid mobile number</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row first-row-mobile">
+                                <div class="col-xs-12 col-sm-6 form-heading">
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            Gender
+                                            <button class="option-l-btn btn btn-primary " ng-click="genderChange(true)" ng-disabled="genderOption">Male</button>
+                                            <button class="option-r-btn btn btn-primary " ng-click="genderChange(false)" ng-disabled="!genderOption">Female</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <div class="form-group">
+                                        <label for="postal-code">Postal Code</label>
+                                        <input type="number" name="postalCode" ng-model="personalDetails.postalCode" class="form-control postal-code" id="postal-code" ng-minlength="4" ng-maxlength="4" onClick="this.select();">
+                                        <p class="err-msg" ng-show="!forms.ttrForm.postalCode.$pristine &&forms.ttrForm.postalCode.$invalid">Enter a valid 4-Digit postal code</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="row"> -->
+                                <!-- <div class="col-xs-6">
+                                    <div class="form-group">
+                                        <label for="address">Address</label>
+                                        <textarea class="form-control" name="address" ng-model="personalDetails.address" id="address"></textarea>
+                                    </div>
+                                </div> -->
+                            <!-- </div> -->
+                            <div class="row second-row-mobile">
+                                <div class="col-xs-8 col-sm-4 form-heading">
+                                    Date Of Birth
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <!-- ng-class="{'err-border' : ttrForm.dob.$invalid }" -->
+                                                    <input type="text" name="dob" id="dobText" onClick="this.select();" class="standard-input form-control dob-input" show-button-bar="false" uib-datepicker-popup="{{format}}" ng-model="dob" is-open="popup1.opened" datepicker-options="dateOptions" required close-text="Close" ng-blur="ageChange()" />
+                                                    <span class="input-group-addon" ng-click="open1()">
+                                 <span class="glyphicon glyphicon-calendar"></span>
+                                                    </span>
+                                                </div>
+                                                <!-- <span ng-show="ttrForm.dob.$invalid">Invalid Date Entered</span> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-4 col-sm-2 form-heading">
+                                    Age
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <div class="form-group">
+                                                <!-- <label for="ageInput">Your Age</label> -->
+                                                <input type="number" onClick="this.select();" class="form-control dob-input" id="ageInput" name="ageInput" ng-model="age" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 form-heading">
+                                    Retirement Age
+                                    <div class="row">
+                                        <div class="col-xs-4 col-sm-4">
+                                            <div class="form-group">
+                                                <!-- <label for="ageInput">Your Age</label> -->
+                                                <input type="text" onClick="this.select();" class="form-control" id="retirementAgeInput" name="retirementAgeInput" ng-model="retirementAge">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-8 col-sm-8 form-group slider-common">
+                                            <!-- <label></label> -->
+                                            <div id="retirementAgeSlider" style="margin-top:8px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row second-row-mobile">
+                                <div class="col-xs-12 col-sm-6 form-heading">
+                                    Annual Salary
+                                    <div class="row">
+                                        <div class="col-xs-4 col-sm-4">
+                                            <div class="form-group">
+                                                <!-- <label for="ageInput">Your Age</label> -->
+                                                <input type="text" onClick="this.select();" class="form-control" id="annualSalaryInput" name="annualSalaryInput" ng-model="annualSalary">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-8 col-sm-8 form-group slider-common">
+                                            <!-- <label></label> -->
+                                            <div id="annualSalarySlider" style="margin-top:8px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 form-heading">
+                                    Super Balance
+                                    <div class="row">
+                                        <div class="col-xs-4 col-sm-4">
+                                            <div class="form-group">
+                                                <!-- <label for="ageInput">Your Age</label> -->
+                                                <input type="text" onClick="this.select();" class="form-control" id="superBalanceInput" name="superBalanceInput" ng-model="superBalance">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-8 col-sm-8 form-group slider-common">
+                                            <!-- <label></label> -->
+                                            <div id="superBalanceSlider" style="margin-top:8px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row second-row-mobile">
+                                <div class="col-xs-12 col-sm-6 form-heading">
+                                    Salary Sacrifice
+                                    <div class="row">
+                                        <div class="col-xs-4 col-sm-4">
+                                            <div class="form-group">
+                                                <!-- <label for="ageInput">Your Age</label> -->
+                                                <input type="text" onClick="this.select();" class="form-control" id="salarySacrificeInput" name="salarySacrificeInput" ng-model="salarySacrifice">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-8 col-sm-8 form-group slider-common">
+                                            <!-- <label></label> -->
+                                            <div id="salarySacrificeSlider" style="margin-top:8px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 form-heading">
+                                    Pension Start Age
+                                    <div class="row">
+                                        <div class="col-xs-4 col-sm-4">
+                                            <div class="form-group">
+                                                <!-- <label for="ageInput">Your Age</label> -->
+                                                <input type="text" onClick="this.select();" class="form-control" id="pensionStartInput" name="pensionStartInput" ng-model="pensionStart">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-8 col-sm-8 form-group slider-common">
+                                            <!-- <label></label> -->
+                                            <div id="pensionStartSlider" style="margin-top:8px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row second-row-mobile">
+                                <div class="col-xs-12 col-sm-6 form-heading">
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            Do you have a spouse?
+                                            <button class="option-l-btn btn btn-primary " ng-click="spouseOptionChange(true)" ng-disabled="spouseOption">Yes</button>
+                                            <button class="option-r-btn btn btn-primary " ng-click="spouseOptionChange(false)" ng-disabled="!spouseOption">No</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 form-heading">
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            Do you own a house?
+                                            <button class="option-l-btn btn btn-primary " ng-click="houseOptionChange(true)" ng-disabled="houseOption">Yes</button>
+                                            <button class="option-r-btn btn btn-primary " ng-click="houseOptionChange(false)" ng-disabled="!houseOption">No</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row second-row-mobile">
+                                <div class="col-xs-12 col-sm-6 form-heading">
+                                    Target Income
+                                    <div class="row">
+                                        <div class="col-xs-4 col-sm-4">
+                                            <div class="form-group">
+                                                <!-- <label for="ageInput">Your Age</label> -->
+                                                <input type="text" onClick="this.select();" class="form-control" id="targetInput" name="targetInput" ng-model="target">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-8 col-sm-8 form-group slider-common">
+                                            <!-- <label></label> -->
+                                            <div id="targetSlider" style="margin-top:8px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row divider" style="padding:0px;" ng-class="{optionDrop: (!spouseOption)}"></div>
+                            <div class="row first-row-mobile" ng-class="{optionDrop: (!spouseOption)}">
+                                <div class="col-xs-12 col-sm-6 form-heading">
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            Gender
+                                            <button class="option-l-btn btn btn-primary " ng-click="genderChangeSpouse(true)" ng-disabled="genderOptionSpouse">Male</button>
+                                            <button class="option-r-btn btn btn-primary " ng-click="genderChangeSpouse(false)" ng-disabled="!genderOptionSpouse">Female</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row second-row-mobile" ng-class="{optionDrop: (!spouseOption)}">
+                                <div class="col-xs-8 col-sm-4 form-heading">
+                                    Date Of Birth
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <!-- ng-class="{'err-border' : ttrForm.dob.$invalid }" -->
+                                                    <input type="text" name="dobSpouse" id="dobTextSpouse" onClick="this.select();" class="standard-input form-control dob-input" show-button-bar="false" uib-datepicker-popup="{{format}}" ng-model="dobSpouse" is-open="popup2.opened" datepicker-options="dateOptions" required close-text="Close" ng-blur="ageChange2()" />
+                                                    <span class="input-group-addon" ng-click="open2()">
+                                 <span class="glyphicon glyphicon-calendar"></span>
+                                                    </span>
+                                                </div>
+                                                <!-- <span ng-show="ttrForm.dob.$invalid">Invalid Date Entered</span> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-4 col-sm-2 form-heading">
+                                    Age
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <div class="form-group">
+                                                <!-- <label for="ageInput">Your Age</label> -->
+                                                <input type="number" onClick="this.select();" class="form-control dob-input" id="ageSpouseInput" name="ageSpouseInput" ng-model="ageSpouse" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 form-heading">
+                                    Retirement Age
+                                    <div class="row">
+                                        <div class="col-xs-4 col-sm-4">
+                                            <div class="form-group">
+                                                <!-- <label for="ageInput">Your Age</label> -->
+                                                <input type="text" onClick="this.select();" class="form-control" id="retirementAgeSpouseInput" name="retirementAgeSpouseInput" ng-model="retirementAgeSpouse">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-8 col-sm-8 form-group slider-common">
+                                            <!-- <label></label> -->
+                                            <div id="retirementAgeSpouseSlider" style="margin-top:8px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row second-row-mobile" ng-class="{optionDrop: (!spouseOption)}">
+                                <div class="col-xs-12 col-sm-6 form-heading">
+                                    Annual Salary
+                                    <div class="row">
+                                        <div class="col-xs-4 col-sm-4">
+                                            <div class="form-group">
+                                                <!-- <label for="ageInput">Your Age</label> -->
+                                                <input type="text" onClick="this.select();" class="form-control" id="annualSalarySpouseInput" name="annualSalarySpouseInput" ng-model="annualSalarySpouse">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-8 col-sm-8 form-group slider-common">
+                                            <!-- <label></label> -->
+                                            <div id="annualSalarySpouseSlider" style="margin-top:8px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 form-heading">
+                                    Super Balance
+                                    <div class="row">
+                                        <div class="col-xs-4 col-sm-4">
+                                            <div class="form-group">
+                                                <!-- <label for="ageInput">Your Age</label> -->
+                                                <input type="text" onClick="this.select();" class="form-control" id="superBalanceSpouseInput" name="superBalanceSpouseInput" ng-model="superBalanceSpouse">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-8 col-sm-8 form-group slider-common">
+                                            <!-- <label></label> -->
+                                            <div id="superBalanceSpouseSlider" style="margin-top:8px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row second-row-mobile" ng-class="{optionDrop: (!spouseOption)}">
+                                <div class="col-xs-12 col-sm-6 form-heading">
+                                    Salary Sacrifice
+                                    <div class="row">
+                                        <div class="col-xs-4 col-sm-4">
+                                            <div class="form-group">
+                                                <!-- <label for="ageInput">Your Age</label> -->
+                                                <input type="text" onClick="this.select();" class="form-control" id="salarySacrificeSpouseInput" name="salarySacrificeSpouseInput" ng-model="salarySacrificeSpouse">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-8 col-sm-8 form-group slider-common">
+                                            <!-- <label></label> -->
+                                            <div id="salarySacrificeSpouseSlider" style="margin-top:8px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 form-heading">
+                                    Pension Start Age
+                                    <div class="row">
+                                        <div class="col-xs-4 col-sm-4">
+                                            <div class="form-group">
+                                                <!-- <label for="ageInput">Your Age</label> -->
+                                                <input type="text" onClick="this.select();" class="form-control" id="pensionStartSpouseInput" name="pensionStartSpouseInput" ng-model="pensionStartSpouse">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-8 col-sm-8 form-group slider-common">
+                                            <!-- <label></label> -->
+                                            <div id="pensionStartSpouseSlider" style="margin-top:8px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <div class="row title-div">
+                            <span class="number-wrapper">2</span>
+                            <span class="title-wrapper">Assumptions</span>
+                            <div class="otrp-clear"></div>
+                        </div>
+                            <div class="row first-row-mobile">
+                                <div class="col-xs-12 col-sm-6 form-heading">
+                                    Insurance Premium per year
+                                    <div class="row">
+                                        <div class="col-xs-4 col-sm-4">
+                                            <div class="form-group">
+                                                <!-- <label for="ageInput">Your Age</label> -->
+                                                <input type="text" onClick="this.select();" class="form-control" id="insurancePremiumInput" name="insurancePremiumInput" ng-model="insurancePremium">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-8 col-sm-8 form-group slider-common">
+                                            <!-- <label></label> -->
+                                            <div id="insurancePremiumSlider" style="margin-top:8px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 form-heading">
+                                    Investment Return
+                                    <div class="row">
+                                        <div class="col-xs-4 col-sm-4">
+                                            <div class="form-group">
+                                                <!-- <label for="ageInput">Your Age</label> -->
+                                                <input type="text" onClick="this.select();" class="form-control" id="investmentReturnInput" name="investmentReturnInput" ng-model="investmentReturn">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-8 col-sm-8 form-group slider-common">
+                                            <!-- <label></label> -->
+                                            <div id="investmentReturnSlider" style="margin-top:8px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row second-row-mobile">
+                                <div class="col-xs-12 col-sm-6 form-heading">
+                                    Variable Fee
+                                    <div class="row">
+                                        <div class="col-xs-4 col-sm-4">
+                                            <div class="form-group">
+                                                <!-- <label for="ageInput">Your Age</label> -->
+                                                <input type="text" onClick="this.select();" class="form-control" id="variableFeeInput" name="variableFeeInput" ng-model="variableFee">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-8 col-sm-8 form-group slider-common">
+                                            <!-- <label></label> -->
+                                            <div id="variableFeeSlider" style="margin-top:8px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 form-heading">
+                                    Fixed Fee
+                                    <div class="row">
+                                        <div class="col-xs-4 col-sm-4">
+                                            <div class="form-group">
+                                                <!-- <label for="ageInput">Your Age</label> -->
+                                                <input type="text" onClick="this.select();" class="form-control" id="fixedFeeInput" name="fixedFeeInput" ng-model="fixedFee">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-8 col-sm-8 form-group slider-common">
+                                            <!-- <label></label> -->
+                                            <div id="fixedFeeSlider" style="margin-top:8px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row second-row-mobile">
+                                <div class="col-xs-12 col-sm-6 form-heading">
+                                    Employer Contribution Level
+                                    <div class="row">
+                                        <div class="col-xs-4 col-sm-4">
+                                            <div class="form-group">
+                                                <!-- <label for="ageInput">Your Age</label> -->
+                                                <input type="text" onClick="this.select();" class="form-control" id="employerContributionLevelInput" name="employerContributionLevelInput" ng-model="employerContributionLevel">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-8 col-sm-8 form-group slider-common">
+                                            <!-- <label></label> -->
+                                            <div id="employerContributionLevelSlider" style="margin-top:8px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 form-heading">
+                                    Inflation
+                                    <div class="row">
+                                        <div class="col-xs-4 col-sm-4">
+                                            <div class="form-group">
+                                                <!-- <label for="ageInput">Your Age</label> -->
+                                                <input type="text" onClick="this.select();" class="form-control" id="inflationInput" name="inflationInput" ng-model="inflation">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-8 col-sm-8 form-group slider-common">
+                                            <!-- <label></label> -->
+                                            <div id="inflationSlider" style="margin-top:8px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row second-row-mobile" id="datebox">
+                                <div class="col-xs-12 col-sm-6 form-heading">
+                                    Wage Increase
+                                    <div class="row">
+                                        <div class="col-xs-4 col-sm-4">
+                                            <div class="form-group">
+                                                <!-- <label for="ageInput">Your Age</label> -->
+                                                <input type="text" onClick="this.select();" class="form-control" id="wageIncreaseInput" name="wageIncreaseInput" ng-model="wageIncrease">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-8 col-sm-8 form-group slider-common">
+                                            <!-- <label></label> -->
+                                            <div id="wageIncreaseSlider" style="margin-top:8px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-sm-6 col-md-6">
+                                    Pension Drawdown
+                                    <select class="selectpickerSingle">
+                                        <option ng-repeat="x in listOb" value="{{x.id}}">{{x.name}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row second-row-mobile" ng-class="{optionDrop: (!showPensionOption)}">
+                                <div class="col-xs-12 col-sm-6 form-heading">
+                                    Pension Drawdown Base
+                                    <div class="row">
+                                        <div class="col-xs-4 col-sm-4">
+                                            <div class="form-group">
+                                                <!-- <label for="ageInput">Your Age</label> -->
+                                                <input type="text" onClick="this.select();" class="form-control" id="pensionDrawdownBaseInput" name="pensionDrawdownBaseInput" ng-model="pensionDrawdownBase">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-8 col-sm-8 form-group slider-common">
+                                            <!-- <label></label> -->
+                                            <div id="pensionDrawdownBaseSlider" style="margin-top:8px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row divider" ng-class="{optionDrop: (!spouseOption)}"></div>
+                            <div class="row first-row-mobile spouse-head" ng-class="{optionDrop: (!spouseOption)}">
+                                <div class="col-xs-12">
+                                    <strong>Spouse Related Assumptions</strong>
+                                </div>
+                            </div>
+                            <div class="row second-row-mobile" ng-class="{optionDrop: (!spouseOption)}">
+                                <div class="col-xs-12 col-sm-6 form-heading">
+                                    Insurance Premium per year
+                                    <div class="row">
+                                        <div class="col-xs-4 col-sm-4">
+                                            <div class="form-group">
+                                                <!-- <label for="ageInput">Your Age</label> -->
+                                                <input type="text" onClick="this.select();" class="form-control" id="insurancePremiumSpouseInput" name="insurancePremiumSpouseInput" ng-model="insurancePremiumSpouse">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-8 col-sm-8 form-group slider-common">
+                                            <!-- <label></label> -->
+                                            <div id="insurancePremiumSpouseSlider" style="margin-top:8px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 form-heading">
+                                    Investment Return
+                                    <div class="row">
+                                        <div class="col-xs-4 col-sm-4">
+                                            <div class="form-group">
+                                                <!-- <label for="ageInput">Your Age</label> -->
+                                                <input type="text" onClick="this.select();" class="form-control" id="investmentReturnSpouseInput" name="investmentReturnSpouseInput" ng-model="investmentReturnSpouse">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-8 col-sm-8 form-group slider-common">
+                                            <!-- <label></label> -->
+                                            <div id="investmentReturnSpouseSlider" style="margin-top:8px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row second-row-mobile" ng-class="{optionDrop: (!spouseOption)}">
+                                <div class="col-xs-12 col-sm-6 form-heading">
+                                    Variable Fee
+                                    <div class="row">
+                                        <div class="col-xs-4 col-sm-4">
+                                            <div class="form-group">
+                                                <!-- <label for="ageInput">Your Age</label> -->
+                                                <input type="text" onClick="this.select();" class="form-control" id="variableFeeSpouseInput" name="variableFeeSpouseInput" ng-model="variableFeeSpouse">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-8 col-sm-8 form-group slider-common">
+                                            <!-- <label></label> -->
+                                            <div id="variableFeeSpouseSlider" style="margin-top:8px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 form-heading">
+                                    Fixed Fee
+                                    <div class="row">
+                                        <div class="col-xs-4 col-sm-4">
+                                            <div class="form-group">
+                                                <!-- <label for="ageInput">Your Age</label> -->
+                                                <input type="text" onClick="this.select();" class="form-control" id="fixedFeeSpouseInput" name="fixedFeeSpouseInput" ng-model="fixedFeeSpouse">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-8 col-sm-8 form-group slider-common">
+                                            <!-- <label></label> -->
+                                            <div id="fixedFeeSpouseSlider" style="margin-top:8px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row second-row-mobile" ng-class="{optionDrop: (!spouseOption)}">
+                                <div class="col-xs-12 col-sm-6 form-heading">
+                                    Employer Contribution Level
+                                    <div class="row">
+                                        <div class="col-xs-4 col-sm-4">
+                                            <div class="form-group">
+                                                <!-- <label for="ageInput">Your Age</label> -->
+                                                <input type="text" onClick="this.select();" class="form-control" id="employerContributionLevelSpouseInput" name="employerContributionLevelSpouseInput" ng-model="employerContributionLevelSpouse">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-8 col-sm-8 form-group slider-common">
+                                            <!-- <label></label> -->
+                                            <div id="employerContributionLevelSpouseSlider" style="margin-top:8px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 form-heading">
+                                    Inflation
+                                    <div class="row">
+                                        <div class="col-xs-4 col-sm-4">
+                                            <div class="form-group">
+                                                <!-- <label for="ageInput">Your Age</label> -->
+                                                <input type="text" onClick="this.select();" class="form-control" id="inflationSpouseInput" name="inflationSpouseInput" ng-model="inflationSpouse">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-8 col-sm-8 form-group slider-common">
+                                            <!-- <label></label> -->
+                                            <div id="inflationSpouseSlider" style="margin-top:8px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row second-row-mobile" ng-class="{optionDrop: (!spouseOption)}" id="datebox">
+                                <div class="col-xs-12 col-sm-6 form-heading">
+                                    Wage Increase
+                                    <div class="row">
+                                        <div class="col-xs-4 col-sm-4">
+                                            <div class="form-group">
+                                                <!-- <label for="ageInput">Your Age</label> -->
+                                                <input type="text" onClick="this.select();" class="form-control" id="wageIncreaseSpouseInput" name="wageIncreaseSpouseInput" ng-model="wageIncreaseSpouse">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-8 col-sm-8 form-group slider-common">
+                                            <!-- <label></label> -->
+                                            <div id="wageIncreaseSpouseSlider" style="margin-top:8px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-sm-6 col-md-6">
+                                    Pension Drawdown
+                                    <select class="selectpickerSpouse">
+                                        <option ng-repeat="x in listOb" value="{{x.id}}">{{x.name}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row second-row-mobile" ng-class="{optionDrop: (!showPensionOptionSpouse || !spouseOption)}">
+                                <div class="col-xs-12 col-sm-6 form-heading">
+                                    Pension Drawdown Base
+                                    <div class="row">
+                                        <div class="col-xs-4 col-sm-4">
+                                            <div class="form-group">
+                                                <!-- <label for="ageInput">Your Age</label> -->
+                                                <input type="text" onClick="this.select();" class="form-control" id="pensionDrawdownBaseSpouseInput" name="pensionDrawdownBaseSpouseInput" ng-model="pensionDrawdownBaseSpouse">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-8 col-sm-8 form-group slider-common">
+                                            <!-- <label></label> -->
+                                            <div id="pensionDrawdownBaseSpouseSlider" style="margin-top:8px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <div class="row title-div">
+                            <span class="number-wrapper">3</span>
+                            <span class="title-wrapper">Other Assets</span>
+                            <div class="otrp-clear"></div>
+                        </div>
+                            <div class="row first-row-mobile">
+                                <div class="col-xs-12 col-sm-6 form-heading">
+                                    Home Contents
+                                    <div class="row">
+                                        <div class="col-xs-4 col-sm-4">
+                                            <div class="form-group">
+                                                <!-- <label for="ageInput">Your Age</label> -->
+                                                <input type="text" onClick="this.select();" class="form-control" id="homeContentsInput" name="homeContentsInput" ng-model="homeContents">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-8 col-sm-8 form-group slider-common">
+                                            <!-- <label></label> -->
+                                            <div id="homeContentsSlider" style="margin-top:8px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 form-heading">
+                                    Vehicle Cost
+                                    <div class="row">
+                                        <div class="col-xs-4 col-sm-4">
+                                            <div class="form-group">
+                                                <!-- <label for="ageInput">Your Age</label> -->
+                                                <input type="text" onClick="this.select();" class="form-control" id="vehicleCostInput" name="vehicleCostInput" ng-model="vehicleCost">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-8 col-sm-8 form-group slider-common">
+                                            <!-- <label></label> -->
+                                            <div id="vehicleCostSlider" style="margin-top:8px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row second-row-mobile">
+                                <div class="col-xs-12 col-sm-6 form-heading">
+                                    Investment Property
+                                    <div class="row">
+                                        <div class="col-xs-4 col-sm-4">
+                                            <div class="form-group">
+                                                <!-- <label for="ageInput">Your Age</label> -->
+                                                <input type="text" onClick="this.select();" class="form-control" id="investmentPropertyInput" name="investmentPropertyInput" ng-model="investmentProperty">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-8 col-sm-8 form-group slider-common">
+                                            <!-- <label></label> -->
+                                            <div id="investmentPropertySlider" style="margin-top:8px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 form-heading">
+                                    Bank Assets
+                                    <div class="row">
+                                        <div class="col-xs-4 col-sm-4">
+                                            <div class="form-group">
+                                                <!-- <label for="ageInput">Your Age</label> -->
+                                                <input type="text" onClick="this.select();" class="form-control" id="bankAssetsInput" name="bankAssetsInput" ng-model="bankAssets">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-8 col-sm-8 form-group slider-common">
+                                            <!-- <label></label> -->
+                                            <div id="bankAssetsSlider" style="margin-top:8px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row second-row-mobile">
+                                <div class="col-xs-12 col-sm-6 form-heading">
+                                    Listed Investment
+                                    <div class="row">
+                                        <div class="col-xs-4 col-sm-4">
+                                            <div class="form-group">
+                                                <!-- <label for="ageInput">Your Age</label> -->
+                                                <input type="text" onClick="this.select();" class="form-control" id="listedInvestmentInput" name="listedInvestmentInput" ng-model="listedInvestment">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-8 col-sm-8 form-group slider-common">
+                                            <!-- <label></label> -->
+                                            <div id="listedInvestmentSlider" style="margin-top:8px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 form-heading">
+                                    Margin Loans
+                                    <div class="row">
+                                        <div class="col-xs-4 col-sm-4">
+                                            <div class="form-group">
+                                                <!-- <label for="ageInput">Your Age</label> -->
+                                                <input type="text" onClick="this.select();" class="form-control" id="marginLoansInput" name="marginLoansInput" ng-model="marginLoans">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-8 col-sm-8 form-group slider-common">
+                                            <!-- <label></label> -->
+                                            <div id="marginLoansSlider" style="margin-top:8px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row second-row-mobile">
+                                <div class="col-xs-12 col-sm-6 form-heading">
+                                    Other Investment
+                                    <div class="row">
+                                        <div class="col-xs-4 col-sm-4">
+                                            <div class="form-group">
+                                                <!-- <label for="ageInput">Your Age</label> -->
+                                                <input type="text" onClick="this.select();" class="form-control" id="otherInvestmentInput" name="otherInvestmentInput" ng-model="otherInvestment">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-8 col-sm-8 form-group slider-common">
+                                            <!-- <label></label> -->
+                                            <div id="otherInvestmentSlider" style="margin-top:8px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 form-heading">
+                                    Net Rental Income
+                                    <div class="row">
+                                        <div class="col-xs-4 col-sm-4">
+                                            <div class="form-group">
+                                                <!-- <label for="ageInput">Your Age</label> -->
+                                                <input type="text" onClick="this.select();" class="form-control" id="netRentalIncomeInput" name="netRentalIncomeInput" ng-model="netRentalIncome">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-8 col-sm-8 form-group slider-common">
+                                            <!-- <label></label> -->
+                                            <div id="netRentalIncomeSlider" style="margin-top:8px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row second-row-mobile">
+                                <div class="col-xs-12 col-sm-6 form-heading">
+                                    Other Income
+                                    <div class="row">
+                                        <div class="col-xs-4 col-sm-4">
+                                            <div class="form-group">
+                                                <!-- <label for="ageInput">Your Age</label> -->
+                                                <input type="text" onClick="this.select();" class="form-control" id="otherIncomeInput" name="otherIncomeInput" ng-model="otherIncome">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-8 col-sm-8 form-group slider-common">
+                                            <!-- <label></label> -->
+                                            <div id="otherIncomeSlider" style="margin-top:8px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 form-heading">
+                                    Pension Income
+                                    <div class="row">
+                                        <div class="col-xs-4 col-sm-4">
+                                            <div class="form-group">
+                                                <!-- <label for="ageInput">Your Age</label> -->
+                                                <input type="text" onClick="this.select();" class="form-control" id="pensionIncomeInput" name="pensionIncomeInput" ng-model="pensionIncome">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-8 col-sm-8 form-group slider-common">
+                                            <!-- <label></label> -->
+                                            <div id="pensionIncomeSlider" style="margin-top:8px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row second-row-mobile">
+                                <div class="col-xs-12 col-sm-6 form-heading">
+                                    Allocated Pension
+                                    <div class="row">
+                                        <div class="col-xs-4 col-sm-4">
+                                            <div class="form-group">
+                                                <!-- <label for="ageInput">Your Age</label> -->
+                                                <input type="text" onClick="this.select();" class="form-control" id="allocatedPensionInput" name="allocatedPensionInput" ng-model="allocatedPension">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-8 col-sm-8 form-group slider-common">
+                                            <!-- <label></label> -->
+                                            <div id="allocatedPensionSlider" style="margin-top:8px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                             <div class="row">
+                                <div class="col-xs-12">
+                                    <button print-remove class="btn btn-block btn-primary calculate-btn" type="submit" style="width:initial ; margin:0 auto; margin-bottom:10px;">Calculate Result</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="row result-head">
+                    <h3 class="results-title">Your Results</h3>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="row chart-buttons-row" print-remove>
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <button class="btn btn-primary" id="bar-chart" ng-click="chartOneOpen = true" title="bar chart description" ng-disabled="chartOneOpen"><i class="fa fa-bar-chart"></i></button>
+                                <button class="btn btn-primary" id="area-chart" ng-click="chartOneOpen = false" title="pie chart description" ng-disabled="!chartOneOpen"><i class="fa fa-area-chart" ></i></button>
+                                <button class="btn btn-primary print-dup print-doc" print-remove style="float:right">
+                                    Print Result
+                                </button>
+                            </div>
+                        </div>
+                        <div id="container" style="margin-top:15px; margin-left:-10px" ></div>
+                        <div id="containerA" style="margin-top:15px; margin-left:-10px ; display:none;"></div>
+                    </div>
+                </div>
+                <div class="row disclaimer">
+                    <span class="calculator-disclaimer">Information provided by Financial Choice Pty Ltd is general financial advice only. General advice is defined under the new regulations to include information about financial products and financial markets and our current views and outlook for those products and markets. The general advice we provide includes the information you have requested from us directly or via our web site.</span>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <img src="images/client-logo.png" class="comp-logo" />
+                    </div>
+                </div>
+                               <div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 style="text-align:center;" class="modal-title">Your Form Inputs Are Incorrect/Incomplete</h4>
+                            </div>
+                            <div class="modal-body">
+                                <ul class="modal-list">
+                                    <li ng-show="forms.ttrForm.firstName.$pristine ">Please provide your first name.</li>
+                                    <li ng-show="!forms.ttrForm.firstName.$pristine && forms.ttrForm.firstName.$invalid">Please provide a valid first name.</li>
+                                    <li ng-show="forms.ttrForm.lastName.$pristine">Please provide your last name.</li>
+                                    <li ng-show="(!forms.ttrForm.lastName.$pristine && forms.ttrForm.lastName.$invalid)">Please provide a valid last name.</li>
+                                    <li ng-show="(forms.ttrForm.email.$pristine || forms.ttrForm.email.$invalid)">Please provide a valid email address.</li>
+                                    <li ng-show="(forms.ttrForm.mobile.$pristine || forms.ttrForm.mobile.$invalid)">Please provide a valid mobile number.</li>
+                                    <li ng-show="forms.ttrForm.postalCode.$invalid">Please provide a valid 4-Digit postal code.</li>
+                                </ul>
+                            </div>
+                            <div class="modal-footer">
+                                <h5 style="text-align:center">Please provide the correct inputs to calculate new result, generate the result as PDF and print the result.</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row information-overlay" print-hide>
+            <div class="col-xs-12 col-sm-12 col-lg-12 ">
+                <div class="row info-title">
+                    <div class="col-xs-9 col-sm-9 col-lg-9">
+                        <h2>Calculator Information</h2>
+                    </div>
+                    <div class="col-xs-3 col-sm-3 col-lg-3">
+                        <button type="button" class="closeInfo" ng-click="infoShow(false)"></button>
+                    </div>
+                </div>
+                <hr class="submit-hr" />
+                <div class="row info-content">
+                    <div class="col-xs-12 col-sm-12 col-lg-12">
+                        <ol>
+                            <li>
+                                Salary indicated here does not include superannuation guarantee contribution, fringe benefit or non-standard agreed employment benefit, and is the salary before any salary sacrifice.
+                            </li>
+                            <li>
+                                SGC will gradually increase to 12.00% in the future
+                            </li>
+                            <li>
+                                It is assumed that the superannuation balance is boosted up by the net concessional contribution in the financial year.
+                            </li>
+                            <li>
+                                This calculator takes into the consideration of both the personal tax and concessional contribution tax charged from the super.
+                            </li>
+                            <li>
+                                Divison 293 tax reduces the tax benefit on low tax contributions (also referred to as concessional contributions) of very high income earners. It was legislated in June 2013 and backdated to July 2012.
+                            </li>
+                            </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/jquery-2.2.4.min.js" type="text/javascript"></script>
+    <script src="js/angular.min.js" type="text/javascript"></script>
+    <script src="js/bootstrap-select.min.js" type="text/javascript"></script>
+    <script src="js/ui-bootstrap-tpls-1.3.3.min.js" type="text/javascript"></script>
+    <script src="js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="js/app.js" type="text/javascript"></script>
+    <script src="js/controllerRA.js" type="text/javascript"></script>
+        <script>
+    $(document).ready(function() {
+        $("input").keydown(function(event) {
+            if (event.keyCode === 13) {
+                event.preventDefault();
+                return false;
+            }
+        });
+        $(".postal-code").keydown(function(event) {
+            if (event.keyCode === 38 || event.keyCode === 40) {
+                event.preventDefault();
+                return false;
+            }
+        });
+        $(".mob-input").keydown(function(event) {
+            if (event.keyCode === 38 || event.keyCode === 40) {
+                event.preventDefault();
+                return false;
+            }
+        });
+    });
+    </script>
+    <script src="js/AgeCalculatorService.js" type="text/javascript"></script>
+    <script src="js/TaxRateCalculatorService.js" type="text/javascript"></script>
+    <script src="js/SGCRateCalculator.js" type="text/javascript"></script>
+    <script src="js/nouislider.min.js" type="text/javascript"></script>
+    <script src="js/wNumb.js" type="text/javascript"></script>
+    <!-- <script src="bower_components/angularPrint/angularPrint.js" type="text/javascript"></script> -->
+    <script src="js/hc/highcharts.js" type="text/javascript"></script>
+    <script src="js/hc/data.js" type="text/javascript"></script>
+    <script src="js/hc/exporting.js" type="text/javascript"></script>
+    <script src="js/hc/sand-signika.js" type="text/javascript"></script>
+    <!-- <script src="js/hc/donutChartService.js" type="text/javascript"></script> -->
+    <script src="js/hcRA/chartService.js" type="text/javascript"></script>
+    <script src="js/hcRA/AreaChartService.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.2.61/jspdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/2.0.16/jspdf.plugin.autotable.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta1/html2canvas.js"></script>
+    <!-- <script src="js/rgbcolor.js" type="text/javascript"></script> -->
+    <!-- <script src="js/StackBlur.js" type="text/javascript"></script> -->
+    <!-- <script src="js/canvg.min.js" type="text/javascript"></script> -->
+    <!-- <script src="js/PdfMaker.js" type="text/javascript"></script> -->
+</body>
+
+</html>

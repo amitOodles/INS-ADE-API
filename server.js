@@ -254,3 +254,7 @@ app.post('/webshotRA', function(req, res, callback){
     generateImage();
 
 });
+
+app.get("/webshotRa",function(req,res){
+    res.render(__dirname + '/indexRA.ejs');
+})
