@@ -1,17 +1,4 @@
-app.controller("RAController", ['$scope', '$timeout', 'AgeCalculator', 'ChartServiceHc','AreaChartService', function($scope, $timeout, AgeCalculator, ChartServiceHc, AreaChartService) {
-
-    // String.prototype.replaceAll = function(search, replacement) {
-    //     var target = this;
-    //     return target.split(search).join(replacement);
-    // };
-    // var minDrawdown;
-    // $scope.listOb = [{ id: 0, name: "Minimum Pension Only" },
-    //     { id: 1, name: "Choose you own pension" }
-    // ];
-
-    // $scope.forms = {};
-
-    // $scope.personalDetails = {};
+app.controller("RAController", ['$scope', '$timeout', 'AgeCalculator', 'ChartServiceHc', 'AreaChartService', function($scope, $timeout, AgeCalculator, ChartServiceHc, AreaChartService) {
 
     var maleExpectancy = [80.3, 79.6, 78.6, 77.6, 76.6, 75.6, 74.6, 73.6, 72.7, 71.7, 70.7, 69.7, 68.7, 67.7, 66.7, 65.7, 64.7, 63.7, 62.8, 61.8, 60.8, 59.9, 58.9, 57.9, 57, 56, 55, 54.1, 53.1, 52.2, 51.2, 50.2, 49.3, 48.3, 47.3, 46.4, 45.4, 44.5, 43.5, 42.6, 41.6, 40.7, 39.8, 38.8, 37.9, 37, 36, 35.1, 34.2, 33.3, 32.4, 31.4, 30.5, 29.6, 28.8, 27.9, 27, 26.1, 25.3, 24.4, 23.5, 22.7, 21.9, 21, 20.2, 19.4, 18.6, 17.8, 17, 16.3, 15.5, 14.8, 14, 13.3, 12.6, 11.9, 11.2, 10.6, 9.9, 9.3, 8.7, 8.2, 7.6, 7.1, 6.6, 6.1, 5.7, 5.3, 4.9, 4.5, 4.2, 3.9, 3.6, 3.4, 3.2, 3, 2.8, 2.6, 2.5, 2.4, 2.3];
 
@@ -19,234 +6,139 @@ app.controller("RAController", ['$scope', '$timeout', 'AgeCalculator', 'ChartSer
 
     var dt = new Date();
 
+    // var RAObj = {
+    //     userDetails: {
+    //         age: 56,
+    //         retirementAge: 65,
+    //         annualSalary: 260000,
+    //         gender: "male",
+    //         superBalance: 500000,
+    //         salarySacrifice: 15384,
+    //         pensionStartAge: 57
+    //     },
+    //     userAssumptions: {
+    //         insurancePremium: 0,
+    //         investmentReturn: 5.30,
+    //         variableFee: 1.11,
+    //         fixedFee: 300,
+    //         employerContributionLevel: 9.50,
+    //         inflation: 3.50,
+    //         wageIncrease: 4.00,
+    //         pensionDrawdown: 1,
+    //         pensionDrawdownBase: 40000
+    //     },
+    //     spouseDetails: {
+    //         gender: "female",
+    //         age: 50,
+    //         retirementAge: 70,
+    //         annualSalary: 90000,
+    //         superBalance: 200000,
+    //         salarySacrifice: 5000,
+    //         pensionStartAge: 65
+    //     },
+    //     spouseAssumptions: {
+    //         insurancePremium: 0,
+    //         investmentReturn: 5.30,
+    //         variableFee: 1.11,
+    //         fixedFee: 300,
+    //         employerContributionLevel: 9.50,
+    //         inflation: 3.50,
+    //         wageIncrease: 4.00,
+    //         pensionDrawdown: 1,
+    //         pensionDrawdownBase: 30000
+    //     },
+    //     otherAssets: {
+    //         homeContents: 50000,
+    //         vehicleCost: 0,
+    //         investmentProperty: 2000,
+    //         bankAssets: 20000,
+    //         listedInvestments: 0,
+    //         marginLoans: 0,
+    //         otherInvestment: 20000,
+    //         netRentalIncome: 0,
+    //         otherIncome: 0,
+    //         pensionIncome: 0,
+    //         allocatedPension: 60000
+    //     },
+    //     spouseOption: true,
+    //     houseOption: true,
+    //     targetIncome: 40000
+    // };
+
+    //House and Spouse Option
+    $scope.spouseOption = RAObj.spouseOption;
+    $scope.houseOption = RAObj.houseOption;
+    $scope.target = RAObj.targetIncome;
+
+    $scope.age = RAObj.userDetails.age;
+
+    // if($scope.spouseOption){
+    $scope.ageSpouse = RAObj.spouseDetails.age;
+    // }
+
     $scope.fy = dt.getMonth() > 5 ? dt.getFullYear() : dt.getFullYear() - 1;
 
-    $scope.showPensionOption = true;
-    $scope.showPensionOptionSpouse = true;
+    $scope.showPensionOption = RAObj.userAssumptions.pensionDrawdown === 1;
+    $scope.showPensionOptionSpouse = RAObj.spouseAssumptions.pensionDrawdown === 1;
 
-    var initDate = new Date();
-    initDate.setYear(1959);
-    initDate.setMonth(6);
-    initDate.setDate(3);
+    $scope.genderOption = RAObj.userDetails.gender == "male";
+    $scope.genderOptionSpouse = RAObj.spouseDetails.gender == "male";
 
-    var initDate2 = new Date();
-    initDate2.setYear(1965);
-    initDate2.setMonth(6);
-    initDate2.setDate(4);
+    // $scope.houseOption = false;
+    $scope.retirementAgeSpouse = RAObj.spouseDetails.retirementAge;
+    $scope.annualSalarySpouse = RAObj.spouseDetails.annualSalary;
+    $scope.superBalanceSpouse = RAObj.spouseDetails.superBalance;
+    $scope.salarySacrificeSpouse = RAObj.spouseDetails.salarySacrifice;
+    $scope.pensionStartSpouse = RAObj.spouseDetails.pensionStartAge;
+    $scope.insurancePremiumSpouse = RAObj.spouseAssumptions.insurancePremium;
+    $scope.investmentReturnSpouse = RAObj.spouseAssumptions.investmentReturn;
+    $scope.variableFeeSpouse = RAObj.spouseAssumptions.variableFee;
+    $scope.fixedFeeSpouse = RAObj.spouseAssumptions.fixedFee;
+    $scope.pensionDrawdownBase = $scope.showPensionOption ? RAObj.userAssumptions.pensionDrawdownBase : 0;
+    $scope.pensionDrawdownBaseSpouse = $scope.showPensionOptionSpouse ? RAObj.userAssumptions.pensionDrawdownBase : 0;
 
-    $scope.dob = initDate;
-    $scope.dobSpouse = initDate2;
+    $scope.retirementAge = RAObj.userDetails.retirementAge;
 
-    $scope.genderOption = true;
-    $scope.genderOptionSpouse = false;
-    $scope.spouseOption = true;
-    $scope.houseOption = false;
-    $scope.retirementAgeSpouse = 70;
-    $scope.annualSalarySpouse = 90000;
-    $scope.superBalanceSpouse = 200000;
-    $scope.salarySacrificeSpouse = 5000;
-    $scope.pensionStartSpouse = 65;
-    $scope.insurancePremiumSpouse = 0;
-    $scope.investmentReturnSpouse = 5.30;
-    $scope.variableFeeSpouse = 1.11;
-    $scope.fixedFeeSpouse = 300;
-    $scope.pensionDrawdownBase = 40000;
-    $scope.pensionDrawdownBaseSpouse = 30000;
+    $scope.annualSalary = RAObj.userDetails.annualSalary;
 
-    $scope.age = AgeCalculator.getAge($scope.dob, $scope.fy);
-    $scope.ageSpouse = AgeCalculator.getAge($scope.dobSpouse, $scope.fy);
+    $scope.employerContributionLevel = RAObj.userAssumptions.employerContributionLevel;
+    $scope.employerContributionLevelSpouse = RAObj.spouseAssumptions.employerContributionLevel;
+
+    $scope.inflation = RAObj.userAssumptions.inflation;
+    $scope.inflationSpouse = RAObj.spouseAssumptions.inflation;
+
+    $scope.superBalance = RAObj.userDetails.superBalance;
+
+    $scope.wageIncrease = RAObj.userAssumptions.wageIncrease;
+    $scope.wageIncreaseSpouse = RAObj.spouseAssumptions.wageIncrease;
+
+    $scope.insurancePremium = RAObj.userAssumptions.insurancePremium;
+
+    $scope.salarySacrifice = RAObj.userDetails.salarySacrifice;
+
+    $scope.pensionStart = RAObj.userDetails.pensionStartAge;
+
+    $scope.investmentReturn = RAObj.userAssumptions.investmentReturn;
+
+    $scope.variableFee = RAObj.userAssumptions.variableFee;
+
+    $scope.fixedFee = RAObj.userAssumptions.fixedFee;
+
+    $scope.homeContents = RAObj.otherAssets.homeContents;
+    $scope.vehicleCost = RAObj.otherAssets.vehicleCost;
+    $scope.investmentProperty = RAObj.otherAssets.investmentProperty;
+    $scope.bankAssets = RAObj.otherAssets.bankAssets;
+    $scope.listedInvestment = RAObj.otherAssets.listedInvestments;
+    $scope.marginLoans = RAObj.otherAssets.marginLoans;
+    $scope.allocatedPension = RAObj.otherAssets.allocatedPension;
+    $scope.otherInvestment = RAObj.otherAssets.otherInvestment;
+    $scope.netRentalIncome = RAObj.otherAssets.netRentalIncome;
+    $scope.otherIncome = RAObj.otherAssets.otherIncome;
+    $scope.pensionIncome = RAObj.otherAssets.pensionIncome;
 
     var leMember1 = $scope.genderOption ? maleExpectancy[$scope.age] : femaleExpectancy[$scope.age];
 
     var leMember2 = $scope.genderOptionSpouse ? maleExpectancy[$scope.ageSpouse] : femaleExpectancy[$scope.ageSpouse];
-
-    $scope.retirementAge = 65;
-    $scope.preservationAge = 55;
-    $scope.preservationAgeSpouse = 55;
-
-    $scope.annualSalary = 260000;
-
-    $scope.employerContributionLevel = 9.50;
-    $scope.employerContributionLevelSpouse = 9.50;
-
-    $scope.inflation = 3.50;
-    $scope.inflationSpouse = 3.50;
-
-    $scope.superBalance = 500000;
-
-    $scope.wageIncrease = 4.00;
-    $scope.wageIncreaseSpouse = 4.00;
-
-    $scope.insurancePremium = 0;
-
-    $scope.salarySacrifice = 20000;
-
-    $scope.pensionStart = 57;
-
-    $scope.investmentReturn = 5.30;
-
-    $scope.variableFee = 1.11;
-
-    $scope.fixedFee = 300;
-
-    $scope.homeContents = 50000;
-    $scope.vehicleCost = 0;
-    $scope.investmentProperty = 2000;
-    $scope.bankAssets = 20000;
-    $scope.listedInvestment = 0;
-    $scope.marginLoans = 0;
-    $scope.allocatedPension = 60000;
-    $scope.otherInvestment = 20000;
-    $scope.netRentalIncome = 0;
-    $scope.otherIncome = 0;
-    $scope.pensionIncome = 0;
-
-    $scope.target = 40000;
-
-
-    function preservationTable(ageTemp) {
-        var temp;
-        switch (ageTemp) {
-            case 56:
-                temp = 56;
-                break;
-            case 55:
-                temp = 57;
-                break;
-            case 54:
-                temp = 58;
-                break;
-            case 53:
-                temp = 59;
-                break;
-            default:
-                if ($scope.age > 56) { temp = 55 } else { temp = 60 }
-                break;
-        }
-        return temp;
-    }
-
-    function preservationChange(temp) {
-        if (temp) {
-            $scope.preservationAge = preservationTable($scope.age);
-        } else {
-            $scope.preservationAgeSpouse = preservationTable($scope.ageSpouse);
-        }
-
-    }
-    // $scope.ageChange = function() {
-    //     var dobText = document.getElementById("dobText");
-    //     var dateString = dobText.value;
-    //     var dateArr = dateString.split("/");
-
-    //     var date_regex = /^([1-9]|0[1-9]|1\d|2\d|3[01])\/(0[1-9]|[1-9]|1[0-2])\/(19[5-9][0-9])$/;
-    //     var correct = date_regex.test(dobText.value);
-    //     var fd = new Date(dateArr[2], dateArr[1] - 1, dateArr[0]);
-    //     if (((fd.getMonth() + 1) === Number(dateArr[1]) && fd.getDate() === Number(dateArr[0])) && correct) {
-    //         $scope.dob = fd;
-    //     } else {
-    //         $scope.dob = initDate;
-    //     }
-    //     $scope.age = AgeCalculator.getAge($scope.dob, $scope.fy);
-    //     leMember1 = $scope.genderOption ? maleExpectancy[$scope.age] : femaleExpectancy[$scope.age];
-    //     if ($scope.age > 59) {
-    //         retirementAgeSlider.noUiSlider.updateOptions({
-    //             range: {
-    //                 'min': ($scope.age + 1),
-    //                 'max': 75
-    //             }
-    //         });
-    //     } else {
-    //         retirementAgeSlider.noUiSlider.updateOptions({
-    //             range: {
-    //                 'min': 60,
-    //                 'max': 75
-    //             }
-    //         });
-    //     }
-    //     preservationChange(true);
-    //     if ($scope.preservationAge == $scope.retirementAge) {
-    //         $scope.pensionStart = $scope.preservationAge;
-    //         pensionStartSlider.setAttribute('disabled', true);
-    //     } else {
-    //         pensionStartSlider.removeAttribute('disabled');
-    //         pensionStartSlider.noUiSlider.updateOptions({
-    //             range: {
-    //                 'min': $scope.preservationAge,
-    //                 'max': $scope.retirementAge
-    //             }
-    //         });
-    //     }
-
-    //     changeCCLimit();
-    // }
-
-
-    // $scope.ageChange2 = function() {
-    //     var dobText = document.getElementById("dobTextSpouse");
-    //     var dateString = dobText.value;
-    //     var dateArr = dateString.split("/");
-
-    //     var date_regex = /^([1-9]|0[1-9]|1\d|2\d|3[01])\/(0[1-9]|[1-9]|1[0-2])\/(19[5-9][0-9])$/;
-    //     var correct = date_regex.test(dobText.value);
-    //     var fd = new Date(dateArr[2], dateArr[1] - 1, dateArr[0]);
-    //     if (((fd.getMonth() + 1) === Number(dateArr[1]) && fd.getDate() === Number(dateArr[0])) && correct) {
-    //         $scope.dobSpouse = fd;
-    //     } else {
-    //         $scope.dobSpouse = initDate;
-    //     }
-    //     $scope.ageSpouse = AgeCalculator.getAge($scope.dobSpouse, $scope.fy);
-    //     leMember2 = $scope.genderOptionSpouse ? maleExpectancy[$scope.ageSpouse] : femaleExpectancy[$scope.ageSpouse];
-    //     if ($scope.ageSpouse > 59) {
-    //         retirementAgeSpouseSlider.noUiSlider.updateOptions({
-    //             range: {
-    //                 'min': ($scope.ageSpouse + 1),
-    //                 'max': 75
-    //             }
-    //         });
-    //     } else {
-    //         retirementAgeSpouseSlider.noUiSlider.updateOptions({
-    //             range: {
-    //                 'min': 60,
-    //                 'max': 75
-    //             }
-    //         });
-    //     }
-    //     preservationChange(false);
-
-    //     if ($scope.preservationAgeSpouse == $scope.retirementAgeSpouse){
-    //         $scope.pensionStartSpouse = $scope.preservationAgeSpouse;
-    //         pensionStartSpouseSlider.setAttribute('disabled', true);
-    //     } else {
-    //         pensionStartSpouseSlider.removeAttribute('disabled');
-    //         pensionStartSpouseSlider.noUiSlider.updateOptions({
-    //             range: {
-    //                 'min': $scope.preservationAgeSpouse,
-    //                 'max': $scope.retirementAgeSpouse
-    //             }
-    //         });
-    //     }
-
-
-
-
-
-    //     changeCCLimitSpouse();
-    // }
-
-
-
-    $scope.spouseOptionChange = function(spouse) {
-        $scope.spouseOption = spouse;
-        // calculateFinal();
-        $timeout(0);
-    }
-
-    $scope.houseOptionChange = function(ownHouse) {
-        $scope.houseOption = ownHouse;
-        // calculateFinal();
-        $timeout(0);
-    }
 
 
     function calculateMinPension(age) {
@@ -281,19 +173,6 @@ app.controller("RAController", ['$scope', '$timeout', 'AgeCalculator', 'ChartSer
         }
     }
 
-    $scope.isCouple = true;
-
-    $scope.ownsHome = true;
-
-    $scope.minPension = true;
-
-    $scope.ddPercent = 4.00;
-
-    $scope.ddBase = 40000;
-
-    $scope.minPensionSpouse = true;
-
-    $scope.ddBaseSpouse = 30000;
 
     function biCount(spouse) {
 
@@ -305,7 +184,6 @@ app.controller("RAController", ['$scope', '$timeout', 'AgeCalculator', 'ChartSer
             var wageIncrease = $scope.wageIncrease;
 
             var inflation = $scope.inflation;
-            var inflationSpouse = $scope.inflationSpouse;
 
             var investmentReturn = $scope.investmentReturn;
 
@@ -314,8 +192,6 @@ app.controller("RAController", ['$scope', '$timeout', 'AgeCalculator', 'ChartSer
             var employerContributionLevel = $scope.employerContributionLevel;
 
             var salarySacrifice = $scope.salarySacrifice;
-
-            // var salarySacrifice = 20000;
 
             var fixedFee = $scope.fixedFee;
 
@@ -348,8 +224,6 @@ app.controller("RAController", ['$scope', '$timeout', 'AgeCalculator', 'ChartSer
             var employerContributionLevel = $scope.employerContributionLevelSpouse;
 
             var salarySacrifice = $scope.salarySacrificeSpouse;
-
-            // var salarySacrifice = 5000;
 
             var fixedFee = $scope.fixedFeeSpouse;
 
@@ -437,6 +311,12 @@ app.controller("RAController", ['$scope', '$timeout', 'AgeCalculator', 'ChartSer
                 }
 
                 balance = baArray[year - 1] + concessionalCo + earnings - taxation - drawdown - fAndI;
+
+                // console.log("cc",concessionalCo);
+                // console.log("txn",taxation);
+                // console.log("dd",drawdown);
+                // console.log("FI",fAndI);
+                // console.log("cc",concessionalCo);
             }
 
             balanceIndexed = balance * balanceCpi;
@@ -480,9 +360,9 @@ app.controller("RAController", ['$scope', '$timeout', 'AgeCalculator', 'ChartSer
     function entitledAgedPension(superFunds, assetCalculationObj, ageMember1, ageMember2) {
         var homeContents = $scope.homeContents;
         var vehicleCost = $scope.vehicleCost;
-        var investmentProperty =$scope.investmentProperty;
+        var investmentProperty = $scope.investmentProperty;
         var bankAssets = $scope.bankAssets;
-        var listedInvestment =$scope.listedInvestment;
+        var listedInvestment = $scope.listedInvestment;
         var marginLoans = $scope.marginLoans;
         var allocatedPension = $scope.allocatedPension;
         var otherInvestment = $scope.otherInvestment;
@@ -766,6 +646,7 @@ app.controller("RAController", ['$scope', '$timeout', 'AgeCalculator', 'ChartSer
                 ChartServiceHc.createChart(totalSuperBalanceArray.slice(0, 5 + Math.max(Math.ceil(leMember1), Math.ceil(leMember2))));
                 AreaChartService.createChart(member1APArray.slice(0, 5 + Math.max(Math.ceil(leMember1), Math.ceil(leMember2))), member2APArray.slice(0, 5 + Math.max(Math.ceil(leMember1), Math.ceil(leMember2))), member1PensionArray.slice(0, 5 + Math.max(Math.ceil(leMember1), Math.ceil(leMember2))), member2PensionArray.slice(0, 5 + Math.max(Math.ceil(leMember1), Math.ceil(leMember2))), leMember1, leMember2, true, targetIncome);
 
+
             }
         } else {
             $("#myModal").modal('show');
@@ -778,4 +659,3 @@ app.controller("RAController", ['$scope', '$timeout', 'AgeCalculator', 'ChartSer
     $scope.calculateFinal(true);
 
 }]);
-

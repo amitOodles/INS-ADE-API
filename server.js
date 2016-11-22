@@ -231,7 +231,7 @@ app.post('/webshotRA', function(req, res, callback){
     var name = timeS.getTime() + "RA.png";
 
     function generateImage() {
-        webshot('http://localhost:3001/queryRA', 'uploads/' + name,webshotOptions, function(err, data) {
+        webshot('http://localhost:3001/queryRA', 'uploads/' + name,{shotSize: {width:630, height:550}}, function(err, data) {
             // res.write("error saving");
 
             if (err) {
@@ -255,9 +255,7 @@ app.post('/webshotRA', function(req, res, callback){
 
 });
 
-// app.get("/webshotRa",function(req,res){
+app.get("/webshotRa",function(req,res){
 
-//     res.render(__dirname + '/indexRA.ejs',{
-//         data : postDataRA
-//     });
-// })
+    res.render(__dirname + '/indexRA.ejs');
+})

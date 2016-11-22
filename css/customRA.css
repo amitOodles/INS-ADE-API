@@ -1,10 +1,11 @@
 .otrp-calculator{
 	    display: block;
 	    max-width: 614px;
-	    border: 1px solid #e2e2e2;
+	    /*border: 1px solid #e2e2e2;*/
 	    font-size: 12px;
 	    line-height: normal;
-		margin-top:20px;
+		/*margin-top:20px;*/
+    margin-left:0px;
         -webkit-print-color-adjust: exact;
 }
 .otrp-clear
@@ -404,10 +405,6 @@ input[type=number] {
     border-radius: 0;
     border:0px;
 }
-.comp-logo{
-    float:right;
-}
-
 
 
 
