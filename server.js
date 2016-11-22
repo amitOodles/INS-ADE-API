@@ -231,7 +231,7 @@ app.post('/webshotRA', function(req, res, callback){
     var name = timeS.getTime() + "RA.png";
 
     function generateImage() {
-        webshot('http://localhost:3001/queryRA', 'uploads/' + name,{shotSize: {width:630, height:550}}, function(err, data) {
+        webshot('http://localhost:3001/queryRA', 'uploads/' + name,{shotSize: {width:740, height:"all"}}, function(err, data) {
             // res.write("error saving");
 
             if (err) {
