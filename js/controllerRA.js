@@ -6,6 +6,9 @@ app.controller("RAController", ['$scope', '$timeout', 'AgeCalculator', 'ChartSer
 
     var dt = new Date();
 
+    $scope.fy = dt.getMonth() > 5 ? dt.getFullYear() : dt.getFullYear() - 1;
+
+
     // var RAObj = {
     //     userDetails: {
     //         age: 56,
@@ -70,60 +73,49 @@ app.controller("RAController", ['$scope', '$timeout', 'AgeCalculator', 'ChartSer
     $scope.houseOption = RAObj.houseOption;
     $scope.target = RAObj.targetIncome;
 
+    // User Details
     $scope.age = RAObj.userDetails.age;
-
-    // if($scope.spouseOption){
-    $scope.ageSpouse = RAObj.spouseDetails.age;
-    // }
-
-    $scope.fy = dt.getMonth() > 5 ? dt.getFullYear() : dt.getFullYear() - 1;
-
-    $scope.showPensionOption = RAObj.userAssumptions.pensionDrawdown === 1;
-    $scope.showPensionOptionSpouse = RAObj.spouseAssumptions.pensionDrawdown === 1;
-
     $scope.genderOption = RAObj.userDetails.gender == "male";
-    $scope.genderOptionSpouse = RAObj.spouseDetails.gender == "male";
+    $scope.retirementAge = RAObj.userDetails.retirementAge;
+    $scope.annualSalary = RAObj.userDetails.annualSalary;
+    $scope.superBalance = RAObj.userDetails.superBalance;
+    $scope.salarySacrifice = RAObj.userDetails.salarySacrifice;
+    $scope.pensionStart = RAObj.userDetails.pensionStartAge;
 
-    // $scope.houseOption = false;
+    // User Assumptions
+    $scope.employerContributionLevel = RAObj.userAssumptions.employerContributionLevel;
+    $scope.showPensionOption = RAObj.userAssumptions.pensionDrawdown === 1;
+    $scope.pensionDrawdownBase = $scope.showPensionOption ? RAObj.userAssumptions.pensionDrawdownBase : 0;
+    $scope.inflation = RAObj.userAssumptions.inflation;
+    $scope.wageIncrease = RAObj.userAssumptions.wageIncrease;
+    $scope.insurancePremium = RAObj.userAssumptions.insurancePremium;
+    $scope.investmentReturn = RAObj.userAssumptions.investmentReturn;
+    $scope.variableFee = RAObj.userAssumptions.variableFee;
+    $scope.fixedFee = RAObj.userAssumptions.fixedFee;
+
+    if($scope.spouseOption){
+    //Spouse Details
+    $scope.ageSpouse = RAObj.spouseDetails.age;
+    $scope.genderOptionSpouse = RAObj.spouseDetails.gender == "male";
     $scope.retirementAgeSpouse = RAObj.spouseDetails.retirementAge;
     $scope.annualSalarySpouse = RAObj.spouseDetails.annualSalary;
     $scope.superBalanceSpouse = RAObj.spouseDetails.superBalance;
     $scope.salarySacrificeSpouse = RAObj.spouseDetails.salarySacrifice;
     $scope.pensionStartSpouse = RAObj.spouseDetails.pensionStartAge;
+
+    // Spouse Assumptions
+    $scope.showPensionOptionSpouse = RAObj.spouseAssumptions.pensionDrawdown === 1;
     $scope.insurancePremiumSpouse = RAObj.spouseAssumptions.insurancePremium;
     $scope.investmentReturnSpouse = RAObj.spouseAssumptions.investmentReturn;
     $scope.variableFeeSpouse = RAObj.spouseAssumptions.variableFee;
     $scope.fixedFeeSpouse = RAObj.spouseAssumptions.fixedFee;
-    $scope.pensionDrawdownBase = $scope.showPensionOption ? RAObj.userAssumptions.pensionDrawdownBase : 0;
-    $scope.pensionDrawdownBaseSpouse = $scope.showPensionOptionSpouse ? RAObj.userAssumptions.pensionDrawdownBase : 0;
-
-    $scope.retirementAge = RAObj.userDetails.retirementAge;
-
-    $scope.annualSalary = RAObj.userDetails.annualSalary;
-
-    $scope.employerContributionLevel = RAObj.userAssumptions.employerContributionLevel;
+    $scope.pensionDrawdownBaseSpouse = $scope.showPensionOptionSpouse ? RAObj.spouseAssumptions.pensionDrawdownBase : 0;
     $scope.employerContributionLevelSpouse = RAObj.spouseAssumptions.employerContributionLevel;
-
-    $scope.inflation = RAObj.userAssumptions.inflation;
     $scope.inflationSpouse = RAObj.spouseAssumptions.inflation;
-
-    $scope.superBalance = RAObj.userDetails.superBalance;
-
-    $scope.wageIncrease = RAObj.userAssumptions.wageIncrease;
     $scope.wageIncreaseSpouse = RAObj.spouseAssumptions.wageIncrease;
+    }
 
-    $scope.insurancePremium = RAObj.userAssumptions.insurancePremium;
-
-    $scope.salarySacrifice = RAObj.userDetails.salarySacrifice;
-
-    $scope.pensionStart = RAObj.userDetails.pensionStartAge;
-
-    $scope.investmentReturn = RAObj.userAssumptions.investmentReturn;
-
-    $scope.variableFee = RAObj.userAssumptions.variableFee;
-
-    $scope.fixedFee = RAObj.userAssumptions.fixedFee;
-
+    // Other Assets
     $scope.homeContents = RAObj.otherAssets.homeContents;
     $scope.vehicleCost = RAObj.otherAssets.vehicleCost;
     $scope.investmentProperty = RAObj.otherAssets.investmentProperty;
@@ -138,7 +130,9 @@ app.controller("RAController", ['$scope', '$timeout', 'AgeCalculator', 'ChartSer
 
     var leMember1 = $scope.genderOption ? maleExpectancy[$scope.age] : femaleExpectancy[$scope.age];
 
+    if($scope.spouseOption){
     var leMember2 = $scope.genderOptionSpouse ? maleExpectancy[$scope.ageSpouse] : femaleExpectancy[$scope.ageSpouse];
+}
 
 
     function calculateMinPension(age) {
@@ -629,7 +623,7 @@ app.controller("RAController", ['$scope', '$timeout', 'AgeCalculator', 'ChartSer
                     member1PensionArray.push(0);
                 }
                 ChartServiceHc.createChart(totalSuperBalanceArray.slice(0, 5 + Math.ceil(leMember1)));
-                AreaChartService.createChart(member1APArray.slice(0, 5 + Math.ceil(leMember1)), [], member1PensionArray.slice(0, 5 + Math.ceil(leMember1)), [], leMember1, leMember2, false, targetIncome);
+                AreaChartService.createChart(member1APArray.slice(0, 5 + Math.ceil(leMember1)), [], member1PensionArray.slice(0, 5 + Math.ceil(leMember1)), [], leMember1, 0, false, targetIncome);
             } else {
                 while (member1APArray.length <= Math.max(Math.ceil(leMember1), Math.ceil(leMember2))) {
                     member1APArray.push(0);
@@ -648,9 +642,6 @@ app.controller("RAController", ['$scope', '$timeout', 'AgeCalculator', 'ChartSer
 
 
             }
-        } else {
-            $("#myModal").modal('show');
-            $("html, body").animate({ scrollTop: 0 }, "slow");
         }
 
 
