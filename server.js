@@ -255,7 +255,7 @@ app.post('/webshotRA', function(req, res, callback){
 
 });
 
-app.get("/webshotRa",function(req,res){
+// app.get("/webshotRa",function(req,res){
 
-    res.render(__dirname + '/indexRA.ejs');
-})
+//     res.render(__dirname + '/indexRA.ejs');
+// })
