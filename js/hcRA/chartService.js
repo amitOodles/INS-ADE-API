@@ -13,7 +13,7 @@ app.service('ChartServiceHc', function() {
         if (balanceArray.length > 30) {
             for (var i = 0; i < balanceArray.length; i++) {
                 infoData.push({
-                    name: "",
+                    name: i,
                     y: balanceArray[i]
                 });
             }
@@ -82,6 +82,7 @@ app.service('ChartServiceHc', function() {
             plotOptions: {
                 series: {
                     borderWidth: 0,
+                    animation:false
                 }
             },
             tooltip: {

@@ -138,7 +138,7 @@ app.get('/webshotTTR', function(req, res, callback){
     var name = timeS.getTime() + "TTR.png";
 
     function generateImage() {
-        webshot('http://localhost:3001/queryTTR' + queryString, 'uploads/' + name,{shotSize: {width:630, height:550}}, function(err, data) {
+        webshot('http://180.151.85.194:3001/queryTTR' + queryString, 'uploads/' + name,{shotSize: {width:630, height:550}}, function(err, data) {
             // res.write("error saving");
 
             if (err) {
@@ -193,11 +193,11 @@ app.post('/webshotRA', function(req, res, callback){
     var name = timeS.getTime() + "RA.png";
 
     function generateImage() {
-        webshot('http://localhost:3001/queryRA', 'uploads/' + name,{shotSize: {width:630, height:520}}, function(err, data) {
+        webshot('http://180.151.85.194:3001/queryRA', 'uploads/' + name,{shotSize: {width:740, height:"all"}}, function(err, data) {
             // res.write("error saving");
 
             if (err) {
-                var resErr = new Error("Unable to generate Retirement Adequacy chart");
+                var resErr = new Error("Unable to generate Insurance Adequacy chart");
                 resErr.status = 400;
                 console.log("error occured", resErr);
                 callback(resErr);
