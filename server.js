@@ -54,7 +54,7 @@ app.post('/webshot', function(req, res, callback){
     var name = timeS.getTime() + ".png";
 
     function generateImage() {
-        webshot('http://localhost:3001/query', 'uploads/' + name, webshotOptions, function(err, data) {
+        webshot('http://180.151.85.194:3001/query', 'uploads/' + name, webshotOptions, function(err, data) {
             // res.write("error saving");
 
             if (err) {
@@ -95,7 +95,7 @@ app.post('/webshotSFC', function(req, res, callback){
     var name = timeS.getTime() + "SFC.png";
 
     function generateImage() {
-        webshot('http://localhost:3001/querySFC', '../../calculators/incomeTaxCalculator/uploads/' + name,{shotSize: {width:630, height:520}}, function(err, data) {
+        webshot('http://180.151.85.194:3001/querySFC', 'uploads/' + name,{shotSize: {width:630, height:520}}, function(err, data) {
             // res.write("error saving");
 
             if (err) {
@@ -104,7 +104,7 @@ app.post('/webshotSFC', function(req, res, callback){
                 console.log("error occured", resErr);
                 callback(resErr);
             } else {
-                var img = fs.readFileSync('../../calculators/incomeTaxCalculator/uploads/' + name);
+                var img = fs.readFileSync('uploads/' + name);
                 console.log('uploads/' + name);
                 //fs.unlink('uploads/' + name);
                 res.writeHead(200, { 'Content-Type': 'image/png' });
