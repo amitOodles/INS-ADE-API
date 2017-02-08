@@ -230,8 +230,7 @@ app.service('AreaChartService', function() {
                         enabled: false,
                         lineWidth: 1,
                         lineColor: '#666666'
-                    },
-                    animation : false
+                    }
                 }
             },
             series: series,

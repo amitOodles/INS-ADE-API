@@ -35,14 +35,6 @@ app.listen(3001, function() {
     console.log('listening on 3001');
 })
 
-
-// app.get('/file', (req, res) => {
-//     res.sendFile(__dirname + '/index.html');
-//     // res.send(data);
-//     // res.sendFile(__dirname + '/index.html');    
-//     // res.sendFile(path.join(__dirname + '/views/index.html'));
-// });
-
 app.get('/query', function(req, res) {
 
     var data = postDataIAC;
@@ -53,39 +45,6 @@ app.get('/query', function(req, res) {
 
 });
 
-app.get('/querySFC', function(req, res) {
-
-    var data = postDataSFC;
-
-    // var data = {
-    // "age" : 47,
-    // "retirementAge" : 67,
-    // "annualSalary" : 60000,
-    // "superBalance" : 100000,
-    // "cc" : 10000,
-    // "ncc" : 10000,
-    // "ecLevel" : 9.5,
-    // "inflation" : 2.5,
-    // "wageIncrease" : 3.5,
-    // "insurancePremiumPerYear" : 200,
-    // "netReturnRate":1.50,
-    // "fundIndexA":0,
-    // "fundIndexB":1,
-    // "specifiedFundA":false,
-    // "specifiedNameA":"a",
-    // "specifiedFeeA":1.50,
-    // "specifiedFundB":false,
-    // "specifiedNameB":"b",
-    // "specifiedFeeB":1.50,
-    // };
-
-    res.render(__dirname + '/indexSFC.ejs', {
-        data : data,
-    });
-
-});
-
-
 app.post('/webshot', function(req, res, callback){
 
     postDataIAC = req.body;
@@ -95,7 +54,7 @@ app.post('/webshot', function(req, res, callback){
     var name = timeS.getTime() + ".png";
 
     function generateImage() {
-        webshot('http://180.151.85.194:3001/query', 'uploads/' + name, webshotOptions, function(err, data) {
+        webshot('http://localhost:3001/query', 'uploads/' + name, webshotOptions, function(err, data) {
             // res.write("error saving");
 
             if (err) {
@@ -120,16 +79,23 @@ app.post('/webshot', function(req, res, callback){
     // res.redirect("/query");
 });
 
+app.get('/querySFC', function(req, res) {
+
+    var data = postDataSFC;
+    res.render(__dirname + '/indexSFC.ejs', {
+        data : data,
+    });
+
+});
 app.post('/webshotSFC', function(req, res, callback){
 
     postDataSFC = req.body;
-
 
     var timeS = new Date;
     var name = timeS.getTime() + "SFC.png";
 
     function generateImage() {
-        webshot('http://180.151.85.194:3001/querySFC', 'uploads/' + name,{shotSize: {width:630, height:520}}, function(err, data) {
+        webshot('http://localhost:3001/querySFC', '../../calculators/incomeTaxCalculator/uploads/' + name,{shotSize: {width:630, height:520}}, function(err, data) {
             // res.write("error saving");
 
             if (err) {
@@ -138,9 +104,9 @@ app.post('/webshotSFC', function(req, res, callback){
                 console.log("error occured", resErr);
                 callback(resErr);
             } else {
-                var img = fs.readFileSync('uploads/' + name);
+                var img = fs.readFileSync('../../calculators/incomeTaxCalculator/uploads/' + name);
                 console.log('uploads/' + name);
-                fs.unlink('uploads/' + name);
+                //fs.unlink('uploads/' + name);
                 res.writeHead(200, { 'Content-Type': 'image/png' });
                 res.end(img, 'binary');
             }
@@ -211,21 +177,17 @@ app.get('/queryTTR', function(req, res) {
 
 });
 
-
 app.get('/queryRA', function(req, res) {
 
     var data = postDataRA;
-
     res.render(__dirname + '/indexRA.ejs', {
         data : data,
     });
 
-});    
-
+});
 app.post('/webshotRA', function(req, res, callback){
 
-    postDataRA= req.body;
-
+    postDataRA = req.body;
 
     var timeS = new Date;
     var name = timeS.getTime() + "RA.png";
@@ -254,8 +216,3 @@ app.post('/webshotRA', function(req, res, callback){
     generateImage();
 
 });
-
-// app.get("/webshotRa",function(req,res){
-
-//     res.render(__dirname + '/indexRA.ejs');
-// })
