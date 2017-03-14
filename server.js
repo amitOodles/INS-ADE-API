@@ -2,6 +2,8 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 
+var pdf = require('html-pdf');
+
 var fs = require('fs');
 
 var webshot = require('webshot');
