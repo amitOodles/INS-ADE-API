@@ -1,0 +1,593 @@
+<html>
+
+<head>
+    <meta charset="utf8">
+    <title>SuitArt Business Card</title>
+    <style>
+        @font-face {
+            font-family: Pragmatica Light;
+            src: url(fonts/Pragmatica-Light.ttf);
+        }
+
+        @font-face {
+            font-family: Pragmatica Extra Light;
+            src: url(fonts/Pragmatica-ExtraLight.ttf);
+        }
+
+        @font-face {
+            font-family: Pragmatica Medium;
+            src: url(fonts/Pragmatica-Medium.ttf);
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Sackers Gothic Std';
+            font-weight: 500;
+            font-size: 20px;
+            background: rgb(241, 241, 241);
+            -webkit-print-color-adjust: exact;
+            box-sizing: border-box;
+        }
+
+        .page {
+            position: relative;
+            height: 815px;
+            /*width: 50mm;*/
+            width: 590px;
+            display: block;
+            /*background: black;*/
+            page-break-after: auto;
+            /*margin: 50px;*/
+            /*overflow: hidden;*/
+            margin: 0 auto 5px;
+        }
+
+        @media print {
+            body {
+                background: black;
+            }
+            .page {
+                margin: 0;
+                height: 100%;
+                width: 100%;
+            }
+        }
+
+        .page.first {
+            border-left: 5px solid green;
+        }
+
+        .bottom {
+            position: absolute;
+            left: 5mm;
+            right: 5mm;
+            bottom: 5mm;
+        }
+
+        .group {
+            margin-top: 3mm;
+        }
+
+        .line {
+            color: white;
+            position: relative;
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        .logo {
+            position: relative;
+            width: 80%;
+            left: 10%;
+            top: 15%;
+        }
+        /* new css start */
+
+        .page .first-page {
+            background: url(images/image1.jpg);
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+        }
+
+        .first-page .transparent-box {
+            position: absolute;
+            top: 12mm;
+            left: 10mm;
+            width: calc(100% - 20mm);
+            background: rgba(0, 181, 222, 0.6);
+        }
+
+        .first-page .transparent-box .content {
+            padding: 20px;
+        }
+
+        .first-page .transparent-box .content h2 {
+            font-size: 32px;
+            text-transform: uppercase;
+            padding: 0;
+            margin: 0;
+            color: #fff;
+            font-family: Pragmatica Light;
+            font-weight: normal;
+        }
+
+        .first-page .transparent-box .content h4 {
+            font-size: 21px;
+            text-transform: uppercase;
+            margin: 0;
+            color: #fff;
+            font-family: Pragmatica Extra Light;
+            font-weight: normal;
+            padding: 6px 0 8px 0px;
+        }
+
+        .first-page .transparent-box .content p {
+            font-size: 16px;
+            text-transform: uppercase;
+            padding: 0;
+            margin: 0;
+            color: #000;
+            font-family: Pragmatica Extra Light;
+            font-weight: normal;
+            text-align: justify;
+        }
+
+        .first-page .transparent-box .content .right {
+            float: right;
+        }
+
+        .first-page .transparent-box .content .right h5 {
+            margin: 0;
+            padding: 0;
+            font-size: 15px;
+            text-align: right;
+            font-weight: normal;
+        }
+
+        .first-page .transparent-box .content .right img {
+            width: 75%;
+            float: right;
+            padding: 10px 0px 25px 0px;
+        }
+
+        .page .content-page {
+            background: #fff;
+            padding: 15px;
+        }
+
+        .page .content-page h5 {
+            margin: 0;
+            padding: 0;
+            font-family: Pragmatica Light;
+            font-weight: normal;
+            font-size: 21px;
+        }
+
+        .page .content-page h2 {
+            margin: 0;
+            padding: 0;
+            font-weight: normal;
+            font-family: Pragmatica Light;
+            padding-top: 15px;
+            font-size: 28px;
+        }
+
+        .page .content-page h4 {
+            margin: 0;
+            padding: 0;
+            font-weight: normal;
+            font-family: Pragmatica Light;
+            padding-top: 15px;
+            font-size: 19px;
+            color: #00939c;
+        }
+
+        .page .content-page p {
+            margin: 0;
+            padding: 0;
+            font-weight: normal;
+            font-family: Pragmatica Light;
+            padding-top: 8px;
+            font-size: 13px;
+            text-align: justify;
+        }
+
+        .page .content-page ul {
+            margin: 7px 0 0 0px;
+            padding: 0;
+        }
+
+        .page .content-page li {
+            list-style-type: none;
+            font-size: 13px;
+            padding: 5px 0px;
+            font-family: Pragmatica Light;
+        }
+
+        .page .detail-page {
+            background: url(images/image2.jpg);
+            width: calc(100% - 30px);
+            background-size: cover;
+            padding: 15px;
+        }
+
+        .page .detail-page h2 {
+          margin-top: 38px;
+          margin-bottom: 0;
+          color: #fff;
+          padding: 21px 0 23px 22px;
+          font-family: Pragmatica Light;
+          font-weight: normal;
+          font-size: 27px;
+          border-top: 1px solid #d8d0d0;
+          border-bottom: 1px solid #9c9898;
+        }
+
+        .page .detail-page .padding-left {
+            padding-left: 25px;
+        }
+
+        .page .detail-page h4 {
+            margin: 0;
+            padding: 0;
+            font-weight: normal;
+            font-family: Pragmatica Light;
+            padding-top: 15px;
+            font-size: 19px;
+            color: #fff;
+        }
+
+        .page .detail-page p {
+            margin: 0;
+            padding: 0;
+            font-weight: normal;
+            font-family: Pragmatica Light;
+            padding-top: 4px;
+            color: #fff;
+            font-size: 13px;
+            text-align: justify;
+        }
+
+        .page .detail-page .detail-part {
+            width: 75%;
+            margin: 0 auto;
+        }
+
+        .page .detail-page .detail-part table {
+            width: 100%;
+            margin-top: 25px;
+        }
+
+        .page .detail-page .detail-part table th {
+            background: #00b3bb;
+            width: 50%;
+            padding: 4px 7px;
+            font-size: 15px;
+            color: #fff;
+            font-family: Pragmatica Light;
+            text-align: left;
+            border-right: 1px solid #00888e;
+        }
+
+        .page .detail-page .detail-part table th:last-child {
+            border: 0;
+        }
+
+        .page .detail-page .detail-part table th.border-zero {
+            border: 0;
+        }
+
+        .page .detail-page .detail-part table td {
+            border-bottom: 1px solid #00b3bb;
+            padding: 4px 7px;
+            color: #fff;
+            font-family: Pragmatica Extra Light;
+            text-align: left;
+            font-size: 14px;
+        }
+
+        .page .detail-page .detail-part table td.text-right {
+            text-align: right;
+        }
+        .page .sections-page {
+          background-color: #23b8e3;
+          padding: 15px;
+          height: 100%;
+        }
+        .page .sections-page .section-part{
+          width: 80%;
+          margin: 0 auto;
+          text-align: left;
+        }
+        .page .sections-page .section-part .section{
+          background: #65cde9;
+          padding: 10px;
+          margin-top: 20px;
+        }
+        .page .sections-page h2 {
+          margin: 0;
+          padding: 25px 0px;
+          font-size: 29px;
+          color: #fff;
+          font-family: Pragmatica Extra Light;
+        }
+        .page .sections-page .section-part .section h4{
+          margin: 0;
+          padding: 0;
+          font-family: Pragmatica Extra Light;
+          font-size: 15px;
+        }
+        .page .sections-page .section-part .section p{
+          margin: 0;
+          padding: 0;
+          font-family: Pragmatica Extra Light;
+          font-size: 14px;
+        }
+        .page .financial-page {
+          background: url(images/image3.jpg);
+          width: calc(100% - 30px);
+          background-size: cover;
+          height: calc(100% - 30px);
+          padding: 15px;
+        }
+        .page .financial-page .financial-page-content {
+          width: 86%;
+          margin: 0 auto;
+        }
+        .page .financial-page h2 {
+          color: #fff;
+          font-family: Pragmatica Extra Light;
+          font-size: 29px;
+          padding-top: 40px;
+          padding-bottom: 15px;
+          font-weight: normal;
+          margin: 0;
+        }
+        .page .financial-page p {
+          color: #000;
+          font-family: Pragmatica Extra Light;
+          font-size: 17px;
+          padding: 0;
+          margin: 0;
+        }
+        .page .financial-page .financial-bottom h3 {
+          color: #000;
+          font-family: Pragmatica Extra Light;
+          font-size: 24px;
+          padding-top: 40px;
+          padding-bottom: 15px;
+          font-weight: normal;
+          margin: 0;
+        }
+        .page .financial-page .financial-bottom p {
+          color: #fff;
+          padding-top: 8px;
+          text-align: justify;
+          font-size: 14px;
+        }
+        .page .financial-page .financial-bottom p.dear-name {
+          padding-bottom: 8px;
+        }
+        .page .financial-page .financial-bottom .financial-sincerly {
+          padding-top: 40px;
+        }
+        .page .financial-page .financial-bottom .financial-sincerly span{
+          color: #fff;
+          text-align: justify;
+          font-size: 14px;
+          font-family: Pragmatica Extra Light;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+        <div class="first-page">
+            <div class="transparent-box">
+                <div class="content">
+                    <h2>Mr. Robert Thorne</h2>
+                    <h4>YOUR WEALTH REPORT</h4>
+                    <p>16 February 2017</p>
+                    <div class="right">
+                        <h5>Prapare for the best.</h5>
+                        <img src="images/logo.png" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page">
+        <div class="financial-page">
+          <div class="financial-page-content">
+            <h2>Mr. Robert Thorne</h2>
+            <p>2 NEW LONDON</p>
+            <p>LONDON</p>
+            <p>16 February 2017</p>
+            <div class="financial-bottom">
+              <h3>Understand your financial future today</h3>
+              <p class="dear-name">Dear Tim & Layla,</p>
+              <p>Welcome to your personalised Wealth Review report.</p>
+              <p>It's a unique overview of your financial wellbeing today - with projections of how your
+              wealth is likely to shape up in the future.</p>
+              <p>This sort of information can be valuable when it comes to making decisions about your
+              wealth and how it is managed. Your Wealth Review report can take the 'what if' out of the
+              choices you make.</p>
+              <p>Remember, your Wealth Review report is based on the information you enter. By providing
+              more comprehensive details, the report will be more accurate, and you'll gain greater value
+              from the projections it provides.</p>
+              <p>You are free to add to, or change the information you enter at any time.</p>
+              <p>Simply log back into Wealth Review using your unique login and password to generate an
+              updated report. If you've forgotten your password you can reset it via the login page.</p>
+              <p>We hope you find the Wealth Review report to be a valuable tool. And of course, if there
+              is anything you would like to discuss please contact BT on 1300 856 023 (8.00am to
+              8.00pm Monday to Friday AEST).</p>
+              <div class="financial-sincerly">
+                <span>Yours Sincerely,</br>
+                Russell Medcraft,</br>
+                Financial Choice Pty Ltd</br>
+                Australian Financial Services License No. 413567<span>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div class="page">
+        <div class="sections-page">
+            <div class="section-part">
+              <h2>Contents</h2>
+              <div class="section">
+                <h4>SECTION 1</h4>
+                <p>Summary of my advice to you</p>
+              </div>
+              <div class="section">
+                <h4>SECTION 2</h4>
+                <p>Important information about you that we have collected from you and your superannuation</p>
+              </div>
+              <div class="section">
+                <h4>SECTION 3</h4>
+                <p>My recommendations to you and comparison of fees and projection of your benefits and possible alternatives</p>
+              </div>
+              <div class="section">
+                <h4>SECTION 4</h4>
+                <p>What else you need to know and if all is OK what you need to do to proceed with our advice and how we get paid</p>
+              </div>
+              <div class="section">
+                <h4>SECTION 5</h4>
+                <p>Summary of my advice to you</p>
+              </div>
+              <div class="section">
+                <h4>SECTION 6</h4>
+                <p>Summary of my advice to you</p>
+              </div>
+            </div>
+        </div>
+    </div>
+    <div class="page">
+        <div class="content-page">
+            <h5>Section One:</h5>
+            <h2>SUMMARY OF MY ADVICE </br>TO YOU</h2>
+            <ul>
+                <li>> What my advice to you is</li>
+                <li>> I recommend that you select the best superannuation fund available in the market place to meet your needs</li>
+                <li>> I recommend that you get the best Insurance cover for you to protect what’s important to you</li>
+                <li>> I recommend that you select the best investment mix of growth and defensive assets to match your investment risk profile</li>
+            </ul>
+            <h4>Why my advice is appropriate to you</h4>
+            <p>Selecting the best superannuation fund will make sure that you achieve your goal of being able to retire in comfort and not have to rely on the government pension. By reducing the fees you pay means that you have more of the employer’s contribution
+                going into your investment account. Also by making additional voluntary contributions as part of your planning means that you can have additional savings over and above the limits that have now been placed on the tax free pension cap.</p>
+            <p>By also choosing the right amount and type of protection that is paid for from your superannuation means that if something were to happen to you then your future is protected and the retirement projection we have set will be reached.
+            </p>
+            <h4>Risks in my advice.</h4>
+            <p>All investments carry a certain level of risk and you have to be comfortable with the level of investment risk you are taking on. There is also the legislative risk that you will wear by investing in the superannuation structure and the biggest
+                risk is not doing anything at all and staying in a poor performing high fee fund that is not appropriate for you.</p>
+            <h4>What my advice doesn’t cover</h4>
+            <p>I have outlined in our goals based advice section what we are giving advice on. This advice does not include Property investing, Estate Planning, Budgeting, General insurance, medical insurance and insurance outside superannuation. You can
+                instruct us to provide specialist advice in these areas if you want to at an additional cost.</p>
+            <h4>Fees and commissions.</h4>
+            <p>We are a fee based practise and we charge both an advice fee and an asset management fee that is calculated and disclosed at end of this document.</p>
+        </div>
+    </div>
+    <div class="page">
+        <div class="detail-page">
+            <h2>Your </br>Personal</br> Details</h2>
+            <div class="padding-left">
+                <h4>Below are the details that you have provided about yourself.</h4>
+                <p>Please ensure these details are accurate, as the education and information we provide throughout this report will be largely based on these details. The data on pages 4 and 5 has been supplied by you, with the last update being 14/3/2016.</p>
+            </div>
+            <div class="detail-part">
+                <table cellspacing="0" cellpadding="0">
+                    <tr>
+                        <th>Your Personal Details</th>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <td>Name</td>
+                        <td><%= name %></td>
+                    </tr>
+                    <tr>
+                        <td>Gender</td>
+                        <td>Male</td>
+                    </tr>
+                    <tr>
+                        <td>Date of birth</td>
+                        <td>23</td>
+                    </tr>
+                    <tr>
+                        <td>Age</td>
+                        <td>1 November 1993</td>
+                    </tr>
+                    <tr>
+                        <td>Marital Status</td>
+                        <td>Single</td>
+                    </tr>
+                </table>
+
+                <table cellspacing="0" cellpadding="0">
+                    <tr>
+                        <th class="border-zero">Your Income</th>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <td>Yearly income before tax</td>
+                        <td class="text-right">100000</td>
+                    </tr>
+                    <tr>
+                        <td>yearly income after tax</td>
+                        <td class="text-right">99999</td>
+                    </tr>
+                    <tr>
+                        <td>Centrelink Benefits</td>
+                        <td class="text-right">74000</td>
+                    </tr>
+                    <tr>
+                        <td>total income</td>
+                        <td class="text-right">100000</td>
+                    </tr>
+                    <tr>
+                        <td>Total yearly expenses</td>
+                        <td class="text-right">50000</td>
+                    </tr>
+                </table>
+                <table cellspacing="0" cellpadding="0">
+                    <tr>
+                        <th class="border-zero">Your Assets</th>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <td>House</td>
+                        <td class="text-right">100000</td>
+                    </tr>
+                    <tr>
+                        <td>NAB Bank</td>
+                        <td class="text-right">99000</td>
+                    </tr>
+                    <tr>
+                        <td>SuperannuationFunds</td>
+                        <td class="text-right">55000</td>
+                    </tr>
+                    <tr>
+                        <td>Property</td>
+                        <td class="text-right">5555</td>
+                    </tr>
+                    <tr>
+                        <td>Other Assets</td>
+                        <td class="text-right">53555</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="page">
+      <img class="logo" src="image.png">
+      <div class="bottom">
+          <div class="line center">8045 zürich</div>
+      </div>
+    </div> -->
+</body>
+
+</html>
