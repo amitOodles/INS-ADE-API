@@ -6,6 +6,8 @@ var fs = require('fs');
 
 var webshot = require('webshot');
 
+var ejs = require('ejs');
+
 // app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(bodyParser.json());
@@ -19,6 +21,8 @@ app.use("/images", express.static(__dirname + '/images'));
 app.use("/fonts", express.static(__dirname + '/fonts'));
 
 app.set('view engine','ejs');
+
+app.use("/download", express.static(__dirname + '/uploads'));
 
 var webshotOptions = {
   // screenSize: {
@@ -215,4 +219,27 @@ app.post('/webshotRA', function(req, res, callback){
 
     generateImage();
 
+});
+
+app.post('/htmlPDF', function(req, res) {
+
+    var body = req.body;
+    var timeS = new Date;
+    var name = timeS.getTime() + "HTP.pdf";
+
+    ejs.renderFile(__dirname + '/index.ejs', { name: body.name }, {}, function(err, html) {
+        if (html) {
+
+            var options = { format: 'Letter' };
+            pdf.create(html, options).toFile('uploads/' + name, function(err, result) {
+                if (err) {
+                    return console.log(err);
+                } else {
+                    //fs.unlink('uploads/' + name);
+                    res.status(200).send({ 'filePath':'download/'+ name, 'fileName':name });
+                    res.end();
+                }
+            });
+        }
+    });
 });
