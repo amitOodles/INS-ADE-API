@@ -272,7 +272,6 @@ app.post('/htmlPDF', function(req, res) {
     var http = require("http");
     var imageAPI_array = [];
     var count = 1;
-
-    res.status(200).send({ 'filePath': __dirname + '/uploads/temper.pdf', 'fileName':"temper.pdf" });
+    res.status(200).send({ filePath: __dirname + '/uploads/temper.pdf', fileName:"temper.pdf" });
     res.end();
 });
