@@ -272,6 +272,6 @@ app.post('/htmlPDF', function(req, res) {
     var http = require("http");
     var imageAPI_array = [];
     var count = 1;
-    res.status(200).send({ 'filePath': '/download/temper.pdf', fileName:"temper.pdf" });
+    res.status(200).send({ 'filePath': 'http://http://180.151.85.194:3001/download/temper.pdf', fileName:"temper.pdf" });
     res.end();
 });
