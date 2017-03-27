@@ -1,16 +1,12 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-
 var pdf = require('html-pdf');
-
 var fs = require('fs');
-
 var webshot = require('webshot');
-
+var async = require('async');
+var http = require("http");
 var ejs = require('ejs');
-
-// app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(bodyParser.json());
 
@@ -22,19 +18,19 @@ app.use("/images", express.static(__dirname + '/images'));
 
 app.use("/fonts", express.static(__dirname + '/fonts'));
 
-app.set('view engine','ejs');
+app.set('view engine', 'ejs');
 
 app.use("/download", express.static(__dirname + '/uploads'));
 
 var webshotOptions = {
-  // screenSize: {
-  //   width: 768
-  // , height: 2010
-  // },
-	shotSize: {
-    width:900
-  , height: "all"
-  }
+    // screenSize: {
+    //   width: 768
+    // , height: 2010
+    // },
+    shotSize: {
+        width: 900,
+        height: "all"
+    }
 };
 
 app.listen(3001, function() {
@@ -46,12 +42,10 @@ app.get('/query', function(req, res) {
     var data = postDataIAC;
 
     res.render(__dirname + '/index.ejs', {
-        data : data,
+        data: data,
     });
-
 });
-
-app.post('/webshot', function(req, res, callback){
+app.post('/webshot', function(req, res, callback) {
 
     postDataIAC = req.body;
 
@@ -84,16 +78,14 @@ app.post('/webshot', function(req, res, callback){
 
     // res.redirect("/query");
 });
-
 app.get('/querySFC', function(req, res) {
 
     var data = postDataSFC;
     res.render(__dirname + '/indexSFC.ejs', {
-        data : data,
+        data: data,
     });
-
 });
-app.post('/webshotSFC', function(req, res, callback){
+app.post('/webshotSFC', function(req, res, callback) {
 
     postDataSFC = req.body;
 
@@ -101,7 +93,7 @@ app.post('/webshotSFC', function(req, res, callback){
     var name = timeS.getTime() + "SFC.png";
 
     function generateImage() {
-        webshot('http://180.151.85.194:3001/querySFC', 'uploads/' + name,{shotSize: {width:630, height:520}}, function(err, data) {
+        webshot('http://180.151.85.194:3001/querySFC', 'uploads/' + name, { shotSize: { width: 630, height: 520 } }, function(err, data) {
             // res.write("error saving");
 
             if (err) {
@@ -122,10 +114,8 @@ app.post('/webshotSFC', function(req, res, callback){
     }
 
     generateImage();
-
 });
-
-app.get('/webshotTTR', function(req, res, callback){
+app.get('/webshotTTR', function(req, res, callback) {
 
     // postDataSFC = req.body;
 
@@ -138,13 +128,13 @@ app.get('/webshotTTR', function(req, res, callback){
     var fyWs = req.query.fy;
     var thpWs = req.query.thp;
 
-    var queryString = "?fy=" + fyWs + "&age=" + ageWs + "&cses=" + csesWs +"&thp=" + thpWs + "&nrp=" + nrpWs + "&nra=" + nraWs + "&balance=" + balanceWs + "&tfp=" + tfpWs;
+    var queryString = "?fy=" + fyWs + "&age=" + ageWs + "&cses=" + csesWs + "&thp=" + thpWs + "&nrp=" + nrpWs + "&nra=" + nraWs + "&balance=" + balanceWs + "&tfp=" + tfpWs;
 
     var timeS = new Date;
     var name = timeS.getTime() + "TTR.png";
 
     function generateImage() {
-        webshot('http://180.151.85.194:3001/queryTTR' + queryString, 'uploads/' + name,{shotSize: {width:630, height:550}}, function(err, data) {
+        webshot('http://180.151.85.194:3001/queryTTR' + queryString, 'uploads/' + name, { shotSize: { width: 630, height: 550 } }, function(err, data) {
             // res.write("error saving");
 
             if (err) {
@@ -165,33 +155,28 @@ app.get('/webshotTTR', function(req, res, callback){
     }
 
     generateImage();
-
 });
-
 app.get('/queryTTR', function(req, res) {
 
     res.render(__dirname + '/indexTTR.ejs', {
-        ageQ : req.query.age,
-        fyQ : req.query.fy,
-        csesQ : req.query.cses,
-        balanceQ : req.query.balance,
-        nraQ : req.query.nra,
-        nrpQ :  req.query.nrp,
-        tfpQ : req.query.tfp,
-        thpQ : req.query.thp
+        ageQ: req.query.age,
+        fyQ: req.query.fy,
+        csesQ: req.query.cses,
+        balanceQ: req.query.balance,
+        nraQ: req.query.nra,
+        nrpQ: req.query.nrp,
+        tfpQ: req.query.tfp,
+        thpQ: req.query.thp
     });
-
 });
-
 app.get('/queryRA', function(req, res) {
 
     var data = postDataRA;
     res.render(__dirname + '/indexRA.ejs', {
-        data : data,
+        data: data,
     });
-
 });
-app.post('/webshotRA', function(req, res, callback){
+app.post('/webshotRA', function(req, res, callback) {
 
     postDataRA = req.body;
 
@@ -199,7 +184,7 @@ app.post('/webshotRA', function(req, res, callback){
     var name = timeS.getTime() + "RA.png";
 
     function generateImage() {
-        webshot('http://180.151.85.194:3001/queryRA', 'uploads/' + name,{shotSize: {width:740, height:"all"}}, function(err, data) {
+        webshot('http://180.151.85.194:3001/queryRA', 'uploads/' + name, { shotSize: { width: 740, height: "all" } }, function(err, data) {
             // res.write("error saving");
 
             if (err) {
@@ -220,27 +205,74 @@ app.post('/webshotRA', function(req, res, callback){
     }
 
     generateImage();
-
 });
 
-app.post('/htmlPDF', function(req, res) {
 
-    var body = req.body;
-    var timeS = new Date;
-    var name = timeS.getTime() + "HTP.pdf";
+function callRequest(data, url, callback) {
+    var options = {
+        "method": "POST",
+        "hostname": "180.151.85.194",
+        "port": "3001",
+        "path": url,
+        "headers": {
+            "content-type": "application/json",
+            "cache-control": "no-cache"
+        }
+    };
 
-    ejs.renderFile(__dirname + '/indexHTP.ejs', { name: body.name }, {}, function(err, html) {
+    var req = http.request(options, function(result) {
+        var chunks = [];
+
+        result.on("data", function(chunk) {
+            chunks.push(chunk);
+        });
+
+        result.on("end", function() {
+            var body1 = Buffer.concat(chunks);
+            var timeS = new Date;
+            var name = timeS.getTime() + "image.png";
+            fs.writeFile('uploads/' + name, body1, 'Base64', function(err) {
+                if (err) {
+                    console.log('errorrrr.');
+                    throw err;
+                }
+                callback(null, 'uploads/' + name);
+            });
+        });
+    });
+
+    req.write(JSON.stringify(data));
+    req.end();
+}
+
+function pdfApi(image1, image2, callback) {
+    ejs.renderFile(__dirname + '/indexHTP.ejs', { image1: image1, image2: image2 }, {}, function(err, html) {
         if (html) {
-            var options = { format: 'Letter' };
-            pdf.create(html, options).toFile('uploads/' + name, function(err, result) {
+            var options = { format: 'Letter', base: 'file://' + __dirname + '/' };
+
+            pdf.create(html, options).toFile('uploads/temper.pdf', function(err, result) {
                 if (err) {
                     return console.log(err);
                 } else {
+                    callback(null, { 'filePath': 'download/' });
                     //fs.unlink('uploads/' + name);
-                    res.status(200).send({ 'filePath':'download/'+ name, 'fileName':name });
-                    res.end();
+                    // res.status(200).send({ 'filePath': 'download/', 'fileName': res });
+                    // res.end();
                 }
             });
+        } else {
+            console.log("no html");
         }
     });
+}
+
+app.post('/htmlPDF', function(req, res) {
+
+    var fs = require('fs');
+    var http = require("http");
+    var imageAPI_array = [];
+    var count = 1;
+
+    res.status(200).send({ 'filePath': __dirname + '/uploads/temper.pdf', 'fileName':"temper.pdf" });
+    res.end();
 });

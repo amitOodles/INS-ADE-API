@@ -24,10 +24,15 @@
   },
   "homepage": "https://github.com/amitOodles/INS-ADE-API#readme",
   "dependencies": {
+    "async": "^2.1.5",
+    "atob": "^2.0.3",
     "body-parser": "^1.15.2",
+    "btoa": "^1.1.2",
+    "buffer": "^5.0.5",
     "ejs": "^2.5.6",
     "express": "^4.14.0",
     "html-pdf": "^2.1.0",
-    "webshot": "^0.18.0"
+    "webshot": "^0.18.0",
+    "xmlhttprequest": "^1.8.0"
   }
 }
