@@ -259,7 +259,7 @@ function generatePdf(image1, image2, callback) {
                 if (err) {
                     return console.log(err);
                 } else {
-                    callback(null, { 'filePath': 'download/'+pdfFileName ,'fileName': pdfFileName });
+                    callback(null, { 'filePath': 'http://http://180.151.85.194:3001/download/'+pdfFileName ,'fileName': pdfFileName });
                 }
             });
         } else {
