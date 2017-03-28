@@ -7,6 +7,8 @@ var webshot = require('webshot');
 var async = require('async');
 var http = require("http");
 var ejs = require('ejs');
+var cors = require('cors');
+app.use(cors());
 
 app.use(bodyParser.json());
 
