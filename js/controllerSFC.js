@@ -414,6 +414,7 @@ app.controller("SFCController", ['$scope', '$timeout', 'AgeCalculator', 'ChartSe
             adjustedSalary = annualSalary * Math.pow(1 + (wageIncrease / 100), year);
             netContribution = (adjustedSalary * employerContributionLevel / 100 + cc) * (1 - superTaxRate / 100) + ncc;
             earnings = balanceArray[count] * (Math.pow(1 + (fundReturn / 100), 0.5) - 1) + ((balanceArray[count] * Math.pow(1 + (fundReturn / 100), 0.5) + netContribution) * (Math.pow(1 + (fundReturn / 100), 0.5) - 1));
+            
             if (fundFee.annualPercentageFee > 100) {
                 fees = fundFee.annualPercentageFee;
             } else {
@@ -423,7 +424,9 @@ app.controller("SFCController", ['$scope', '$timeout', 'AgeCalculator', 'ChartSe
                     fees = (balanceArray[count] * ((fundFee.annualPercentageFee / 100) + (fundFee.indirectCostRation / 100))) + fundFee.adminFee;
                 }
             }
-
+            console.log("fundFound:",fundFound);
+            console.log("fees:",fees);
+            console.log("fundFee.annualPercentageFee:",fundFee.annualPercentageFee);
             tax = (earnings - insurancePremium - fees) * superTaxRate / 100;
             balance = balanceArray[count] + netContribution + earnings - fees - insurancePremium - tax;
 
@@ -446,7 +449,7 @@ app.controller("SFCController", ['$scope', '$timeout', 'AgeCalculator', 'ChartSe
 
         $scope.resultFundOne = fundCalculation(netReturnRate, $scope.fundA, specifiedFundA);
 
-        $scope.resultFundTwo = fundCalculation(netReturnRate, $scope.fundB, specifiedFundBS);
+        $scope.resultFundTwo = fundCalculation(netReturnRate, $scope.fundB, specifiedFundB);
 
         if ($scope.resultFundTwo > $scope.resultFundOne) {
             $scope.savings = $scope.resultFundTwo - $scope.resultFundOne;
