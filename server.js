@@ -210,6 +210,122 @@ app.post('/webshotRA', function(req, res, callback) {
 });
 
 
+app.get('/queryAsset', function(req, res) {
+
+    var data = postDataAsset;
+    res.render(__dirname + '/indexAsset.ejs', {
+        data: data,
+    });
+});
+
+app.post('/webshotAsset', function(req, res, callback) {
+
+    postDataAsset = req.body;
+
+    var timeS = new Date;
+    var name = timeS.getTime() + "Asset.png";
+
+    function generateImage() {
+        webshot('http://180.151.85.194:3001/queryAsset', 'uploads/' + name, { shotSize: { width: 630, height: 520 } }, function(err, data) {
+            // res.write("error saving");
+
+            if (err) {
+                var resErr = new Error("Unable to generate Insurance Adequacy chart");
+                resErr.status = 400;
+                console.log("error occured", resErr);
+                callback(resErr);
+            } else {
+                var img = fs.readFileSync('uploads/' + name);
+                console.log('uploads/' + name);
+                //fs.unlink('uploads/' + name);
+                res.writeHead(200, { 'Content-Type': 'image/png' });
+                res.end(img, 'binary');
+            }
+
+
+        });
+    }
+
+    generateImage();
+});
+
+app.get('/queryIT', function(req, res) {
+
+    var data = postDataIT;
+    res.render(__dirname + '/indexIT.ejs', {
+        data: data,
+    });
+});
+
+app.post('/webshotIT', function(req, res, callback) {
+
+    postDataIT = req.body;
+
+    var timeS = new Date;
+    var name = timeS.getTime() + "IT.png";
+
+    function generateImage() {
+        webshot('http://180.151.85.194:3001/queryAsset', 'uploads/' + name, { shotSize: { width: 630, height: 520 } }, function(err, data) {
+            // res.write("error saving");
+
+            if (err) {
+                var resErr = new Error("Unable to generate Insurance Adequacy chart");
+                resErr.status = 400;
+                console.log("error occured", resErr);
+                callback(resErr);
+            } else {
+                var img = fs.readFileSync('uploads/' + name);
+                console.log('uploads/' + name);
+                //fs.unlink('uploads/' + name);
+                res.writeHead(200, { 'Content-Type': 'image/png' });
+                res.end(img, 'binary');
+            }
+
+
+        });
+    }
+
+    generateImage();
+});
+app.get('/queryPSF', function(req, res) {
+
+    var data = postDataPSF;
+    res.render(__dirname + '/indexPSF.ejs', {
+        data: data,
+    });
+});
+app.post('/webshotPSF', function(req, res, callback) {
+
+    postDataPSF = req.body;
+
+    var timeS = new Date;
+    var name = timeS.getTime() + "PSF.png";
+
+    function generateImage() {
+        webshot('http://180.151.85.194:3001/queryAsset', 'uploads/' + name, { shotSize: { width: 630, height: 520 } }, function(err, data) {
+            // res.write("error saving");
+
+            if (err) {
+                var resErr = new Error("Unable to generate Insurance Adequacy chart");
+                resErr.status = 400;
+                console.log("error occured", resErr);
+                callback(resErr);
+            } else {
+                var img = fs.readFileSync('uploads/' + name);
+                console.log('uploads/' + name);
+                //fs.unlink('uploads/' + name);
+                res.writeHead(200, { 'Content-Type': 'image/png' });
+                res.end(img, 'binary');
+            }
+
+
+        });
+    }
+
+    generateImage();
+});
+
+
 
 function callRequest(data, url, callback) {
     var options = {
