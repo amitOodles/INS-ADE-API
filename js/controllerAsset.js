@@ -195,10 +195,10 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'PdfMake
     $scope.invstmntHorzn=$scope.compYear-$scope.begngInvstmntPrd;*/
 
     $scope.initialInvestmentAmount = assetObj.initialInvestmentAmount;
- /*   $scope.chartOneOpen = true;
+    $scope.chartOneOpen = true;
     $scope.alterOption = assetObj.alterOption;
 
-    $scope.alterOptionChange = function(alter1) {
+  /*  $scope.alterOptionChange = function(alter1) {
         $scope.alterOption = alter1;
     }*/
 

@@ -46,6 +46,7 @@ app.service('LineChartService', function() {
             plotOptions: {
                 series: {
                     lineWidth: 3,
+                    animation:false,
                     marker: {
                         enabled: false
                     }
@@ -156,6 +157,7 @@ app.service('LineChartService', function() {
             plotOptions: {
                 series: {
                     borderWidth: 0,
+                    animation:false,
                     marker: {
                         enabled: false
                     }

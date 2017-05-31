@@ -35,5 +35,8 @@
     "html-pdf": "^2.1.0",
     "webshot": "^0.18.0",
     "xmlhttprequest": "^1.8.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
   }
 }

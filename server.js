@@ -10,6 +10,8 @@ var ejs = require('ejs');
 var cors = require('cors');
 app.use(cors());
 
+
+
 app.use(bodyParser.json());
 
 app.use("/css", express.static(__dirname + '/css'));
@@ -250,8 +252,13 @@ app.post('/webshotAsset', function(req, res, callback) {
 });
 
 app.get('/queryIT', function(req, res) {
+    //var data = postDataIT;
+    data = {
+        "annualSalary": 60000,
+        "paymentFrequency": 1
+    };
 
-    var data = postDataIT;
+
     res.render(__dirname + '/indexIT.ejs', {
         data: data,
     });
@@ -261,15 +268,20 @@ app.post('/webshotIT', function(req, res, callback) {
 
     postDataIT = req.body;
 
-    var timeS = new Date;
-    var name = timeS.getTime() + "IT.png";
+    /*postDataIT = {
+        "annualSalary": 60000,
+        "paymentFrequency": 1
+    };*/
+
+    var time = new Date();
+    var name = time.getTime() + "IT.png";
 
     function generateImage() {
-        webshot('http://180.151.85.194:3001/queryAsset', 'uploads/' + name, { shotSize: { width: 630, height: 520 } }, function(err, data) {
+        webshot('http://localhost:3001/queryIT', 'uploads/' + name, { shotSize: { width: 630, height: 420 } }, function(err, data) {
             // res.write("error saving");
 
             if (err) {
-                var resErr = new Error("Unable to generate Insurance Adequacy chart");
+                var resErr = new Error("Unable to generate income tax chart");
                 resErr.status = 400;
                 console.log("error occured", resErr);
                 callback(resErr);
@@ -289,7 +301,62 @@ app.post('/webshotIT', function(req, res, callback) {
 });
 app.get('/queryPSF', function(req, res) {
 
-    var data = postDataPSF;
+    //var data = postDataPSF;
+    var data = {
+        "begnYearInvestment": 2017,
+        "numChildren": 2,
+        "contStartYear": 2017,
+        "spState": 0,
+        "spPort": 0,
+        "firstChild": {
+            "c1Name": "Max",
+            "schoolId1": true,
+            "schoolYear1": 2017,
+            "schoolDuration1": 6,
+            "major1": 0,
+            "studyingOption1": 0
+        },
+        "secondChild": {
+            "c2Name": "Monica",
+            "schoolId2": true,
+            "schoolYear2": 2017,
+            "schoolDuration2": 6,
+            "major2": 0,
+            "studyingOption2": 0
+        },
+        "thirdChild": {
+            "c3Name": "john",
+            "schoolId3": true,
+            "schoolYear3": 2017,
+            "schoolDuration3": 6,
+            "major3": 0,
+            "studyingOption3": 0
+        },
+        "fourthChild": {
+            "c4Name": "Rita",
+            "schoolId4": true,
+            "schoolYear4": 2017,
+            "schoolDuration4": 6,
+            "major4": 0,
+            "studyingOption4": 0
+        },
+        "fifthChild": {
+            "c5Name": "Tom",
+            "schoolId5": true,
+            "schoolYear5": 2017,
+            "schoolDuration5": 6,
+            "major5": 0,
+            "studyingOption5": 0
+        },
+        "sixthChild": {
+            "c6Name": "Mike",
+            "schoolId6": true,
+            "schoolYear6": 2017,
+            "schoolDuration6": 6,
+            "major6": 0,
+            "studyingOption6": 0
+        }
+    };
     res.render(__dirname + '/indexPSF.ejs', {
         data: data,
     });
@@ -371,11 +438,11 @@ function generatePdf(image1, image2, callback) {
 
             var pdfFileName = (new Date()).getTime() + "HTP.pdf";
 
-            pdf.create(html, options).toFile('uploads/'+pdfFileName , function(err, result) {
+            pdf.create(html, options).toFile('uploads/' + pdfFileName, function(err, result) {
                 if (err) {
                     return console.log(err);
                 } else {
-                    callback(null, { 'filePath': 'http://180.151.85.194:3001/download/'+pdfFileName ,'fileName': pdfFileName });
+                    callback(null, { 'filePath': 'http://180.151.85.194:3001/download/' + pdfFileName, 'fileName': pdfFileName });
                 }
             });
         } else {
@@ -466,10 +533,10 @@ app.post('/htmlPDF', function(req, res) {
             generatePdf(results.webshot, results.webshotSFC, callback);
         }]
     }, function(err, results) {
-        if(err){
+        if (err) {
             res.status(400).send(err);
             res.end();
-        }else{
+        } else {
             res.status(200).send(results.pdf);
             res.end();
         }

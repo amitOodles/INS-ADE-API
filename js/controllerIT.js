@@ -1,6 +1,6 @@
-app.controller("TTRController", ['$scope', '$timeout', 'TaxRateCalculator', 'ChartServiceHc', 'DonutChartServiceHc', 'PdfMaker', function($scope, $timeout, TaxRateCalculator, ChartServiceHc, DonutChartServiceHc, PdfMaker) {
+app.controller("TTRController", ['$scope', '$timeout', 'TaxRateCalculator', 'ChartServiceHc', 'DonutChartServiceHc', function($scope, $timeout, TaxRateCalculator, ChartServiceHc, DonutChartServiceHc) {
 
-    $scope.result = {}
+    $scope.result = {};
 
     $scope.forms = {};
 
@@ -14,7 +14,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'TaxRateCalculator', 'Cha
     };
 
     $scope.chartOneOpen = true;
-    $scope.tempp;
+    //$scope.tempp;
     String.prototype.replaceAll = function(search, replacement) {
         var target = this;
         return target.split(search).join(replacement);
@@ -89,7 +89,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'TaxRateCalculator', 'Cha
 
     $scope.calculateFinal = function(isValid) {
         if (isValid) {
-            var salary = Number($scope.annualSalary.replaceAll('$', '').replaceAll(',', ''));
+            var salary = Number($scope.annualSalary);
             var taxOnIncome = TaxRateCalculator.getTaxBase(salary) +
                 (salary - TaxRateCalculator.getLowerBoundValue(salary) + 1) * TaxRateCalculator.getTaxRate(salary);
             var netAnnualIncomeAfterTax = salary - taxOnIncome;
@@ -100,13 +100,13 @@ app.controller("TTRController", ['$scope', '$timeout', 'TaxRateCalculator', 'Cha
             $scope.result.netPaymentPerPeriod = netPaymentPerPeriod;
 
             switch (paymentFrequency) {
-                case "0":
+                case 0:
                     $scope.result.paymentFrequency = "Week";
                     break;
-                case "1":
+                case 1:
                     $scope.result.paymentFrequency = "Fortnight";
                     break;
-                case "2":
+                case 2:
                     $scope.result.paymentFrequency = "Month";
                     break;
 
@@ -125,54 +125,10 @@ app.controller("TTRController", ['$scope', '$timeout', 'TaxRateCalculator', 'Cha
             $("#myModal").modal('show');
             $("html, body").animate({ scrollTop: 0 }, "slow");
         }
-    }
+    };
 
     $scope.calculateFinal(true);
 
-    document.getElementById("download").addEventListener("click", function() {
-        if ($scope.forms.ttrForm.$valid) {
-            PdfMaker.createChart($scope.personalDetails, Number($scope.annualSalary.replaceAll('$', '').replaceAll(',', '')), $scope.result);
-        } else {
-            $("#myModal").modal('show');
-            $("html, body").animate({ scrollTop: 0 }, "slow");
-        }
-    });
-
-    document.getElementById("bar-chart").addEventListener("click", function() {
-        $scope.chartOneOpen = true;
-        document.getElementById("donutContainer").style.display = "none";
-        document.getElementById("container").style.display = "block";
-    });
-
-    document.getElementById("donut-chart").addEventListener("click", function() {
-        $scope.chartOneOpen = false;
-        document.getElementById("container").style.display = "none";
-        document.getElementById("donutContainer").style.display = "block";
-    });
-
-    $(".print-doc").on("click", printBothCharts);
-
-    function printBothCharts() {
-
-        if ($scope.forms.ttrForm.$valid) {
-
-            if ($scope.chartOneOpen) {
-                document.getElementById("donutContainer").style.display = "block";
-                window.print();
-                setTimeout(function() {
-                    document.getElementById("donutContainer").style.display = "none";
-                }, 100);
-            } else {
-                document.getElementById("container").style.display = "block";
-                window.print();
-                setTimeout(function() {
-                    document.getElementById("container").style.display = "none";
-                }, 100);
-            }
-        } else {
-            $("#myModal").modal('show');
-            $("html, body").animate({ scrollTop: 0 }, "slow");
-        }
-    }
+    
 
 }]);

@@ -1,5 +1,4 @@
-var AgeCalculatorService = angular.module('AgeCalculatorService', [])
-.service('AgeCalculator', function (){
+app.service('AgeCalculator', function (){
     this.getAge = function (dateBirth,year) {
 
     	// console.log("ac",dateBirth);
