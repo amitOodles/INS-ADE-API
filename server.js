@@ -1,5 +1,5 @@
 var express = require('express');
-var  app = express();
+var app = express();
 var bodyParser = require('body-parser');
 var pdf = require('html-pdf');
 var fs = require('fs');
@@ -10,20 +10,12 @@ var ejs = require('ejs');
 var cors = require('cors');
 app.use(cors());
 
-
-
 app.use(bodyParser.json());
-
 app.use("/css", express.static(__dirname + '/css'));
-
 app.use("/js", express.static(__dirname + '/js'));
-
 app.use("/images", express.static(__dirname + '/images'));
-
 app.use("/fonts", express.static(__dirname + '/fonts'));
-
 app.set('view engine', 'ejs');
-
 app.use("/download", express.static(__dirname + '/uploads'));
 
 var webshotOptions = {
@@ -36,11 +28,9 @@ var webshotOptions = {
         height: "all"
     }
 };
-
 app.listen(3001, function() {
     console.log('listening on 3001');
 });
-
 app.get('/querySSO', function(req, res) {
     var data = {
         "age": 19,
@@ -49,12 +39,11 @@ app.get('/querySSO', function(req, res) {
         "fy": 2016
     };
 
-    console.log("path:",__dirname);
+    console.log("path:", __dirname);
     res.render(__dirname + '/indexSSO.ejs', {
         data: data,
     });
 });
-
 app.post('/query', function(req, res) {
 
     var data = postDataIAC;
@@ -100,29 +89,29 @@ app.get('/querySFC', function(req, res) {
 
     //var data = postDataSFC;
     var data = {
-    "age" : 47,
-    "retirementAge" : 67,
-    "annualSalary" : 60000,
-    "superBalance" : 100000,
-    "cc" : 10000,
-    "ncc" : 10000,
-    "ecLevel" : 9.5,
-    "inflation" : 2.5,
-    "wageIncrease" : 3.5,
-    "insurancePremiumPerYear" : 200,
-    "netReturn":2.90,
-    "fundASelectedId":0,
-    "fundNameA":"Special fund 1",
-    "contributionFeeA":1.50,
-    "adminFeeA":100,
-    "indirectCostRationA":1.50,
-    "fundBSelectedId":1,
-    "fundNameB":"Special fund 2",
-    "contributionFeeB":1.50,
-    "adminFeeB":100,
-    "indirectCostRationB":1.50,
+        "age": 47,
+        "retirementAge": 67,
+        "annualSalary": 60000,
+        "superBalance": 100000,
+        "cc": 10000,
+        "ncc": 10000,
+        "ecLevel": 9.5,
+        "inflation": 2.5,
+        "wageIncrease": 3.5,
+        "insurancePremiumPerYear": 200,
+        "netReturn": 2.90,
+        "fundASelectedId": 0,
+        "fundNameA": "Special fund 1",
+        "contributionFeeA": 1.50,
+        "adminFeeA": 100,
+        "indirectCostRationA": 1.50,
+        "fundBSelectedId": 1,
+        "fundNameB": "Special fund 2",
+        "contributionFeeB": 1.50,
+        "adminFeeB": 100,
+        "indirectCostRationB": 1.50,
 
-};
+    };
     res.render(__dirname + '/indexSFC.ejs', {
         data: data,
     });
@@ -160,7 +149,7 @@ app.post('/webshotSFC', function(req, res, callback) {
 app.get('/webshotTTR', function(req, res, callback) {
 
 
-     var data = {
+    var data = {
         "age": 25,
         "cses": 60000,
         "thp": 37000,
@@ -172,9 +161,9 @@ app.get('/webshotTTR', function(req, res, callback) {
 
     };
 
-    http://180.151.85.194:3001/webshotTTR?fy=2010&age=25&cses=60000&thp=37000&nra=3&nrp=3&tfp=3&balance=50000
+    http: //180.151.85.194:3001/webshotTTR?fy=2010&age=25&cses=60000&thp=37000&nra=3&nrp=3&tfp=3&balance=50000
 
-    queryString = "?fy=" + fyWs + "&age=" + ageWs + "&cses=" + csesWs + "&thp=" + thpWs + "&nrp=" + nrpWs + "&nra=" + nraWs + "&balance=" + balanceWs + "&tfp=" + tfpWs;
+        queryString = "?fy=" + fyWs + "&age=" + ageWs + "&cses=" + csesWs + "&thp=" + thpWs + "&nrp=" + nrpWs + "&nra=" + nraWs + "&balance=" + balanceWs + "&tfp=" + tfpWs;
 
     var timeS = new Date();
     var name = timeS.getTime() + "TTR.png";
@@ -204,7 +193,7 @@ app.get('/webshotTTR', function(req, res, callback) {
 });
 app.get('/queryTTR', function(req, res) {
 
-     var data = {
+    var data = {
         "age": 46,
         "cses": 80000,
         "thp": 45000,
@@ -373,8 +362,6 @@ app.get('/webshotRA', function(req, res, callback) {
 
     generateImage();
 });
-
-
 app.get('/queryAsset', function(req, res) {
 
     var data = postDataAsset;
@@ -412,7 +399,6 @@ app.get('/queryAsset', function(req, res) {
         data: data,
     });
 });
-
 app.get('/webshotAsset', function(req, res, callback) {
 
     //postDataAsset = req.body;
@@ -473,7 +459,6 @@ app.get('/webshotAsset', function(req, res, callback) {
 
     generateImage();
 });
-
 app.get('/queryIT', function(req, res) {
     //var data = postDataIT;
     data = {
@@ -486,7 +471,6 @@ app.get('/queryIT', function(req, res) {
         data: data,
     });
 });
-
 app.post('/webshotIT', function(req, res, callback) {
 
     postDataIT = req.body;
@@ -614,9 +598,6 @@ app.post('/webshotPSF', function(req, res, callback) {
 
     generateImage();
 });
-
-
-
 function callRequest(data, url, callback) {
     var options = {
         "method": "POST",
@@ -653,7 +634,6 @@ function callRequest(data, url, callback) {
     req.write(JSON.stringify(data));
     req.end();
 }
-
 function generatePdf(image1, image2, callback) {
     ejs.renderFile(__dirname + '/indexHTP.ejs', { image1: image1, image2: image2 }, {}, function(err, html) {
         if (html) {
@@ -673,7 +653,6 @@ function generatePdf(image1, image2, callback) {
         }
     });
 }
-
 app.post('/htmlPDF', function(req, res) {
 
 
