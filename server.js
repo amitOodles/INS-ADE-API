@@ -1,6 +1,6 @@
-const express = require('express');
-const app = express();
-const bodyParser = require('body-parser');
+var express = require('express');
+var  app = express();
+var bodyParser = require('body-parser');
 var pdf = require('html-pdf');
 var fs = require('fs');
 var webshot = require('webshot');
@@ -39,9 +39,23 @@ var webshotOptions = {
 
 app.listen(3001, function() {
     console.log('listening on 3001');
-})
+});
 
-app.get('/query', function(req, res) {
+app.get('/querySSO', function(req, res) {
+    var data = {
+        "age": 19,
+        "cses": 80000,
+        "thp": 45000,
+        "fy": 2016
+    };
+
+    console.log("path:",__dirname);
+    res.render(__dirname + '/indexSSO.ejs', {
+        data: data,
+    });
+});
+
+app.post('/query', function(req, res) {
 
     var data = postDataIAC;
 
@@ -54,7 +68,7 @@ app.post('/webshot', function(req, res, callback) {
     postDataIAC = req.body;
 
 
-    var timeS = new Date;
+    var timeS = new Date();
     var name = timeS.getTime() + ".png";
 
     function generateImage() {
@@ -84,7 +98,31 @@ app.post('/webshot', function(req, res, callback) {
 });
 app.get('/querySFC', function(req, res) {
 
-    var data = postDataSFC;
+    //var data = postDataSFC;
+    var data = {
+    "age" : 47,
+    "retirementAge" : 67,
+    "annualSalary" : 60000,
+    "superBalance" : 100000,
+    "cc" : 10000,
+    "ncc" : 10000,
+    "ecLevel" : 9.5,
+    "inflation" : 2.5,
+    "wageIncrease" : 3.5,
+    "insurancePremiumPerYear" : 200,
+    "netReturn":2.90,
+    "fundASelectedId":0,
+    "fundNameA":"Special fund 1",
+    "contributionFeeA":1.50,
+    "adminFeeA":100,
+    "indirectCostRationA":1.50,
+    "fundBSelectedId":1,
+    "fundNameB":"Special fund 2",
+    "contributionFeeB":1.50,
+    "adminFeeB":100,
+    "indirectCostRationB":1.50,
+
+};
     res.render(__dirname + '/indexSFC.ejs', {
         data: data,
     });
@@ -93,7 +131,7 @@ app.post('/webshotSFC', function(req, res, callback) {
 
     postDataSFC = req.body;
 
-    var timeS = new Date;
+    var timeS = new Date();
     var name = timeS.getTime() + "SFC.png";
 
     function generateImage() {
@@ -121,20 +159,24 @@ app.post('/webshotSFC', function(req, res, callback) {
 });
 app.get('/webshotTTR', function(req, res, callback) {
 
-    // postDataSFC = req.body;
 
-    var ageWs = req.query.age;
-    var csesWs = req.query.cses;
-    var nraWs = req.query.nra;
-    var nrpWs = req.query.nrp;
-    var tfpWs = req.query.tfp;
-    var balanceWs = req.query.balance;
-    var fyWs = req.query.fy;
-    var thpWs = req.query.thp;
+     var data = {
+        "age": 25,
+        "cses": 60000,
+        "thp": 37000,
+        "fy": 2010,
+        "nra": 3,
+        "nrp": 3,
+        "balance": 50000,
+        "tfp": 3
 
-    var queryString = "?fy=" + fyWs + "&age=" + ageWs + "&cses=" + csesWs + "&thp=" + thpWs + "&nrp=" + nrpWs + "&nra=" + nraWs + "&balance=" + balanceWs + "&tfp=" + tfpWs;
+    };
 
-    var timeS = new Date;
+    http://180.151.85.194:3001/webshotTTR?fy=2010&age=25&cses=60000&thp=37000&nra=3&nrp=3&tfp=3&balance=50000
+
+    queryString = "?fy=" + fyWs + "&age=" + ageWs + "&cses=" + csesWs + "&thp=" + thpWs + "&nrp=" + nrpWs + "&nra=" + nraWs + "&balance=" + balanceWs + "&tfp=" + tfpWs;
+
+    var timeS = new Date();
     var name = timeS.getTime() + "TTR.png";
 
     function generateImage() {
@@ -162,33 +204,154 @@ app.get('/webshotTTR', function(req, res, callback) {
 });
 app.get('/queryTTR', function(req, res) {
 
+     var data = {
+        "age": 46,
+        "cses": 80000,
+        "thp": 45000,
+        "fy": 2016,
+        "nra": 6,
+        "nrp": 7,
+        "balance": 50000,
+        "tfp": 2
+
+    };
+
     res.render(__dirname + '/indexTTR.ejs', {
-        ageQ: req.query.age,
-        fyQ: req.query.fy,
-        csesQ: req.query.cses,
-        balanceQ: req.query.balance,
-        nraQ: req.query.nra,
-        nrpQ: req.query.nrp,
-        tfpQ: req.query.tfp,
-        thpQ: req.query.thp
+        data: data,
     });
 });
 app.get('/queryRA', function(req, res) {
 
-    var data = postDataRA;
+    // var data = postDataRA;
+    var data = {
+        "spouseOption": false,
+        "houseOption": true,
+        "targetIncome": 10000,
+        "userDetails": {
+            "gender": "male",
+            "age": 56,
+            "retirementAge": 65,
+            "annualSalary": 260000,
+            "superBalance": 500000,
+            "salarySacrifice": 15384,
+            "pensionStartAge": 57
+        },
+        "userAssumptions": {
+            "insurancePremium": 0,
+            "investmentReturn": 5.30,
+            "variableFee": 1.11,
+            "fixedFee": 300,
+            "employerContributionLevel": 9.50,
+            "inflation": 3.50,
+            "wageIncrease": 4.00,
+            "pensionDrawdown": 1,
+            "pensionDrawdownBase": 40000
+        },
+        "spouseDetails": {
+            "gender": "female",
+            "age": 50,
+            "retirementAge": 70,
+            "annualSalary": 90000,
+            "superBalance": 200000,
+            "salarySacrifice": 5000,
+            "pensionStartAge": 65
+        },
+        "spouseAssumptions": {
+            "insurancePremium": 0,
+            "investmentReturn": 5.30,
+            "variableFee": 1.11,
+            "fixedFee": 300,
+            "employerContributionLevel": 9.50,
+            "inflation": 3.50,
+            "wageIncrease": 4.00,
+            "pensionDrawdown": 1,
+            "pensionDrawdownBase": 30000
+        },
+        "otherAssets": {
+            "homeContents": 50000,
+            "vehicleCost": 0,
+            "investmentProperty": 2000,
+            "bankAssets": 20000,
+            "listedInvestments": 0,
+            "marginLoans": 0,
+            "otherInvestment": 20000,
+            "netRentalIncome": 0,
+            "otherIncome": 0,
+            "pensionIncome": 0,
+            "allocatedPension": 60000
+        }
+    };
     res.render(__dirname + '/indexRA.ejs', {
         data: data,
     });
 });
-app.post('/webshotRA', function(req, res, callback) {
+app.get('/webshotRA', function(req, res, callback) {
 
     postDataRA = req.body;
+    postDataRA = {
+        "spouseOption": false,
+        "houseOption": true,
+        "targetIncome": 10000,
+        "userDetails": {
+            "gender": "male",
+            "age": 56,
+            "retirementAge": 65,
+            "annualSalary": 260000,
+            "superBalance": 500000,
+            "salarySacrifice": 15384,
+            "pensionStartAge": 57
+        },
+        "userAssumptions": {
+            "insurancePremium": 0,
+            "investmentReturn": 5.30,
+            "variableFee": 1.11,
+            "fixedFee": 300,
+            "employerContributionLevel": 9.50,
+            "inflation": 3.50,
+            "wageIncrease": 4.00,
+            "pensionDrawdown": 1,
+            "pensionDrawdownBase": 40000
+        },
+        "spouseDetails": {
+            "gender": "female",
+            "age": 50,
+            "retirementAge": 70,
+            "annualSalary": 90000,
+            "superBalance": 200000,
+            "salarySacrifice": 5000,
+            "pensionStartAge": 65
+        },
+        "spouseAssumptions": {
+            "insurancePremium": 0,
+            "investmentReturn": 5.30,
+            "variableFee": 1.11,
+            "fixedFee": 300,
+            "employerContributionLevel": 9.50,
+            "inflation": 3.50,
+            "wageIncrease": 4.00,
+            "pensionDrawdown": 1,
+            "pensionDrawdownBase": 30000
+        },
+        "otherAssets": {
+            "homeContents": 50000,
+            "vehicleCost": 0,
+            "investmentProperty": 2000,
+            "bankAssets": 20000,
+            "listedInvestments": 0,
+            "marginLoans": 0,
+            "otherInvestment": 20000,
+            "netRentalIncome": 0,
+            "otherIncome": 0,
+            "pensionIncome": 0,
+            "allocatedPension": 60000
+        }
+    };
 
     var timeS = new Date;
     var name = timeS.getTime() + "RA.png";
 
     function generateImage() {
-        webshot('http://180.151.85.194:3001/queryRA', 'uploads/' + name, { shotSize: { width: 740, height: "all" } }, function(err, data) {
+        webshot('http://localhost:3001/queryRA', 'uploads/' + name, { shotSize: { width: 740, height: "all" } }, function(err, data) {
             // res.write("error saving");
 
             if (err) {
@@ -215,24 +378,84 @@ app.post('/webshotRA', function(req, res, callback) {
 app.get('/queryAsset', function(req, res) {
 
     var data = postDataAsset;
+    /*var data = {
+        "initialInvestmentAmount": 50000,
+        "alterOption": true,        
+        "alterYear": 1,
+        "birthYear": 1997 ,
+        "birthMonth": 1,
+        "birthDay": 1,
+        "initial": {
+            "australianShares1": 10,
+            "internationalShares1": 10,
+            "internationalSharesHedged1": 10,
+            "usShares1": 10,
+            "australianBonds1": 10,
+            "internationalBondsHedged1": 10,
+            "cash1": 10,
+            "australianListedProperty1": 10,
+            "internationalListedProperty1": 20
+        },
+        "altered": {
+            "australianShares2": 10,
+            "internationalShares2": 10,
+            "internationalSharesHedged2": 10,
+            "usShares2": 10,
+            "australianBonds2": 10,
+            "internationalBondsHedged2": 10,
+            "cash2": 30,
+            "australianListedProperty2": 10,
+            "internationalListedProperty2": 0
+        }
+    };*/
     res.render(__dirname + '/indexAsset.ejs', {
         data: data,
     });
 });
 
-app.post('/webshotAsset', function(req, res, callback) {
+app.get('/webshotAsset', function(req, res, callback) {
 
-    postDataAsset = req.body;
+    //postDataAsset = req.body;
+    postDataAsset = {
+        "initialInvestmentAmount": 50000,
+        "alterOption": true,
+        "alterYear": 1,
+        "birthYear": 1997,
+        "birthMonth": 1,
+        "birthDay": 1,
+        "initial": {
+            "australianShares1": 10,
+            "internationalShares1": 10,
+            "internationalSharesHedged1": 10,
+            "usShares1": 10,
+            "australianBonds1": 10,
+            "internationalBondsHedged1": 10,
+            "cash1": 10,
+            "australianListedProperty1": 10,
+            "internationalListedProperty1": 20
+        },
+        "altered": {
+            "australianShares2": 10,
+            "internationalShares2": 10,
+            "internationalSharesHedged2": 10,
+            "usShares2": 10,
+            "australianBonds2": 10,
+            "internationalBondsHedged2": 10,
+            "cash2": 30,
+            "australianListedProperty2": 10,
+            "internationalListedProperty2": 0
+        }
+    };
 
-    var timeS = new Date;
+    var timeS = new Date();
     var name = timeS.getTime() + "Asset.png";
 
     function generateImage() {
-        webshot('http://180.151.85.194:3001/queryAsset', 'uploads/' + name, { shotSize: { width: 630, height: 520 } }, function(err, data) {
+        webshot('http://localhost:3001/queryAsset', 'uploads/' + name, { shotSize: { width: 900, height: "all" } }, function(err, data) {
             // res.write("error saving");
 
             if (err) {
-                var resErr = new Error("Unable to generate Insurance Adequacy chart");
+                var resErr = new Error("Unable to generate asset allocation chart");
                 resErr.status = 400;
                 console.log("error occured", resErr);
                 callback(resErr);
