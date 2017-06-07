@@ -1,5 +1,4 @@
-var SGCRateService = angular.module('SGCRateService', [])
-.service('SGCRate', function (){
+app.service('SGCRate', function (){
 
 this.calculateSGCRate = function(pensionDate){
 

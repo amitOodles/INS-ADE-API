@@ -36,17 +36,6 @@ app.controller("IAController", ['$scope', '$timeout', 'AgeCalculator','ChartServ
 
     $scope.sickLeaves = insObj.sickLeaves;
 
-    /*$scope.lifeOptions = [
-        { id: 0, name: 'personal' },
-        { id: 1, name: 'super' }
-    ];
- 
-    $('.sp1').on('change', function() {
-        selected1 = $('.sp1 option:selected').val();
-        $scope.netReturn = $scope.investOptions[selected1];
-    });*/
-
-
     $scope.calculateWaitingPeriod = function(leaves){
         if(leaves <= 30){
           return 30;

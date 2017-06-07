@@ -1,5 +1,4 @@
-var TaxRateCalculatorService = angular.module('TaxRateCalculatorService', [])
-.service('TaxRateCalculator', function (){
+app.service('TaxRateCalculator', function (){
 
     var lowerBound = [0,18201,37001,80001,180001];
     var upperBound=[18200,37000,80000,180000,Infinity];
@@ -14,7 +13,7 @@ var TaxRateCalculatorService = angular.module('TaxRateCalculatorService', [])
     };
     this.getLowerBoundValue= function(input){
         return lowerBound[search(input)];
-    }
+    };
     function search(target){
         var index;
         for(index=0;index<5;index++){
@@ -23,4 +22,14 @@ var TaxRateCalculatorService = angular.module('TaxRateCalculatorService', [])
             }
         }       
     }
+
+    this.getPeriods = function (input) {
+        var temp;
+        switch(input){
+            case 0:temp=52;break;
+            case 1:temp=26;break;
+            case 2:temp=12;break;
+        }
+        return temp;
+    };
 });
