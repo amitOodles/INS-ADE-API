@@ -377,8 +377,8 @@ app.get('/webshotRA', function(req, res, callback) {
 
 app.get('/queryAsset', function(req, res) {
 
-    var data = postDataAsset;
-    /*var data = {
+    //var data = postDataAsset;
+    var data = {
         "initialInvestmentAmount": 50000,
         "alterOption": true,        
         "alterYear": 1,
@@ -407,7 +407,7 @@ app.get('/queryAsset', function(req, res) {
             "australianListedProperty2": 10,
             "internationalListedProperty2": 0
         }
-    };*/
+    };
     res.render(__dirname + '/indexAsset.ejs', {
         data: data,
     });
@@ -620,7 +620,7 @@ app.post('/webshotPSF', function(req, res, callback) {
 function callRequest(data, url, callback) {
     var options = {
         "method": "POST",
-        "hostname": "180.151.85.194",
+        "hostname": "localhost",
         "port": "3001",
         "path": url,
         "headers": {
@@ -654,10 +654,10 @@ function callRequest(data, url, callback) {
     req.end();
 }
 
-function generatePdf(image1, image2, callback) {
-    ejs.renderFile(__dirname + '/indexHTP.ejs', { image1: image1, image2: image2 }, {}, function(err, html) {
+function generatePdf(callback) {
+    ejs.renderFile(__dirname + '/indexHTP.ejs', {}, {}, function(err, html) {
         if (html) {
-            var options = { format: 'Letter', base: 'file://' + __dirname + '/' };
+            var options = { height: '827px', width: '1169px'};
 
             var pdfFileName = (new Date()).getTime() + "HTP.pdf";
 
@@ -674,87 +674,16 @@ function generatePdf(image1, image2, callback) {
     });
 }
 
-app.post('/htmlPDF', function(req, res) {
+app.get('/htmlPDF', function(req, res) {
 
 
 
     async.auto({
-        webshot: function(callback) {
-            var data = {
-                "age": 50,
-                "grossAnnualIncome": 120000,
-                "funeralCost": 20000,
-                "familyLivingCostPerYear": 90000,
-                "hasSpouse": true,
-                "hasChildren": true,
-                "sickLeaves": 20,
-                "assets": {
-                    "homeValue": 800000,
-                    "cashAtBank": 20000,
-                    "otherInvestment": 20000,
-                    "superBalance": 100000
-                },
-                "existingCovers": {
-                    "life": 20000,
-                    "TPD": 0,
-                    "IP": 0,
-                    "trauma": 0
-                },
-                "assumptions": {
-                    "inflation": 2,
-                    "rateOfReturn": 5
-                },
-                "liabilities": {
-                    "homeMortgage": 20000,
-                    "investmentPropertyMortgage": 10000,
-                    "creditCardDebt": 3000,
-                    "carLoan": 20000,
-                    "personalLoan": 10000,
-                    "otherLoan": 0
-                },
-                "spouseDetails": {
-                    "age": 47,
-                    "isWorking": true,
-                    "salary": 50000,
-                    "moveToSmallerProperty": true,
-                    "valueOfNewProperty": 500000,
-                    "moneyToBeBorrowed": 400000
-                },
-                "childrenDetails": {
-                    "numChildren": 0,
-                    "ages": [3, 7],
-                    "educationExpensePerYearPerChild": 2000
-                }
-            };
-            callRequest(data, "/webshot", callback);
-        },
-        webshotSFC: function(callback) {
-            var data = {
-                "age": 47,
-                "retirementAge": 67,
-                "annualSalary": 80000,
-                "superBalance": 100000,
-                "cc": 10000,
-                "ncc": 10000,
-                "ecLevel": 9.5,
-                "inflation": 2.5,
-                "wageIncrease": 3.5,
-                "insurancePremiumPerYear": 200,
-                "netReturnRate": 1.50,
-                "fundIndexA": 0,
-                "fundIndexB": 1,
-                "specifiedFundA": false,
-                "specifiedNameA": "a",
-                "specifiedFeeA": 1.50,
-                "specifiedFundB": false,
-                "specifiedNameB": "b",
-                "specifiedFeeB": 1.90
-            };
-            callRequest(data, "/webshotSFC", callback);
-        },
-        pdf: ['webshot', 'webshotSFC', function(results, callback) {
-            generatePdf(results.webshot, results.webshotSFC, callback);
-        }]
+        
+        
+        pdf: function(callback) {
+            generatePdf( callback);
+        }
     }, function(err, results) {
         if (err) {
             res.status(400).send(err);

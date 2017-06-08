@@ -34,6 +34,13 @@ app.service('ChartServiceHc', function() {
         $('#container').highcharts({
             chart: {
                 type: 'column',
+                  options3d: {
+                        enabled: true,
+                        alpha: 7,
+                        beta: 18,
+                        depth: 47,
+                        viewDistance: 25 
+                       },
                 height: 400,
                 events: {
                     beforePrint: function() {
@@ -47,9 +54,11 @@ app.service('ChartServiceHc', function() {
                     }
                 }
             },
+                                   
             title: {
                 text: 'Super Balance Projection'
             },
+                colors: ['#071520', '#0d2f47', '#195c8d', '#1a74b7', '#2599f0'],
             exporting: {
                 enabled: false
             },
@@ -57,8 +66,10 @@ app.service('ChartServiceHc', function() {
             xAxis: {
                 type: 'category',
                 labels: {
-                    autoRotation: false,
+                    autoRotation: false,                 
                 },
+                     gridLineColor: 'transparent',
+                                   
                 tickLength: 0,
                 title: {
                     text: 'Years',

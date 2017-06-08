@@ -174,6 +174,7 @@ app.service('AreaChartService', function() {
         $('#containerA').highcharts({
             chart: {
                 type: 'area',
+                
                 height: 400,
                 events: {
                     beforePrint: function() {
@@ -190,6 +191,7 @@ app.service('AreaChartService', function() {
             title: {
                 text: 'Income Stream Analysis'
             },
+             colors: ['#071520', '#0d2f47', '#195c8d', '#1a74b7', '#2599f0'],
             exporting: {
                 enabled: false
             },
