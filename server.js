@@ -1,5 +1,5 @@
 var express = require('express');
-var  app = express();
+var app = express();
 var bodyParser = require('body-parser');
 var pdf = require('html-pdf');
 var fs = require('fs');
@@ -10,20 +10,12 @@ var ejs = require('ejs');
 var cors = require('cors');
 app.use(cors());
 
-
-
 app.use(bodyParser.json());
-
 app.use("/css", express.static(__dirname + '/css'));
-
 app.use("/js", express.static(__dirname + '/js'));
-
 app.use("/images", express.static(__dirname + '/images'));
-
 app.use("/fonts", express.static(__dirname + '/fonts'));
-
 app.set('view engine', 'ejs');
-
 app.use("/download", express.static(__dirname + '/uploads'));
 
 var webshotOptions = {
@@ -36,11 +28,9 @@ var webshotOptions = {
         height: "all"
     }
 };
-
 app.listen(3001, function() {
     console.log('listening on 3001');
 });
-
 app.get('/querySSO', function(req, res) {
     var data = {
         "age": 19,
@@ -49,13 +39,15 @@ app.get('/querySSO', function(req, res) {
         "fy": 2016
     };
 
-    console.log("path:",__dirname);
+    console.log("path:", __dirname);
     res.render(__dirname + '/indexSSO.ejs', {
         data: data,
     });
 });
 
+
 app.get('/query', function(req, res) {
+
 
     //var data = postDataIAC;
     var data = {
@@ -145,29 +137,29 @@ app.get('/querySFC', function(req, res) {
 
     //var data = postDataSFC;
     var data = {
-    "age" : 47,
-    "retirementAge" : 67,
-    "annualSalary" : 60000,
-    "superBalance" : 100000,
-    "cc" : 10000,
-    "ncc" : 10000,
-    "ecLevel" : 9.5,
-    "inflation" : 2.5,
-    "wageIncrease" : 3.5,
-    "insurancePremiumPerYear" : 200,
-    "netReturn":2.90,
-    "fundASelectedId":0,
-    "fundNameA":"Special fund 1",
-    "contributionFeeA":1.50,
-    "adminFeeA":100,
-    "indirectCostRationA":1.50,
-    "fundBSelectedId":1,
-    "fundNameB":"Special fund 2",
-    "contributionFeeB":1.50,
-    "adminFeeB":100,
-    "indirectCostRationB":1.50,
+        "age": 47,
+        "retirementAge": 67,
+        "annualSalary": 60000,
+        "superBalance": 100000,
+        "cc": 10000,
+        "ncc": 10000,
+        "ecLevel": 9.5,
+        "inflation": 2.5,
+        "wageIncrease": 3.5,
+        "insurancePremiumPerYear": 200,
+        "netReturn": 2.90,
+        "fundASelectedId": 0,
+        "fundNameA": "Special fund 1",
+        "contributionFeeA": 1.50,
+        "adminFeeA": 100,
+        "indirectCostRationA": 1.50,
+        "fundBSelectedId": 1,
+        "fundNameB": "Special fund 2",
+        "contributionFeeB": 1.50,
+        "adminFeeB": 100,
+        "indirectCostRationB": 1.50,
 
-};
+    };
     res.render(__dirname + '/indexSFC.ejs', {
         data: data,
     });
@@ -205,7 +197,7 @@ app.post('/webshotSFC', function(req, res, callback) {
 app.get('/webshotTTR', function(req, res, callback) {
 
 
-     var data = {
+    var data = {
         "age": 25,
         "cses": 60000,
         "thp": 37000,
@@ -217,9 +209,9 @@ app.get('/webshotTTR', function(req, res, callback) {
 
     };
 
-    http://180.151.85.194:3001/webshotTTR?fy=2010&age=25&cses=60000&thp=37000&nra=3&nrp=3&tfp=3&balance=50000
+    http: //180.151.85.194:3001/webshotTTR?fy=2010&age=25&cses=60000&thp=37000&nra=3&nrp=3&tfp=3&balance=50000
 
-    queryString = "?fy=" + fyWs + "&age=" + ageWs + "&cses=" + csesWs + "&thp=" + thpWs + "&nrp=" + nrpWs + "&nra=" + nraWs + "&balance=" + balanceWs + "&tfp=" + tfpWs;
+        queryString = "?fy=" + fyWs + "&age=" + ageWs + "&cses=" + csesWs + "&thp=" + thpWs + "&nrp=" + nrpWs + "&nra=" + nraWs + "&balance=" + balanceWs + "&tfp=" + tfpWs;
 
     var timeS = new Date();
     var name = timeS.getTime() + "TTR.png";
@@ -249,7 +241,7 @@ app.get('/webshotTTR', function(req, res, callback) {
 });
 app.get('/queryTTR', function(req, res) {
 
-     var data = {
+    var data = {
         "age": 46,
         "cses": 80000,
         "thp": 45000,
@@ -418,12 +410,10 @@ app.get('/webshotRA', function(req, res, callback) {
 
     generateImage();
 });
-
-
 app.get('/queryAsset', function(req, res) {
 
-    var data = postDataAsset;
-    /*var data = {
+    //var data = postDataAsset;
+    var data = {
         "initialInvestmentAmount": 50000,
         "alterOption": true,
         "alterYear": 1,
@@ -452,12 +442,11 @@ app.get('/queryAsset', function(req, res) {
             "australianListedProperty2": 10,
             "internationalListedProperty2": 0
         }
-    };*/
+    };
     res.render(__dirname + '/indexAsset.ejs', {
         data: data,
     });
 });
-
 app.get('/webshotAsset', function(req, res, callback) {
 
     //postDataAsset = req.body;
@@ -518,7 +507,6 @@ app.get('/webshotAsset', function(req, res, callback) {
 
     generateImage();
 });
-
 app.get('/queryIT', function(req, res) {
     //var data = postDataIT;
     data = {
@@ -531,7 +519,6 @@ app.get('/queryIT', function(req, res) {
         data: data,
     });
 });
-
 app.post('/webshotIT', function(req, res, callback) {
 
     postDataIT = req.body;
@@ -659,13 +646,10 @@ app.post('/webshotPSF', function(req, res, callback) {
 
     generateImage();
 });
-
-
-
 function callRequest(data, url, callback) {
     var options = {
         "method": "POST",
-        "hostname": "180.151.85.194",
+        "hostname": "localhost",
         "port": "3001",
         "path": url,
         "headers": {
@@ -699,10 +683,12 @@ function callRequest(data, url, callback) {
     req.end();
 }
 
-function generatePdf(image1, image2, callback) {
-    ejs.renderFile(__dirname + '/indexHTP.ejs', { image1: image1, image2: image2 }, {}, function(err, html) {
+
+function generatePdf(callback) {
+    ejs.renderFile(__dirname + '/indexHTP.ejs', {}, {}, function(err, html) {
+
         if (html) {
-            var options = { format: 'Letter', base: 'file://' + __dirname + '/' };
+            var options = { height: '827px', width: '1169px'};
 
             var pdfFileName = (new Date()).getTime() + "HTP.pdf";
 
@@ -719,87 +705,18 @@ function generatePdf(image1, image2, callback) {
     });
 }
 
-app.post('/htmlPDF', function(req, res) {
+
+app.get('/htmlPDF', function(req, res) {
+
 
 
 
     async.auto({
-        webshot: function(callback) {
-            var data = {
-                "age": 50,
-                "grossAnnualIncome": 120000,
-                "funeralCost": 20000,
-                "familyLivingCostPerYear": 90000,
-                "hasSpouse": true,
-                "hasChildren": true,
-                "sickLeaves": 20,
-                "assets": {
-                    "homeValue": 800000,
-                    "cashAtBank": 20000,
-                    "otherInvestment": 20000,
-                    "superBalance": 100000
-                },
-                "existingCovers": {
-                    "life": 20000,
-                    "TPD": 0,
-                    "IP": 0,
-                    "trauma": 0
-                },
-                "assumptions": {
-                    "inflation": 2,
-                    "rateOfReturn": 5
-                },
-                "liabilities": {
-                    "homeMortgage": 20000,
-                    "investmentPropertyMortgage": 10000,
-                    "creditCardDebt": 3000,
-                    "carLoan": 20000,
-                    "personalLoan": 10000,
-                    "otherLoan": 0
-                },
-                "spouseDetails": {
-                    "age": 47,
-                    "isWorking": true,
-                    "salary": 50000,
-                    "moveToSmallerProperty": true,
-                    "valueOfNewProperty": 500000,
-                    "moneyToBeBorrowed": 400000
-                },
-                "childrenDetails": {
-                    "numChildren": 0,
-                    "ages": [3, 7],
-                    "educationExpensePerYearPerChild": 2000
-                }
-            };
-            callRequest(data, "/webshot", callback);
-        },
-        webshotSFC: function(callback) {
-            var data = {
-                "age": 47,
-                "retirementAge": 67,
-                "annualSalary": 80000,
-                "superBalance": 100000,
-                "cc": 10000,
-                "ncc": 10000,
-                "ecLevel": 9.5,
-                "inflation": 2.5,
-                "wageIncrease": 3.5,
-                "insurancePremiumPerYear": 200,
-                "netReturnRate": 1.50,
-                "fundIndexA": 0,
-                "fundIndexB": 1,
-                "specifiedFundA": false,
-                "specifiedNameA": "a",
-                "specifiedFeeA": 1.50,
-                "specifiedFundB": false,
-                "specifiedNameB": "b",
-                "specifiedFeeB": 1.90
-            };
-            callRequest(data, "/webshotSFC", callback);
-        },
-        pdf: ['webshot', 'webshotSFC', function(results, callback) {
-            generatePdf(results.webshot, results.webshotSFC, callback);
-        }]
+
+
+        pdf: function(callback) {
+            generatePdf( callback);
+        }
     }, function(err, results) {
         if (err) {
             res.status(400).send(err);

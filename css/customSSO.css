@@ -3,7 +3,7 @@
 }
 .otrp-calculator{
 	    display: block;
-	    max-width: 614px;
+	    /*max-width: 614px;*/
 	    /*border: 1px solid #e2e2e2;*/
 	    font-size: 12px;
 	    line-height: normal;
@@ -155,7 +155,7 @@ i.fa-floppy-o{
     font-size: 20px;
 }
 .result-div{
-    background-color: #FFF;
+    background-color: #161b2e;
     position: relative;
     overflow:hidden;
     //padding-right: 0;
@@ -447,12 +447,13 @@ input[type=number] {
 
 
 .res-1{
-    background-color: #6F7070!important;
+    background-color: #030a25!important;
     color: white;
     /*margin: 10px;*/
     margin:-6px 0px;
     padding: 10px;
     margin-bottom: 15px;
+    border: 0.5px solid rgba(159, 231, 247, 0.46);
 }
 .res-2{
     background-color: #ddd;
