@@ -19,7 +19,7 @@ app.service('ChartServiceHcSFC',function(){
             Highcharts.theme.yAxis.title.style.fontWeight = 'bold';
             Highcharts.setOptions(Highcharts.theme);
         }
-    
+
     Highcharts.setOptions({lang: {
             thousandsSep: ','
         }});
@@ -28,7 +28,14 @@ app.service('ChartServiceHcSFC',function(){
     if (chartOne) {
             $(container).highcharts({
                 chart: {
-                    type: 'column'
+                    type: 'column',
+                    options3d: {
+              enabled: true,
+                 alpha: 7,
+                 beta: 18,
+                 depth: 47,
+                 viewDistance: 25
+   }
                 },
                 title: {
                     text: 'Fund Fee Comparison'
@@ -36,6 +43,7 @@ app.service('ChartServiceHcSFC',function(){
                 exporting: {
                     enabled: false
                 },
+                colors: ['#071520', '#0d2f47', '#195c8d', '#1a74b7', '#2599f0'],
                 // subtitle: {
                 //     text: 'Click the columns to view versions. Source: <a href="http://netmarketshare.com">netmarketshare.com</a>.'
                 // },
@@ -43,7 +51,8 @@ app.service('ChartServiceHcSFC',function(){
                     type: 'category',
                     labels: {
                         autoRotation: false,
-                    }
+                    },
+                    gridLineColor: 'transparent',
                 },
                 yAxis: {
                     title: {
@@ -96,14 +105,23 @@ app.service('ChartServiceHcSFC',function(){
         } else {
             $(container).highcharts({
                 chart: {
-                    type: 'column'
+                    type: 'column',
+                    options3d: {
+              enabled: true,
+                 alpha: 7,
+                 beta: 18,
+                 depth: 47,
+                 viewDistance: 25
+   }
                 },
                 title: {
                     text: 'Fund Balance Projection',
                     margin: 30,
                 },
+                colors: ['#071520', '#0d2f47', '#195c8d', '#1a74b7', '#2599f0'],
                 xAxis: {
-                    categories: dateArray
+                    categories: dateArray,
+                    gridLineColor: 'transparent'
                 },
                 yAxis: {
                     title: {
@@ -154,4 +172,3 @@ app.service('ChartServiceHcSFC',function(){
         }
 
 }});
-
