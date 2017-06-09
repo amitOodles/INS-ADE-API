@@ -45,15 +45,23 @@ app.service('ChartServiceHc', function() {
         }
 
 
-    
+
     Highcharts.setOptions({lang: {
             }
         });
 
         $(containerCC).highcharts({
             chart: {
-                type: 'column'
+                type: 'column',
+                options3d: {
+              enabled: true,
+                 alpha: 7,
+                 beta: 18,
+                 depth: 47,
+                 viewDistance: 25
+   }
             },
+            colors: ['#071520', '#0d2f47', '#195c8d', '#1a74b7', '#2599f0'],
             title: {
                 text: title,
                 marginLeft: 0,
@@ -66,7 +74,8 @@ app.service('ChartServiceHc', function() {
                 type: 'category',
                 labels: {
                     autoRotation: false,
-                }
+                },
+                gridLineColor: 'transparent',
             },
             yAxis: {
                 title: {
@@ -79,7 +88,7 @@ app.service('ChartServiceHc', function() {
             },
             plotOptions: {
                 series: {
-                    borderWidth: 0, 
+                    borderWidth: 0,
                     animation : false
                 }
             },
@@ -98,17 +107,17 @@ app.service('ChartServiceHc', function() {
 
         },
         function(chart){
-            
+
             if(!buyOption){
            // chart.series[0].data[0].graphic.attr({
-           //      width:50  
+           //      width:50
            //  });
            // chart.xAxis.plotLines.label.attr({
-           //      x:0  
+           //      x:0
            //  });
                 }
-           
-        
+
+
         });
 
     }

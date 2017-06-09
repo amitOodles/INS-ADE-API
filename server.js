@@ -32,22 +32,99 @@ app.listen(3001, function() {
     console.log('listening on 3001');
 });
 app.get('/querySSO', function(req, res) {
-    var data = {
-        "age": 19,
-        "cses": 80000,
-        "thp": 45000,
-        "fy": 2016
-    };
+  var data = {
+      "age": 19,
+      "cses": 80000,
+      "thp": 45000,
+      "fy": 2016
+  };
 
     console.log("path:", __dirname);
     res.render(__dirname + '/indexSSO.ejs', {
         data: data,
     });
 });
-app.post('/query', function(req, res) {
+app.get('/webshotSSO', function(req, res, callback) {
 
-    var data = postDataIAC;
 
+
+    var time = new Date();
+    var name = time.getTime() + "IT.png";
+
+    function generateImage() {
+        webshot('http://localhost:3001/querySSO', 'uploads/' + name, { shotSize: { width: 630, height: 420 } }, function(err, data) {
+            // res.write("error saving");
+
+            if (err) {
+                var resErr = new Error("Unable to generate income tax chart");
+                resErr.status = 400;
+                console.log("error occured", resErr);
+                callback(resErr);
+            } else {
+                var img = fs.readFileSync('uploads/' + name);
+                console.log('uploads/' + name);
+                //fs.unlink('uploads/' + name);
+                res.writeHead(200, { 'Content-Type': 'image/png' });
+                res.end(img, 'binary');
+            }
+
+
+        });
+    }
+
+    generateImage();
+});
+
+app.get('/query', function(req, res) {
+
+
+    //var data = postDataIAC;
+    var data = {
+ "age":50,
+ "grossAnnualIncome":120000,
+ "funeralCost":20000,
+ "familyLivingCostPerYear":90000,
+ "hasSpouse":true,
+ "hasChildren":true,
+ "sickLeaves" : 20,
+ "assets" : {
+  "homeValue" : 800000,
+  "cashAtBank" : 20000,
+  "otherInvestment" :20000,
+  "superBalance" : 100000
+ },
+ "existingCovers":{
+  "life" : 20000,
+  "TPD" : 0,
+  "IP" : 0,
+  "trauma" : 0
+ },
+ "assumptions":{
+  "inflation" : 2,
+  "rateOfReturn" : 5
+ },
+ "liabilities":{
+  "homeMortgage" : 20000,
+  "investmentPropertyMortgage" : 10000,
+  "creditCardDebt" : 3000,
+  "carLoan" : 20000,
+  "personalLoan" : 10000,
+  "otherLoan" : 0
+ },
+ "spouseDetails":{
+  "age":47,
+  "isWorking":true,
+  "salary":50000,
+  "moveToSmallerProperty":true,
+  "valueOfNewProperty" : 500000,
+  "moneyToBeBorrowed":400000
+ },
+ "childrenDetails":{
+  "numChildren":0,
+  "ages":[3,7],
+  "educationExpensePerYearPerChild":2000
+ }
+};
     res.render(__dirname + '/index.ejs', {
         data: data,
     });
@@ -367,7 +444,7 @@ app.get('/queryAsset', function(req, res) {
     //var data = postDataAsset;
     var data = {
         "initialInvestmentAmount": 50000,
-        "alterOption": true,        
+        "alterOption": true,
         "alterYear": 1,
         "birthYear": 1997 ,
         "birthMonth": 1,
@@ -443,7 +520,7 @@ app.get('/webshotAsset', function(req, res, callback) {
             if (err) {
                 var resErr = new Error("Unable to generate asset allocation chart");
                 resErr.status = 400;
-                console.log("error occured", resErr);
+                console.log("error occured",err ,  resErr);
                 callback(resErr);
             } else {
                 var img = fs.readFileSync('uploads/' + name);
@@ -471,7 +548,7 @@ app.get('/queryIT', function(req, res) {
         data: data,
     });
 });
-app.post('/webshotIT', function(req, res, callback) {
+app.get('/webshotIT', function(req, res, callback) {
 
     postDataIT = req.body;
 
@@ -664,8 +741,8 @@ app.get('/htmlPDF', function(req, res) {
 
 
     async.auto({
-        
-        
+
+
         pdf: function(callback) {
             generatePdf( callback);
         }
