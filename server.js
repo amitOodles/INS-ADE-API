@@ -52,7 +52,7 @@ app.get('/webshotSSO', function(req, res, callback) {
     var name = time.getTime() + "IT.png";
 
     function generateImage() {
-        webshot('http://localhost:3001/querySSO', 'uploads/' + name, { shotSize: { width: 630, height: 420 } }, function(err, data) {
+        webshot('http://localhost:3001/querySSO', 'uploads/' + name, { shotSize: { width: 740, height: 762 } }, function(err, data) {
             // res.write("error saving");
 
             if (err) {
@@ -479,7 +479,7 @@ app.get('/queryAsset', function(req, res) {
 app.get('/webshotAsset', function(req, res, callback) {
 
     //postDataAsset = req.body;
-    postDataAsset = {
+   /* postDataAsset = {
         "initialInvestmentAmount": 50000,
         "alterOption": true,
         "alterYear": 1,
@@ -508,7 +508,7 @@ app.get('/webshotAsset', function(req, res, callback) {
             "australianListedProperty2": 10,
             "internationalListedProperty2": 0
         }
-    };
+    };*/
 
     var timeS = new Date();
     var name = timeS.getTime() + "Asset.png";
@@ -729,22 +729,18 @@ function generatePdf(callback) {
                 }
             });
         } else {
-            console.log("no html");
+
+            console.log("no html",err);
         }
     });
 }
-
-
 app.get('/htmlPDF', function(req, res) {
 
 
 
-
     async.auto({
-
-
         pdf: function(callback) {
-            generatePdf( callback);
+            generatePdf(callback);
         }
     }, function(err, results) {
         if (err) {
