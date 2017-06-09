@@ -2,7 +2,7 @@ app.service('ChartServiceHc',function(){
   this.createChart = function(thpWithoutSS,thpWithSS,taxSaving,optimisedSS){
 
     console.log("charted");
-    
+
     Highcharts.setOptions({lang: {
             thousandsSep: ','
         }});
@@ -16,21 +16,21 @@ app.service('ChartServiceHc',function(){
                         alpha: 7,
                         beta: 18,
                         depth: 47,
-                        viewDistance: 25 
+                        viewDistance: 25
                        }
         },
         title: {
             text: 'Salary Sacrifice Optimisation',
              style: {
-            fontFamily: 'serif',
+            fontFamily: 'Helvetica',
             color:'#fff'
         }
         },
-        
-     
-        
+
+
+
          colors: ['#5b9bd5', '#ed7d31', '#a5a5a5', '#24b2ff', '#2599f0'],
-        
+
         exporting:{
             enabled:false
         },
@@ -45,10 +45,10 @@ app.service('ChartServiceHc',function(){
             fontFamily: 'serif',
             color:'#fff'
         }
-                
+
             },
-           
-            
+
+
             gridLineColor: 'transparent',
         },
         yAxis: {
@@ -65,7 +65,7 @@ app.service('ChartServiceHc',function(){
             fontFamily: 'serif',
             color:'#fff'
         }
-                
+
             },
 
         },

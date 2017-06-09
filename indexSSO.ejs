@@ -12,7 +12,7 @@
   <link href="css/bootstrap-select.min.css" rel="stylesheet">
   <link href="css/customSSO.css" rel="stylesheet">
   <link href="css/font-awesome.css" rel="stylesheet">
-  <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+  <!--<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>-->
    </head>
    <body print-section ng-cloak>
       <div class="otrp-calculator container-fluid " ng-controller="SSOController" >
@@ -29,104 +29,7 @@
          </div>
          <div class="row content" >
             <div class="col-xs-12 col-sm-12 col-lg-12">
-               <div class="row input-div">
-                  <div class="col-xs-12 col-sm-12 col-lg-12">
-                     <div class="row title-div" style="display:none">
-                        <span class="number-wrapper">1</span>
-                        <span class="title-wrapper">Your Details</span>
-                        <div class="otrp-clear"></div>
-                     </div>
-                     <form name="ttrForm" class="ttr-form" novalidate ng-submit="submitForm(ttrForm.$valid)" style="display:none">
 
-                        <div class="row">
-                        <div class="col-xs-8 col-sm-4 form-heading">
-                          Date Of Birth
-                          <div class="row">
-                           <div class="col-xs-12">
-                             <div class="form-group">
-                             <div class="input-group">
-                              <!-- ng-class="{'err-border' : ttrForm.dob.$invalid }" -->
-                                 <input type="text" name="dob" id="dobText" onClick="this.select();"
-                                    class="standard-input form-control dob-input" show-button-bar="false"
-                                    uib-datepicker-popup="{{format}}" ng-model="dob" is-open="popup1.opened"
-                                    datepicker-options="dateOptions" required close-text="Close" ng-blur="ageChange()"
-                                    />
-                                 <span class="input-group-addon" ng-click="open1()">
-                                 <span class="glyphicon glyphicon-calendar"></span>
-                                 </span>
-                              </div>
-                              <!-- <span ng-show="ttrForm.dob.$invalid">Invalid Date Entered</span> -->
-                             </div>
-                             </div>
-                           </div>
-                        </div>
-                        <div class="col-xs-4 col-sm-2 form-heading">
-                          Age
-                          <div class="row">
-                           <div class="col-xs-12">
-                             <div class="form-group">
-                             <!-- <label for="ageInput">Your Age</label> -->
-                             <input type="number"  onClick="this.select();" class="form-control" id="ageInput" name="ageInput" ng-model="age" disabled>
-                             </div>
-                             </div>
-                           </div>
-                        </div>
-                        <div class="col-xs-12 col-sm-6 form-heading">
-                          Financial Year/Tax Year
-                          <div class="row">
-                           <div class="col-xs-4 col-sm-4">
-                             <div class="form-group">
-                             <!-- <label for="ageInput">Your Age</label> -->
-                             <input type="number"  onClick="this.select();" class="form-control" id="fyInput" name="fyInput" ng-model="fy" >
-                             </div>
-                             </div>
-                           <div class="col-xs-8 col-sm-8 form-group slider-common">
-                           <!-- <label></label> -->
-                              <div id="fySlider" style="margin-top:8px;"></div>
-                           </div>
-                           </div>
-                        </div>
-                        </div>
-
-                        <div class="row second-row-mobile">
-                        <div class="col-xs-12 col-sm-6 form-heading">
-                        <!-- <span class="visible-xs">Current Salary</span> -->
-                          <!-- <span class="hidden-xs">Current Salary Excluding SGC</span> -->
-                          Current Salary Excluding Super
-                          <div class="row">
-                           <div class="col-xs-4 col-sm-4">
-                             <div class="form-group">
-                             <!-- <label for="ageInput">Your Age</label> -->
-                             <input type="text"  onClick="this.select();" class="form-control" id="csesInput" name="csesInput" ng-model="cses" >
-                             </div>
-                             </div>
-                           <div class="col-xs-8 col-sm-8 form-group slider-common">
-                           <!-- <label></label> -->
-                              <div id="csesSlider" style="margin-top:8px;"></div>
-                           </div>
-                           </div>
-                        </div>
-                        <div class="col-xs-12 col-sm-6 form-heading">
-                          <!-- <span class="visible-xs">Desired Take Home Salary</span> -->
-                          <!-- <span class="hidden-xs">Desired Minimum Take Home Salary Per Annum</span> -->
-                          Desired Minimum Take Home Salary Per Annum
-                          <div class="row">
-                           <div class="col-xs-4 col-sm-4">
-                             <div class="form-group">
-                             <!-- <label for="ageInput">Your Age</label> -->
-                             <input type="text"  onClick="this.select();" class="form-control" id="thpInput" name="thpInput" ng-model="thp" >
-                             </div>
-                             </div>
-                           <div class="col-xs-8 col-sm-8 form-group slider-common">
-                           <!-- <label></label> -->
-                              <div id="thpSlider" style="margin-top:8px;"></div>
-                           </div>
-                           </div>
-                        </div>
-                        </div>
-                     </form>
-                  </div>
-               </div>
                <div class="row result-head" style="display:none;">
                   <h3 class="results-title">Your Results</h3>
                </div>
@@ -146,32 +49,32 @@
                 <div id="container"  style="margin:0 auto;width: 500px; height: 400px;" ng-class="{largeWidth: needSS}"></div>
                 </div>
                 </div>
-                <!--here shadab start-->
+                <!--for pdf-->
                 <div class="row">
                   <div class="col-sm-8 pannel_left">
                       <div class="one">
-                        <h3 class="leftHead skyBlue">take home sal</h3>
+                        <h3 class="leftHead skyBlue">Your take home money</h3>
                         <div class="row">
                             <div class="col-sm-6">
-                              <p>with salry</p>
-                              <p>without salry</p>
+                              <p>Without Salary Sacrifice</p>
+                              <p>With Salary Sacrifice</p>
                             </div>
                             <div class="col-sm-6">
-                              <p class="price">$85756</p>
-                              <p class="price">$85756</p>
+                              <p class="price">{{ resultWithoutSS[0] | currency }}</p>
+                              <p class="price">{{ resultWithSS[0] | currency }}</p>
                             </div>
                         </div>
                       </div>
                       <div class="two">
-                        <h3 class="leftHead orange">take home sal</h3>
+                        <h3 class="leftHead orange">Total tax paid</h3>
                         <div class="row">
                           <div class="col-sm-6">
-                            <p>with salry</p>
-                            <p>without salry</p>
+                            <p>Without Salary Sacrifice</p>
+                            <p>With Salary Sacrifice</p>
                           </div>
                           <div class="col-sm-6">
-                            <p class="price">$85756</p>
-                            <p class="price">$85756</p>
+                            <p class="price">{{ resultWithoutSS[1] | currency }}</p>
+                            <p class="price">{{ resultWithSS[1] | currency }}</p>
                           </div>
                         </div>
                       </div>
@@ -179,17 +82,17 @@
                           <div class="row ">
                               <div class="col-sm-4 ">
                                   <div class="whiteBg">
-                                  <span><img src="images/money.png"/></span>
+                                  <span class="rupeesImage"><img src="images/money.png"/></span>
                                   <span class="finalAmount">Final</br>Amount</span>
                                 </div>
                               </div>
-                              <div class="col-sm-4">
-                                <p>with salry</p>
-                                <p>without salry</p>
+                              <div class="col-sm-4 paddingZero">
+                                <p>Without Salary Sacrifice</p>
+                                <p>With Salary Sacrifice</p>
                               </div>
                               <div class="col-sm-4">
-                                <p class="price">$85756</p>
-                                <p class="price">$85756</p>
+                                <p class="price">{{ resultWithoutSS[2] | currency }}</p>
+                                <p class="price">{{ resultWithSS[2] | currency }}</p>
                               </div>
                           </div>
                       </div>
@@ -197,13 +100,22 @@
                   <div class="col-sm-4 paneel_right">
                       <div class="right_inner">
                         <h2>final result</h2>
-                        <p>without sallry </br> save</p>
-                        <h4 class="blu">$2847829</h4>
-                        <p>without sallry</p>
-                        <h4 class="org">$2847829</h4>
+                        <div ng-show="needSS">
+                          <p class="margintop17">With Salary Sacrifice,</br>you save</p>
+                          <h4 class="blu">{{ resultWithSS[2] -resultWithoutSS[2] | currency }}</h4>
+                        </div>
+                        <div ng-show="!needSS">
+                            <p>Without Salary Sacrifice,you save</p>
+                            <h4 class="org">{{ resultWithoutSS[2] -resultWithSS[2] | currency }}</h4>
+                        </div>
+                        <div ng-show="needSS">
+                            <p class="margintop19">Salary Sacrifice Amount</p>
+                            <h4 class="org">{{optimisedSS | currency}}</h4>
+                        </div>
                       </div>
                   </div>
                 </div>
+                <!--end here for pdf-->
                 </div>
 
                </div>

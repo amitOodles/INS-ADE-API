@@ -125,7 +125,7 @@ app.get('/query', function(req, res) {
   "educationExpensePerYearPerChild":2000
  }
 };
-    res.render(__dirname + '/index.ejs', {
+    res.render(__dirname + '/index_pdf.ejs', {
         data: data,
     });
 });
@@ -282,7 +282,7 @@ app.get('/queryTTR', function(req, res) {
 
     };
 
-    res.render(__dirname + '/indexTTR.ejs', {
+    res.render(__dirname + '/indexTTR_pdf.ejs', {
         data: data,
     });
 });
@@ -544,7 +544,7 @@ app.get('/queryIT', function(req, res) {
     };
 
 
-    res.render(__dirname + '/indexIT.ejs', {
+    res.render(__dirname + '/indexIT_pdf.ejs', {
         data: data,
     });
 });
