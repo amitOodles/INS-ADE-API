@@ -21,42 +21,40 @@
 
                 <div class=" result-div secondChart">
                     <div class="row">
-                            <div class="col-xs-12" id="chartBox">
+                            <div class="col-xs-7" id="chartBox">
                                 <div id="container"></div>
                             </div>
+                            <div class="col-sm-5">
+                            <div class=" pannel_left">
+                                <div class="one">
+                                  <h3 class="leftHead skyBlue">Net Income</h3>
+
+
+                                        <p>Net income per annum</p>
+                                        <p class="price">{{ result.netAnnualIncomeAfterTax | currency }}</p>
+                                        <p>Net income per {{result.paymentFrequency}}</p>
+                                        <p class="price">{{ result.netPaymentPerPeriod | currency }}</p>
+
+
+
+                                </div>
+
+
+                            </div>
+                            <div class="paneel_right">
+                                <div class="right_inner">
+                                  <h2>final result</h2>
+                                  <div>
+                                    <p class="margintop17">Tax on income</p>
+                                    <h4 class="org">{{ result.taxOnIncome | currency }}</h4>
+                                  </div>
+
+
+                                </div>
+                            </div>
+                          </div>
                     </div>
-                    <!--for pdf-->
-                <div class="row">
-                  <div class="col-sm-8 pannel_left">
-                      <div class="one">
-                        <h3 class="leftHead skyBlue">Net Income</h3>
-                        <div class="row">
-                            <div class="col-sm-6">
-                              <p>Net income per annum</p>
-                              <p>Net income per {{result.paymentFrequency}}</p>
-                            </div>
-                            <div class="col-sm-6">
-                              <p class="price">{{ result.netAnnualIncomeAfterTax | currency }}</p>
-                              <p class="price">{{ result.netPaymentPerPeriod | currency }}</p>
-                            </div>
-                        </div>
-                      </div>
 
-
-                  </div>
-                  <div class="col-sm-4 paneel_right">
-                      <div class="right_inner">
-                        <h2>final result</h2>
-                        <div>
-                          <p class="margintop17">Tax on income</p>
-                          <h4 class="blu">{{ result.taxOnIncome | currency }}</h4>
-                        </div>
-
-
-                      </div>
-                  </div>
-                </div>
-                <!--end here for pdf-->
 
                 </div>
 

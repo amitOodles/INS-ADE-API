@@ -189,7 +189,7 @@ app.get('/querySFC', function(req, res) {
         "indirectCostRationB": 1.50,
 
     };
-    res.render(__dirname + '/indexSFC.ejs', {
+    res.render(__dirname + '/indexSFC_pdf.ejs', {
         data: data,
     });
 });

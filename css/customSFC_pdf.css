@@ -28,17 +28,16 @@ body{
 .skyBlue{
   background: #21b0e4;
   margin-top: 0;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 .orange{
   background: #ed7d31;
-  margin-top: 5px;
-  margin-bottom: 3px;
+  margin-top: 22px;
+  margin-bottom: 17px;
 }
 .pannel_left p.price{
 font-size: 19px;
 padding: 7px 0;
-padding-left: 12px;
 }
   .pannel_left p{
     color: #fff;
@@ -71,6 +70,7 @@ padding-left: 11px;
 }
 .three{
   border: 1px solid #fff;
+	margin-top: 49px;
 }
 .paneel_right h4{
   font-size: 30px;
@@ -93,7 +93,7 @@ padding-left: 11px;
     font-size: 23px;
     font-weight: bold;
     text-align: center;
-    margin-top: 19px;
+    margin-top: 0;
   }
     .paneel_right p{
       font-size: 16px;
@@ -114,22 +114,38 @@ padding-bottom: 9px;
       overflow:hidden;
       width: 741px;
       color:black;
-      padding: 20px;
+			padding: 20px;
+
+
   }
 
+.discHead{
+	color: #fff;
+	
+	font-size: 18px;
+}
+
 /***********end here****************/
+
 .otrp-calculator{
 	    display: block;
-
+	    max-width: 800px;
+	    /*border: 1px solid #e2e2e2;*/
 	    font-size: 12px;
 	    line-height: normal;
-
-		padding: 0;
-
-
+		/*margin-top:20px;*/
         -webkit-print-color-adjust: exact;
+        margin-left:0px;
 
 }
+.result-div{
+      background-color: #161b2e;
+      position: relative;
+      overflow:hidden;
+      width: 741px;
+      color:black;
+			padding-bottom: 10px;
+  }
 .otrp-clear
 {
 	clear: both;
@@ -504,26 +520,27 @@ input[type=number] {
     border:0px;
 }
 .comp-logo{
-  display: block;
-	margin: 0 auto;
+    /*float:right;*/
+    display: block;
+    margin:0 auto;
 }
 
 
 .res-1{
     background-color: #0d2f47 !important;
     color: white;
-    margin:-6px 0px;
+
     padding: 10px;
-    margin-bottom: 15px;
+
 }
 .res-2{
     background-color: #ddd;
-    margin: 10px 0px;
+
     padding: 10px;
     color: #666;
     font-size: 11px;
     font-weight: bold;
-    margin-top: 15px;
+
 }
 
 
@@ -944,6 +961,9 @@ float:right;
   margin-top: 25px !important;
 }
 
+.form-control{
+  width:114% !important;
+}
 .formC2{
   width:100% !important;
 }
@@ -1096,51 +1116,4 @@ a:focus{
 
 option.done{
   display:none !important;
-}
-
-.btn-group>.btn:first-child{
-      margin-top: 10px!important;
-}
-
-.form-group label{
-  font-weight:normal;
-}
-p.err-msg{
-  margin:5px 0 0;
-  color:darkolivegreen;
-}
-.calculate-btn,.calculate-btn:hover,.calculate-btn:focus{
-  background-color: #91B6BE !important;
-  border:none !important;
-  outline: none !important;
-  border-radius:0px;
-}
-ul.modal-list{
-  list-style-type: upper-latin !important;
-  /*padding-left:20px !important;*/
-}
-ul.modal-list li{
-font-size:15px;
-}
-.modal-content .modal-header{
-  padding-top:10px;
-  padding-bottom:10px;
-}
-.modal-content{
-  color:darkolivegreen;
-}
-.modal-footer h5{
-  margin-top:0px;
-  margin-bottom: 0px;
-}
-.modal-content .modal-footer{
-  padding:18px 25px;
-}
-
-input:-webkit-autofill {
-    -webkit-box-shadow: inset 0 0 0px 9999px #f6f8f9 !important;
-}
-
-.form-control{
-      background-color: #f6f8f9;
 }
