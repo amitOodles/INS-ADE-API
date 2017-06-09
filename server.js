@@ -32,19 +32,48 @@ app.listen(3001, function() {
     console.log('listening on 3001');
 });
 app.get('/querySSO', function(req, res) {
-    var data = {
-        "age": 19,
-        "cses": 80000,
-        "thp": 45000,
-        "fy": 2016
-    };
+  var data = {
+      "age": 19,
+      "cses": 80000,
+      "thp": 45000,
+      "fy": 2016
+  };
 
     console.log("path:", __dirname);
     res.render(__dirname + '/indexSSO.ejs', {
         data: data,
     });
 });
+app.get('/webshotSSO', function(req, res, callback) {
 
+
+
+    var time = new Date();
+    var name = time.getTime() + "IT.png";
+
+    function generateImage() {
+        webshot('http://localhost:3001/querySSO', 'uploads/' + name, { shotSize: { width: 630, height: 420 } }, function(err, data) {
+            // res.write("error saving");
+
+            if (err) {
+                var resErr = new Error("Unable to generate income tax chart");
+                resErr.status = 400;
+                console.log("error occured", resErr);
+                callback(resErr);
+            } else {
+                var img = fs.readFileSync('uploads/' + name);
+                console.log('uploads/' + name);
+                //fs.unlink('uploads/' + name);
+                res.writeHead(200, { 'Content-Type': 'image/png' });
+                res.end(img, 'binary');
+            }
+
+
+        });
+    }
+
+    generateImage();
+});
 
 app.get('/query', function(req, res) {
 
@@ -491,7 +520,7 @@ app.get('/webshotAsset', function(req, res, callback) {
             if (err) {
                 var resErr = new Error("Unable to generate asset allocation chart");
                 resErr.status = 400;
-                console.log("error occured", resErr);
+                console.log("error occured",err ,  resErr);
                 callback(resErr);
             } else {
                 var img = fs.readFileSync('uploads/' + name);
@@ -519,7 +548,7 @@ app.get('/queryIT', function(req, res) {
         data: data,
     });
 });
-app.post('/webshotIT', function(req, res, callback) {
+app.get('/webshotIT', function(req, res, callback) {
 
     postDataIT = req.body;
 
