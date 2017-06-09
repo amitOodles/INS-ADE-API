@@ -6,8 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, minimum-scale=1">
     <title></title>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" media="all" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/font-awesome.css">
     <base href="file:///home/sachin/projects/INS-ADE-API/" />
     <style>
         @font-face {
@@ -80,14 +80,13 @@
             font-style: normal;
         }
         
-        html,body{
-            margin:0px;
-            padding:0px;
+        html {
+            margin: 0 auto;
+            padding: 0px;
         }
         
-        .container
-        {
-            margin:0;
+        .container {
+            margin: 0 auto;
         }
         
         .page {
@@ -96,19 +95,18 @@
             width: 1169px;
             display: block;
             page-break-after: auto;
-            margin: 0 auto 5px;
+            margin: 0 auto;
         }
         
         .layout1 {
-            background-image: url('images/page1-back.jpg');
-            background-size: 100% 100%;
+            background-image: url('images/page1-back.png')!important;
+            background-size: 100% 100% !important;
             height: 100%;
             background-repeat: no-repeat;
         }
         
         .padding-zero {
             padding: 0;
-                margin: 0;
         }
         
         .logo-page1 {
@@ -123,17 +121,17 @@
         
         .cover-name {
             font-size: 72.9px;
-            color: #ffffff;
+            color: #ffffff !important;
             float: right;
             margin-right: 63px;
             margin-bottom: 0;
             font-family: 'Neon';
-            text-shadow: 1px 1px 20px;
+            text-shadow: 1px 1px 20px !important;
             letter-spacing: 2px;
         }
         
         .cover-text {
-            color: #ffffff;
+            color: #ffffff !important;
             float: right;
             font-size: 30px;
             margin-right: 64px;
@@ -145,7 +143,7 @@
         .cover-date {
             float: right;
             font-size: 24px;
-            color: #a8ced7;
+            color: #a8ced7 !important;
             margin-right: 64px;
             margin-top: 20px;
             font-family: 'Avgardn';
@@ -163,17 +161,18 @@
         }
         
         .background2-2 {
-            background: url(images/01_Page2_image.jpg) no-repeat;
+            background-image: url('images/01_Page2_image.jpg') !important;
+            background-repeat: no-repeat !important;
         }
         
         .background2-1 {
-            background: url(images/01_Page2_bluebackground.jpg);
-             background-repeat: no-repeat;
+            background-image: url('images/01_Page2_bluebackground.jpg') !important;
+            background-repeat: no-repeat !important;
         }
         
         .background3-1 {
-            background: url(images/09_Page9_image.jpg);
-             background-repeat: no-repeat;
+            background-image: url('images/09_Page9_image.jpg') !important;
+            background-repeat: no-repeat !important;
         }
         
         .page1-content {
@@ -181,26 +180,26 @@
         }
         
         .page1-heading {
-            color: #9fe7f7;
+            color: #9fe7f7 !important;
             font-size: 26.07px;
             font-family: neon;
         }
         
         .page1-address {
-            color: white;
+            color: white !important;
             font-size: 26.07px;
             font-family: Helvetica;
             font-weight: 600;
         }
         
         .page1-date {
-            color: #a8a9ac;
+            color: #a8a9ac !important;
             font-size: 20px;
         }
         
         .page1-subhead {
             font-size: 26.07px;
-            color: white;
+            color: white !important;
             font-family: 'Avgardn';
             margin-top: 30px;
             margin-bottom: 40px;
@@ -212,11 +211,9 @@
         }
         
         .page1-text {
-            color: white;
+            color: white !important;
             font-size: 16px;
-               
-    width: 550px;
-    word-wrap: break-word;
+            font-family: Helvetica;
         }
         
         .text-spacing {
@@ -228,36 +225,36 @@
         }
         
         .page-footer {
-            border-top: 1px solid rgba(255, 255, 255, 0.38);
+            border-top: 1px solid rgba(255, 255, 255, 0.38) !important;
             width: 90%;
-           /* float: right;*/
+            float: right;
         }
         
         .footer-align {
             margin-right: 63px;
-            color: #a8ced7;
+            color: #a8ced7 !important;
             margin-top: 15px;
             font-size: 15px;
             font-family: 'Avgardn';
         }
         
         .back3 {
-            background: #161b2e;
+            background: #161b2e !important;
         }
         
         .page3-heading {
             font-size: 45px;
-            color: #33f3d6;
+            color: #33f3d6 !important;
             font-family: Neon;
             text-align: right;
-            text-shadow: 1px 1px 30px;
+            text-shadow: 1px 1px 30px !important;
             margin-top: 304px;
             margin-right: 25px;
         }
         
         .page9-text {
             font-size: 20px;
-            color: white;
+            color: white !important;
             font-family: Helvetica;
             font-weight: bold;
             margin-bottom: 10px;
@@ -265,14 +262,14 @@
         
         .page9-subtext {
             font-size: 18px;
-            color: white;
+            color: white !important;
             font-family: Helvetica;
             margin-bottom: 15px;
         }
         
         .table-heading {
-            background: #515664;
-            color: white;
+            background: #515664 !important;
+            color: white !important;
             border: none;
             height: 39px;
             font-family: 'Avgardn';
@@ -283,26 +280,33 @@
         
         .table tbody tr td {
             border: none;
+            background:rgba(0, 0, 0, 0) !important;
+            background-color:rgba(0, 0, 0, 0) !important;
+            
         }
         
         .table thead tr th {
             border: none;
+            background:#515664 !important   ;
+            background-color:#515664  !important;
+             
         }
         
         .table-label {
             border-bottom: 1px solid #515664 !important;
-            color: white;
+            color: white !important;
             font-size: 12px;
             vertical-align: middle;
             height: 38px;
             font-family: Helvetica;
             padding-top: 12px !important;
             padding-left: 15px !important;
+            background:none !important;
         }
         
         .table-input {
             border-bottom: 1px solid #515664 !important;
-            color: white;
+            color: white !important;
             font-size: 16px;
             vertical-align: middle;
             height: 38px;
@@ -324,23 +328,23 @@
         }
         
         .page9-footer {
-            border-top: 1px solid rgba(255, 255, 255, 0.38);
+            border-top: 1px solid rgba(255, 255, 255, 0.38) !important;
             width: 93%;
             float: right;
         }
         
         .layout3 {
-            background: url(images/page3-back.jpg);
-            background-size: 100% 100%;
+            background-image: url('images/page3-back.jpg') !important;
+            background-size: 100% 100% !important;
             height: 100%;
-             background-repeat: no-repeat;
+            background-repeat: no-repeat !important;
         }
         
         .layout4 {
-            background: url(images/page4-back.jpg);
-            background-size: 100% 100%;
+            background-image: url('images/page4-back.jpg') !important;
+            background-size: 100% 100% !important;
             height: 100%;
-            background-repeat: no-repeat;
+            background-repeat: no-repeat !important;
         }
         
         .height {
@@ -348,7 +352,7 @@
         }
         
         .page3-footer {
-            border-top: 1px solid rgba(255, 255, 255, 0.38);
+            border-top: 1px solid rgba(255, 255, 255, 0.38) !important;
             width: 94%;
             float: right;
         }
@@ -358,7 +362,7 @@
         }
         
         .text3-address {
-            color: white;
+            color: white !important;
             font-family: 'Helvetica';
             font-size: 16px;
         }
@@ -370,7 +374,7 @@
         
         .page3-subhead {
             font-size: 20px;
-            color: #9fe7f7;
+            color: #9fe7f7 !important;
             font-family: 'Avgardn';
             margin-top: 30px;
             margin-bottom: 20px;
@@ -379,7 +383,7 @@
         }
         
         .page3-text {
-            color: white;
+            color: white !important;
             font-family: 'Helvetica';
             font-weight: bold;
             letter-spacing: 0.5px;
@@ -388,7 +392,7 @@
         }
         
         .page3-list {
-            color: white;
+            color: white !important;
             font-family: 'Helvetica';
             margin-left: -15px;
             font-size: 15px;
@@ -401,34 +405,34 @@
         
         .page3-head {
             font-size: 60px;
-            color: #33f3d6;
+            color: #33f3d6 !important;
             font-family: Neon;
-            text-shadow: 1px 1px 30px;
+            text-shadow: 1px 1px 30px !important;
             margin-top: 290px;
             margin-left: 61px;
             text-align: center
         }
         
         .gradient {
-            background-color: rgba(22, 27, 46, 0.75);
+            background-color: rgba(22, 27, 46, 0.75) !important;
             height: 100%;
         }
         
         .gradient6 {
-            background-color: rgba(22, 27, 46, 0.85);
+            background-color: rgba(22, 27, 46, 0.85) !important;
             height: 100%;
         }
         
         .page4-head {
             font-size: 60px;
-            color: #33f3d6;
+            color: #33f3d6 !important;
             font-family: Neon;
-            text-shadow: 1px 1px 30px;
+            text-shadow: 1px 1px 30px !important;
             margin-top: -19px;
         }
         
         .page4-block {
-            background: rgba(22, 27, 46, 0.85);
+            background: rgba(22, 27, 46, 0.85) !important;
             height: 288px;
             width: 323px;
         }
@@ -439,13 +443,13 @@
         }
         
         .section-block {
-            height: 53px;
-            border: 0.5px solid rgba(255, 255, 255, 0.15);
+            height: 53px !important;
+            border: 1px solid rgba(255, 255, 255, 0.15) !important;
         }
         
         .section-head {
             font-size: 23px;
-            color: white;
+            color: white !important;
             font-family: 'Avgardn';
             margin-top: 10px;
             margin-left: 5px;
@@ -453,22 +457,22 @@
         
         .section-text {
             font-size: 20px;
-            color: #d3d2d2;
+            color: #d3d2d2 !important;
             font-family: 'Helvetica';
             margin-top: 26px;
             margin-left: 5px;
         }
         
         .backgound5 {
-            background: url(images/page5-back.jpg);
-             background-repeat: no-repeat;
+            background-image: url('images/page5-back.jpg') !important;
+            background-repeat: no-repeat !important;
         }
         
         .page5-head {
             font-size: 29px;
-            color: white;
+            color: white !important;
             font-family: Neon;
-            text-shadow: 1px 1px 30px;
+            text-shadow: 1px 1px 30px !important;
             margin-top: 43px;
             margin-bottom: -13px;
             letter-spacing: 6px;
@@ -478,42 +482,42 @@
             font-size: 30.68px;
             font-family: 'Avgardn';
             font-weight: bold;
-            color: #33f3d6;
+            color: #33f3d6 !important;
             margin-top: 282px;
             letter-spacing: 1px;
-            text-shadow: 1px 1px 30px;
+            text-shadow: 1px 1px 30px !important;
         }
         
         .page5-subhead2 {
             font-size: 70.97px;
             font-family: 'Avgardn';
             font-weight: bold;
-            color: #33f3d6;
+            color: #33f3d6 !important;
             margin-top: -20px;
             letter-spacing: 2px;
-            text-shadow: 1px 1px 30px;
+            text-shadow: 1px 1px 30px !important;
         }
         
         .page5-subhead3 {
             font-size: 49.07px;
             font-family: 'Avgardn';
             font-weight: bold;
-            color: #33f3d6;
+            color: #33f3d6 !important;
             margin-top: -25px;
             letter-spacing: 14px;
             margin-left: 15px;
-            text-shadow: 1px 1px 30px;
+            text-shadow: 1px 1px 30px !important;
         }
         
         .page5-text {
-            color: white;
+            color: white !important;
             font-family: 'Helvetica';
             font-size: 15px;
         }
         
         .page5-subhead-text {
             font-size: 18px;
-            color: #9fe7f7;
+            color: #9fe7f7 !important;
             font-family: 'Avgardn';
             margin-top: 15px;
             margin-bottom: 15px;
@@ -527,9 +531,9 @@
         
         .section2-head {
             font-size: 23px;
-            color: white;
+            color: white !important;
             font-family: Neon;
-            text-shadow: 1px 1px 30px;
+            text-shadow: 1px 1px 30px !important;
             margin-top: -6px;
         }
         
@@ -539,18 +543,18 @@
         }
         
         .page5-border {
-            border: 0.5px solid rgba(255, 255, 255, 0.23);
+            border: 1px solid rgba(255, 255, 255, 0.23) !important;
             margin-top: 35px;
         }
         
         .section2-heading {
             font-family: 'Avgardn';
             font-weight: bold;
-            color: #33f3d6;
+            color: #33f3d6 !important;
             font-size: 44px;
             margin-left: -30px;
             margin-top: 14px;
-            text-shadow: 1px 1px 30px;
+            text-shadow: 1px 1px 30px !important;
         }
         
         .section2-heading-align {
@@ -558,7 +562,7 @@
         }
         
         .page6-border {
-            border: 0.5px solid rgba(255, 255, 255, 0.23);
+            border: 1px solid rgba(255, 255, 255, 0.23) !important;
             width: 112%;
             margin-left: -61px;
         }
@@ -578,22 +582,22 @@
             text-align: center;
             height: 245px;
             width: 245px;
-            border: 1px solid #33f3d6;
+            border: 1px solid #33f3d6 !important;
             float: right;
-            box-shadow: 1px 1px 20px white;
+            box-shadow: 1px 1px 20px white !important;
             margin-top: 3px;
         }
         
         .mainlayout6 {
-            background: url(images/page6-back.jpg);
-            background-size: 100% 100%;
+            background-image: url('images/page6-back.jpg') !important;
+            background-size: 100% 100% !important;
             height: 100%;
-            background-repeat: no-repeat;
+            background-repeat: no-repeat !important;
         }
         
         .page6-subhead-text {
             font-size: 18px;
-            color: #9fe7f7;
+            color: #9fe7f7 !important;
             font-family: 'Avgardn';
             margin-bottom: 15px;
             font-weight: bold;
@@ -607,7 +611,7 @@
         .page7-subhead-text2 {
             margin-top: 50px;
             font-size: 18px;
-            color: #9fe7f7;
+            color: #9fe7f7 !important;
             font-family: 'Avgardn';
             margin-bottom: 15px;
             font-weight: bold;
@@ -620,7 +624,7 @@
         
         .page10-subhead {
             font-size: 20px;
-            color: #9fe7f7;
+            color: #9fe7f7 !important;
             font-family: 'Avgardn';
             margin-bottom: 20px;
             font-weight: bold;
@@ -628,15 +632,15 @@
         }
         
         .layout10 {
-            background: url(images/risk.jpg);
-            background-size: 100% 100%;
+            background-image: url('images/risk.jpg') !important;
+            background-size: 100% 100% !important;
             height: 100%;
-            background-repeat: no-repeat;
+            background-repeat: no-repeat !important;
         }
         
         .table-input-risk {
             border-bottom: 1px solid #515664 !important;
-            color: white;
+            color: white !important;
             font-size: 16px;
             vertical-align: middle !important;
             height: 38px;
@@ -645,8 +649,8 @@
         }
         
         .table-heading-risk {
-            background: #515664;
-            color: white;
+            background: #515664 !important;
+            color: white !important;
             border: none;
             height: 39px;
             font-family: 'Avgardn';
@@ -662,36 +666,36 @@
         }
         
         .backgound11 {
-            background: url(images/section3-img.jpg);
-             background-repeat: no-repeat;
+            background-image: url('images/section3-img.jpg') !important;
+            background-repeat: no-repeat !important;
         }
         
         .page11-subhead {
             font-size: 19.68px;
             font-family: 'Avgardn';
             font-weight: bold;
-            color: #33f3d6;
+            color: #33f3d6 !important;
             margin-top: 282px;
             letter-spacing: 1px;
-            text-shadow: 1px 1px 30px;
+            text-shadow: 1px 1px 30px !important;
         }
         
         .layout12 {
-            background: url(images/page12-back.jpg);
-            background-size: 100% 100%;
+            background-image: url('images/page12-back.jpg') !important;
+            background-size: 100% 100% !important;
             height: 100%;
-            background-repeat: no-repeat;
+            background-repeat: no-repeat !important;
         }
         
         .page12-text-block {
-            border: 1px solid #33f3d6;
+            border: 1px solid #33f3d6 !important;
             text-align: left;
-            box-shadow: 1px 1px 20px white;
+            box-shadow: 1px 1px 20px white !important;
             margin-top: 100px;
         }
         
         .page12-text {
-            color: white;
+            color: white !important;
             font-family: 'Helvetica';
             font-size: 26px;
             padding: 24px;
@@ -699,16 +703,16 @@
         }
         
         .page14-text-block {
-            border: 1px solid #33f3d6;
+            border: 1px solid #33f3d6 !important;
             text-align: left;
-            box-shadow: 1px 1px 20px white;
+            box-shadow: 1px 1px 20px white !important;
             margin-top: 10px;
             padding: 14px;
         }
         
         .page12-subhead {
             font-size: 18px;
-            color: white;
+            color: white !important;
             font-family: 'Avgardn';
             margin-bottom: 10px;
             font-weight: bold;
@@ -719,9 +723,9 @@
             font-size: 30px;
             font-family: 'Avgardn';
             font-weight: bold;
-            color: #33f3d6;
+            color: #33f3d6 !important;
             letter-spacing: 14px;
-            text-shadow: 1px 1px 30px;
+            text-shadow: 1px 1px 30px !important;
             margin-top: -15px;
             margin-left: 16px;
         }
@@ -730,25 +734,25 @@
             font-size: 53.68px;
             font-family: 'Avgardn';
             font-weight: bold;
-            color: #33f3d6;
+            color: #33f3d6 !important;
             margin-top: 282px;
             letter-spacing: 0px;
-            text-shadow: 1px 1px 30px;
+            text-shadow: 1px 1px 30px !important;
         }
         
         .page17-subhead3 {
             font-size: 42px;
             font-family: 'Avgardn';
             font-weight: bold;
-            color: #33f3d6;
+            color: #33f3d6 !important;
             letter-spacing: 10px;
-            text-shadow: 1px 1px 30px;
+            text-shadow: 1px 1px 30px !important;
             margin-top: -15px;
             margin-left: 8px;
         }
         
         .section5-sign {
-            color: white;
+            color: white !important;
             font-family: 'Helvetica';
             font-size: 15px;
             margin-top: 40px;
@@ -756,24 +760,24 @@
         }
         
         .backgound17 {
-            background: url(images/page17-back.jpg);
-             background-repeat: no-repeat;
+            background-image: url('images/page17-back.jpg') !important;
+            background-repeat: no-repeat !important;
         }
         
         .backgound19 {
-            background: url(images/page19-back.jpg);
-             background-repeat: no-repeat;
+            background-image: url('images/page19-back.jpg') !important;
+            background-repeat: no-repeat !important;
         }
         
         .layout18 {
-            background: url(images/page18-back.jpg);
-            background-size: 100% 100%;
+            background-image: url('images/page18-back.jpg') !important;
+            background-size: 100% 100% !important;
             height: 100%;
-             background-repeat: no-repeat;
+            background-repeat: no-repeat !important;
         }
         
         .gradient18 {
-            background-color: rgba(22, 27, 46, 0.93);
+            background-color: rgba(22, 27, 46, 0.93) !important;
             height: 100%;
         }
         
@@ -781,20 +785,20 @@
             font-size: 48.97px;
             font-family: 'Avgardn';
             font-weight: bold;
-            color: #33f3d6;
+            color: #33f3d6 !important;
             margin-top: -20px;
             letter-spacing: 2px;
-            text-shadow: 1px 1px 30px;
+            text-shadow: 1px 1px 30px !important;
         }
         
         .page19-subhead {
             font-size: 30.6px;
             font-family: 'Avgardn';
             font-weight: bold;
-            color: #33f3d6;
+            color: #33f3d6 !important;
             margin-top: 282px;
             letter-spacing: 7.8px;
-            text-shadow: 1px 1px 30px;
+            text-shadow: 1px 1px 30px !important;
             margin-left: 5px;
         }
         
@@ -802,120 +806,200 @@
             font-size: 19.07px;
             font-family: 'Avgardn';
             font-weight: bold;
-            color: #33f3d6;
+            color: #33f3d6 !important;
             margin-top: -15px;
             letter-spacing: 14px;
             margin-left: 15px;
-            text-shadow: 1px 1px 30px;
+            text-shadow: 1px 1px 30px !important;
         }
         
         .background9-1 {
-            background: url(images/page91-back.jpg);
-             background-repeat: no-repeat;
+            background-image: url('images/page91-back.jpg') !important;
+            background-repeat: no-repeat !important;
         }
         
         .layout9-3 {
-            background: url(images/page93-back.jpg);
-            background-size: 100% 100%;
+            background-image: url('images/page93-back.jpg') !important;
+            background-size: 100% 100% !important;
             height: 100%;
-             background-repeat: no-repeat;
+            background-repeat: no-repeat !important;
         }
         
         .layout9-2 {
-            background: url(images/page92-back.jpg);
-            background-size: 100% 100%;
+            background-image: url('images/page92-back.jpg') !important;
+            background-size: 100% 100% !important;
             height: 100%;
-             background-repeat: no-repeat;
+            background-repeat: no-repeat !important;
         }
         
         .gradient92 {
-            background-color: rgba(22, 27, 46, 0.75);
+            background-color: rgba(22, 27, 46, 0.75) !important;
             height: 100%;
         }
         
         .background9-4 {
-            background: url(images/page94-back.jpg);
-             background-repeat: no-repeat;
+            background-image: url('images/page94-back.jpg') !important;
+            background-repeat: no-repeat !important;
         }
         
         .layout9-5 {
-            background: url(images/page95-back.jpg);
-            background-size: 100% 100%;
+            background-image: url('images/page95-back.jpg') !important;
+            background-size: 100% 100% !important;
             height: 100%;
-             background-repeat: no-repeat;
+            background-repeat: no-repeat !important;
         }
         
         .background9-6 {
-            background: url(images/page96-back.jpg);
-             background-repeat: no-repeat;
+            background-image: url('images/page96-back.jpg') !important;
+            background-repeat: no-repeat !important;
         }
         
         .layout9-7 {
-            background: url(images/page97-back.jpg);
-            background-size: 100% 100%;
+            background-image: url('images/page97-back.jpg') !important;
+            background-size: 100% 100% !important;
             height: 100%;
-             background-repeat: no-repeat;
+            background-repeat: no-repeat !important;
         }
         
         .background9-8 {
-            background: url(images/page98-back.jpg);
-             background-repeat: no-repeat;
+            background-image: url('images/page98-back.jpg') !important;
+            background-repeat: no-repeat !important;
         }
         
         .background9-9 {
-            background: url(images/page99-back.jpg);
-             background-repeat: no-repeat;
+            background-image: url('images/page99-back.jpg') !important;
+            background-repeat: no-repeat !important;
         }
         
         .page91-heading {
             font-size: 28px;
-            color: #33f3d6;
+            color: #33f3d6 !important;
             font-family: Neon;
             text-align: left;
-            text-shadow: 1px 1px 30px;
+            text-shadow: 1px 1px 30px !important;
             margin-top: 304px;
             margin-left: 20px;
         }
         
         .page94-heading {
             font-size: 37px;
-            color: #33f3d6;
+            color: #33f3d6 !important;
             font-family: Neon;
             text-align: right;
-            text-shadow: 1px 1px 30px;
+            text-shadow: 1px 1px 30px !important;
             margin-top: 304px;
             margin-right: 25px;
         }
         
         .page96-heading {
             font-size: 38px;
-            color: #33f3d6;
+            color: #33f3d6 !important;
             font-family: Neon;
             text-align: left;
-            text-shadow: 1px 1px 30px;
+            text-shadow: 1px 1px 30px !important;
             margin-top: 304px;
             margin-left: 20px;
         }
         
         .page98-heading {
             font-size: 42px;
-            color: #33f3d6;
+            color: #33f3d6 !important;
             font-family: Neon;
             text-align: right;
-            text-shadow: 1px 1px 30px;
+            text-shadow: 1px 1px 30px !important;
             margin-top: 304px;
             margin-right: 25px;
         }
         
         .page99-heading {
             font-size: 38px;
-            color: #33f3d6;
+            color: #33f3d6 !important;
             font-family: Neon;
             text-align: left;
-            text-shadow: 1px 1px 30px;
+            text-shadow: 1px 1px 30px !important;
             margin-top: 304px;
             margin-left: 20px;
         }
+        
+        .table {
+            background: none !important;
+             background-color:transparent !important;
+        }
+        
+        @media print {
+             .table {
+            background: none !important;
+                  background-color:transparent !important;
+        }
+        }
+        
+        .height4
+        {
+            height:90%
+        }
+        
+        .text-layout4
+        {
+            padding:35px 50px;
+        }
+        
+        
+        tbody
+        {
+            background:rgba(0, 0, 0, 0) !important;
+            background-color:rgba(0, 0, 0, 0) !important;
+        }
+        
+        thead
+        {
+            background:rgba(0, 0, 0, 0)!important;
+            background-color:rgba(0, 0, 0, 0) !important;
+        }
+        
+        tr
+        {
+            background:rgba(0, 0, 0, 0) !important;
+            background-color:rgba(0, 0, 0, 0)!important;
+        }
+        
+        td
+        {
+            background:rgba(0, 0, 0, 0) !important;
+            background-color:rgba(0, 0, 0, 0) !important;
+        }
+        
+        .page9-content
+        {
+            padding:20px 61px;
+        }
+        
+        /*-----------------*/
+        
+        .p1-c7 {
+            width: 58%;
+            height: 826.99px;
+            display: inline-block;
+        }
+        
+        .p1-c5 {
+            width: 487.07px;
+            height: 826.99px;
+            float: right;
+        }
+        
+        .p1-footer {
+            border-top: 1px solid rgba(255, 255, 255, 0.38);
+            width: 613.69px;
+            height: 30.5px;
+            float: right
+        }
+        
+        .p1-content {
+            width: 100%;
+            height: 84%;
+            padding: 0px 61px 0px 61px;
+        }
+        /*-----------------*/
 
     </style>
 
@@ -926,15 +1010,15 @@
 <body>
     <!--coverpage-start-->
     <div class="container  page padding-zero">
-        <div class="col-md-12 layout1 padding-zero">
-            <div class="col-md-3 col-md-offset-9 padding-zero">
-                <img class="" src="images/logo.png">
+        <div class="col-xs-12 layout1 padding-zero">
+            <div class="col-xs-12 padding-zero">
+                <img class="logo-page1 " src="images/logo.png">
             </div>
-            <div class="col-md-12 cover-heading padding-zero">
+            <div class="col-xs-12 cover-heading padding-zero">
                 <p class="cover-name">MR ROBERT THRONE</p>
-                <div class="col-md-12 padding-zero border-line"></div>
+                <div class="col-xs-12 padding-zero border-line"></div>
                 <P class="cover-text">YOUR STATEMENT OF ADVICE</P><br>
-                <div class="col-md-12 padding-zero">
+                <div class="col-xs-12 padding-zero">
                     <P class="cover-date">FEB 16, 2017 </P><br>
                 </div>
             </div>
@@ -944,7 +1028,7 @@
 
     <!--page1-starts-->
     <div class="container page padding-zero">
-        <div class="col-md-7 padding-zero layout2 background2-1">
+        <div class="col-xs-7 padding-zero layout2 background2-1">
             <div class="page1-content">
                 <p class="page1-heading">MR. ROBERT THRONE</p>
                 <p class="page1-address">2 New London,London</p>
@@ -963,39 +1047,37 @@
 
 
             </div>
-<!--
+
             <div class="page-footer">
 
                 <p class="footer-align">PAGE 02
                     <img class="footer-logo" src="images/footer_Logo.png">
                 </p>
 
-            </div>-->
+            </div>
 
 
 
         </div>
-        <div class="col-md-5 padding-zero layout2 background2-2"></div>
+        <div class="col-xs-5 padding-zero layout2 background2-2"></div>
 
 
     </div>
     <!--page1-ends-->
 
-
-
     <!--page3-starts-->
     <div class="container page padding-zero">
-        <div class="col-md-12 layout3 padding-zero">
+        <div class="col-xs-12 layout3 padding-zero">
 
 
-            <div class="col-md-5 padding-zero height">
+            <div class="col-xs-5 padding-zero height">
                 <p class="page3-head">My <br/>Contact<br/> Details</p>
                 <p></p>
                 <p></p>
 
 
             </div>
-            <div class="col-md-7 padding-zero text-layout">
+            <div class="col-xs-7 padding-zero text-layout">
                 <p class="text3-address"><img class="page3-icon" src="images/office (1).png">Level 4, Suite 4.13, 32 Delhi Road North Ryde NSW 2113</p>
                 <p class="text3-address"><img class="page3-icon" src="images/email (1).png">russell@financialchoice.com.au</p>
                 <p class="text3-address"><img class="page3-icon" src="images/post (1).png">PO Box 115 North Ryde BC NSW 1670</p>
@@ -1003,96 +1085,96 @@
 
                 <p class="page3-subhead">Important Information regarding your superannuation and the provision of advice.</p>
 
-                <div class="col-md-12 padding-zero">
-                    <div class="col-md-1 padding-zero">
+                <div class="col-xs-12 padding-zero">
+                    <div class="col-xs-1 padding-zero">
                         <img src="images/triangle-bullet.png">
                     </div>
-                    <div class="col-md-11 padding-zero">
+                    <div class="col-xs-11 padding-zero">
                         <p class="page3-text">Financial advisers have a legal obligation to collect relevant and accurate information about their clients in the Fact Find questionnaire in order to construct your objectives-based advice.</p>
                     </div>
                 </div>
 
-                <div class="col-md-12 padding-zero">
-                    <div class="col-md-1 padding-zero">
+                <div class="col-xs-12 padding-zero">
+                    <div class="col-xs-1 padding-zero">
                         <img src="images/triangle-bullet.png">
                     </div>
-                    <div class="col-md-11 padding-zero">
+                    <div class="col-xs-11 padding-zero">
                         <p class="page3-text">Many super funds offer a new type of account called MySuper.</p>
                     </div>
                 </div>
 
-                <div class="col-md-12 padding-zero">
-                    <div class="col-md-1 padding-zero">
+                <div class="col-xs-12 padding-zero">
+                    <div class="col-xs-1 padding-zero">
                         <img src="images/triangle-bullet.png">
                     </div>
-                    <div class="col-md-11 padding-zero">
+                    <div class="col-xs-11 padding-zero">
                         <p class="page3-text">MySuper has replaced most existing default accounts offered by super funds. If you don't choose a super fund yourself your employer must now pay your employer contributions into a MySuper account.</p>
                     </div>
                 </div>
 
 
-                <div class="col-md-12 padding-zero">
-                    <div class="col-md-1 padding-zero">
+                <div class="col-xs-12 padding-zero">
+                    <div class="col-xs-1 padding-zero">
                         <img src="images/triangle-bullet.png">
                     </div>
-                    <div class="col-md-11 padding-zero">
+                    <div class="col-xs-11 padding-zero">
                         <p class="page3-text">MySuper accounts generally offer:</p>
                     </div>
                 </div>
 
-                <div class="col-md-12 padding-zero page3-listdiv">
-                    <div class="col-md-1 padding-zero">
+                <div class="col-xs-12 padding-zero page3-listdiv">
+                    <div class="col-xs-1 padding-zero">
                         <img src="images/circle-bullet.png">
                     </div>
-                    <div class="col-md-11 padding-zero">
+                    <div class="col-xs-11 padding-zero">
                         <p class="page3-list">Lower fees (and restrictions on the type of fees you can be charged) generally around 1.00% p.a. of your account balance.</p>
                     </div>
                 </div>
 
 
-                <div class="col-md-12 padding-zero page3-listdiv">
-                    <div class="col-md-1 padding-zero">
+                <div class="col-xs-12 padding-zero page3-listdiv">
+                    <div class="col-xs-1 padding-zero">
                         <img src="images/circle-bullet.png">
                     </div>
-                    <div class="col-md-11 padding-zero">
+                    <div class="col-xs-11 padding-zero">
                         <p class="page3-list">Simple features so you don't pay for services you don't need</p>
                     </div>
                 </div>
 
 
-                <div class="col-md-12 padding-zero page3-listdiv">
-                    <div class="col-md-1 padding-zero">
+                <div class="col-xs-12 padding-zero page3-listdiv">
+                    <div class="col-xs-1 padding-zero">
                         <img src="images/circle-bullet.png">
                     </div>
-                    <div class="col-md-11 padding-zero">
+                    <div class="col-xs-11 padding-zero">
                         <p class="page3-list">Single or life stage investment options</p>
                     </div>
                 </div>
 
-                <div class="col-md-12 padding-zero page3-listdiv">
-                    <div class="col-md-1 padding-zero">
+                <div class="col-xs-12 padding-zero page3-listdiv">
+                    <div class="col-xs-1 padding-zero">
                         <img src="images/circle-bullet.png">
                     </div>
-                    <div class="col-md-11 padding-zero">
+                    <div class="col-xs-11 padding-zero">
                         <p class="page3-list">Life insurance on an opt-out basis</p>
                     </div>
                 </div>
 
-                <div class="col-md-12 padding-zero">
-                    <div class="col-md-1 padding-zero">
+                <div class="col-xs-12 padding-zero">
+                    <div class="col-xs-1 padding-zero">
                         <img src="images/triangle-bullet.png">
                     </div>
-                    <div class="col-md-11 padding-zero">
+                    <div class="col-xs-11 padding-zero">
                         <p class="page3-text">Can I choose my own fund if I find one that is better for me?</p>
                     </div>
                 </div>
 
 
-                <div class="col-md-12 padding-zero">
-                    <div class="col-md-1 padding-zero">
+                <div class="col-xs-12 padding-zero">
+                    <div class="col-xs-1 padding-zero">
                         <img src="images/triangle-bullet.png">
                     </div>
-                    <div class="col-md-11 padding-zero">
+                    <div class="col-xs-11 padding-zero">
                         <p class="page3-text">Your employer will pay into any super fund that you choose even a self-managed super fund if you are not restricted by an employment agreement.</p>
                     </div>
                 </div>
@@ -1118,36 +1200,36 @@
 
     <!--page4-starts-->
     <div class="container page padding-zero">
-        <div class="col-md-12 layout4 padding-zero">
-            <div class="col-md-12 padding-zero gradient">
-                <div class="col-md-12 height text-layout">
+        <div class="col-xs-12 layout4 padding-zero">
+            <div class="col-xs-12 padding-zero gradient">
+                <div class="col-xs-12 height4 text-layout4">
 
                     <p class="page4-head">Contents</p>
 
-                    <div class="col-md-12 padding-zero">
-                        <div class="col-md-3 page4-block padding-zero page4-block-spacing">
-                            <div class="col-md-12 section-block">
+                    <div class="col-xs-12 padding-zero">
+                        <div class="col-xs-3 page4-block padding-zero page4-block-spacing">
+                            <div class="col-xs-12 section-block">
                                 <p class="section-head">SECTION 1</p>
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-xs-12">
                                 <p class="section-text">Summary of my advice<br> to you</p>
                             </div>
 
                         </div>
-                        <div class="col-md-3 page4-block padding-zero page4-block-spacing">
-                            <div class="col-md-12 section-block">
+                        <div class="col-xs-3 page4-block padding-zero page4-block-spacing">
+                            <div class="col-xs-12 section-block">
                                 <p class="section-head">SECTION 2</p>
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-xs-12">
                                 <p class="section-text">Important information about you that we have collected from you and your superannuation</p>
                             </div>
 
                         </div>
-                        <div class="col-md-3 page4-block padding-zero ">
-                            <div class="col-md-12 section-block">
+                        <div class="col-xs-3 page4-block padding-zero ">
+                            <div class="col-xs-12 section-block">
                                 <p class="section-head">SECTION 3</p>
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-xs-12">
                                 <p class="section-text">My recommendations to you and comparison of fees and projection of your benefits and possible alternatives</p>
                             </div>
 
@@ -1156,21 +1238,21 @@
 
                     </div>
 
-                    <div class="col-md-12 padding-zero">
-                        <div class="col-md-3 page4-block padding-zero page4-block-spacing">
-                            <div class="col-md-12 section-block">
+                    <div class="col-xs-12 padding-zero">
+                        <div class="col-xs-3 page4-block padding-zero page4-block-spacing">
+                            <div class="col-xs-12 section-block">
                                 <p class="section-head">SECTION 4</p>
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-xs-12">
                                 <p class="section-text">What else you need to know and if all is OK what you need to do to proceed with our advice and how we get paid</p>
                             </div>
 
                         </div>
-                        <div class="col-md-3 page4-block padding-zero page4-block-spacing">
-                            <div class="col-md-12 section-block">
+                        <div class="col-xs-3 page4-block padding-zero page4-block-spacing">
+                            <div class="col-xs-12 section-block">
                                 <p class="section-head">SECTION 5</p>
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-xs-12">
                                 <p class="section-text">The steps to implement this advice</p>
                             </div>
 
@@ -1203,8 +1285,8 @@
 
     <!--page5-starts-->
     <div class="container page padding-zero">
-        <div class="col-md-12 layout2 padding-zero">
-            <div class="col-md-3 layout2 backgound5 text-center padding-zero ">
+        <div class="col-xs-12 layout2 padding-zero">
+            <div class="col-xs-3 layout2 backgound5 text-center padding-zero ">
                 <p class="page5-head">SECTION <img class="section1-img" src="images/section1.png"></p>
                 <div class="page5-border"></div>
                 <p class="page5-subhead">SUMMARY OF MY</p>
@@ -1212,40 +1294,40 @@
                 <p class="page5-subhead3">TO YOU</p>
 
             </div>
-            <div class="col-md-9 layout2 padding-zero back3">
-                <div class="col-md-12 padding-zero text-layout height">
-                    <div class="col-md-12 padding-zero">
-                        <div class="col-md-1 padding-zero">
+            <div class="col-xs-9 layout2 padding-zero back3">
+                <div class="col-xs-12 padding-zero text-layout height">
+                    <div class="col-xs-12 padding-zero">
+                        <div class="col-xs-1 padding-zero">
                             <img src="images/triangle-bullet.png">
                         </div>
-                        <div class="col-md-11 padding-zero">
+                        <div class="col-xs-11 padding-zero">
                             <p class="page3-list">What my advice to you is</p>
                         </div>
                     </div>
 
-                    <div class="col-md-12 padding-zero">
-                        <div class="col-md-1 padding-zero">
+                    <div class="col-xs-12 padding-zero">
+                        <div class="col-xs-1 padding-zero">
                             <img src="images/triangle-bullet.png">
                         </div>
-                        <div class="col-md-11 padding-zero">
+                        <div class="col-xs-11 padding-zero">
                             <p class="page3-list">I recommend that you select the best superannuation fund available in the market place to meet your needs</p>
                         </div>
                     </div>
 
-                    <div class="col-md-12 padding-zero">
-                        <div class="col-md-1 padding-zero">
+                    <div class="col-xs-12 padding-zero">
+                        <div class="col-xs-1 padding-zero">
                             <img src="images/triangle-bullet.png">
                         </div>
-                        <div class="col-md-11 padding-zero">
+                        <div class="col-xs-11 padding-zero">
                             <p class="page3-list">I recommend that you get the best Insurance cover for you to protect what’s important to you</p>
                         </div>
                     </div>
 
-                    <div class="col-md-12 padding-zero">
-                        <div class="col-md-1 padding-zero">
+                    <div class="col-xs-12 padding-zero">
+                        <div class="col-xs-1 padding-zero">
                             <img src="images/triangle-bullet.png">
                         </div>
-                        <div class="col-md-11 padding-zero">
+                        <div class="col-xs-11 padding-zero">
                             <p class="page3-list">I recommend that you select the best investment mix of growth and defensive assets to match your investment risk profile</p>
                         </div>
                     </div>
@@ -1291,67 +1373,67 @@
 
     <!--page6-starts-->
     <div class="container page padding-zero">
-        <div class="col-md-12 mainlayout6 padding-zero">
-            <div class="col-md-12 padding-zero gradient6">
-                <div class="col-md-12 height text-layout">
+        <div class="col-xs-12 mainlayout6 padding-zero">
+            <div class="col-xs-12 padding-zero gradient6">
+                <div class="col-xs-12 height text-layout">
 
-                    <div class="col-md-12 padding-zero">
-                        <div class="col-md-2 padding-zero">
+                    <div class="col-xs-12 padding-zero">
+                        <div class="col-xs-2 padding-zero">
                             <p class="section2-head">SECTION</p>
                             <img class="section2-img" src="images/section2.png">
                         </div>
-                        <div class="col-md-10 padding-zero">
+                        <div class="col-xs-10 padding-zero">
                             <p class="section2-heading">IMPORTANT INFORMATION ABOUT </p><br>
                             <p class=" section2-heading section2-heading-align"> YOU AND YOUR SUPERANNUATION</p>
 
                         </div>
                     </div>
-                    <div class="page6-border col-md-12"></div>
-                    <div class="col-md-12 padding-zero layout6">
-                        <div class="col-md-9 padding-zero">
-                            <div class="col-md-12 padding-zero">
-                                <div class="col-md-1 padding-zero">
+                    <div class="page6-border col-xs-12"></div>
+                    <div class="col-xs-12 padding-zero layout6">
+                        <div class="col-xs-9 padding-zero">
+                            <div class="col-xs-12 padding-zero">
+                                <div class="col-xs-1 padding-zero">
                                     <img src="images/triangle-bullet.png">
                                 </div>
-                                <div class="col-md-11 padding-zero">
+                                <div class="col-xs-11 padding-zero">
                                     <p class="page3-text">What are your goals and objectives when it comes to Retirement Planning?</p>
                                 </div>
                             </div>
 
-                            <div class="col-md-12 padding-zero">
-                                <div class="col-md-1 padding-zero">
+                            <div class="col-xs-12 padding-zero">
+                                <div class="col-xs-1 padding-zero">
                                     <img src="images/triangle-bullet.png">
                                 </div>
-                                <div class="col-md-11 padding-zero">
+                                <div class="col-xs-11 padding-zero">
                                     <p class="page3-text">What are your current personal circumstances that might impact on your Retirement Planning?</p>
                                 </div>
                             </div>
 
 
-                            <div class="col-md-12 padding-zero">
-                                <div class="col-md-1 padding-zero">
+                            <div class="col-xs-12 padding-zero">
+                                <div class="col-xs-1 padding-zero">
                                     <img src="images/triangle-bullet.png">
                                 </div>
-                                <div class="col-md-11 padding-zero">
+                                <div class="col-xs-11 padding-zero">
                                     <p class="page3-text">How much money do you currently have to invest and how much can you save toward your future over and above what your employer is obligated to pay into your Superannuation fund or that you can pay if you are self employed</p>
                                 </div>
                             </div>
 
 
-                            <div class="col-md-12 padding-zero">
-                                <div class="col-md-1 padding-zero">
+                            <div class="col-xs-12 padding-zero">
+                                <div class="col-xs-1 padding-zero">
                                     <img src="images/triangle-bullet.png">
                                 </div>
-                                <div class="col-md-11 padding-zero">
+                                <div class="col-xs-11 padding-zero">
                                     <p class="page3-text">What are you current assets and Liabilities-Your net worth</p>
                                 </div>
                             </div>
 
-                            <div class="col-md-12 padding-zero">
-                                <div class="col-md-1 padding-zero">
+                            <div class="col-xs-12 padding-zero">
+                                <div class="col-xs-1 padding-zero">
                                     <img src="images/triangle-bullet.png">
                                 </div>
-                                <div class="col-md-11 padding-zero">
+                                <div class="col-xs-11 padding-zero">
                                     <p class="page3-text">What is your attitude to investment risk and how long do you want to invest for?</p>
                                 </div>
                             </div>
@@ -1359,7 +1441,7 @@
 
                         </div>
 
-                        <div class="col-md-3 padding-zero page6-img-block"> <img class="section2-text-img" src="images/section2-text.png"></div>
+                        <div class="col-xs-3 padding-zero page6-img-block"> <img class="section2-text-img" src="images/section2-text.png"></div>
 
                     </div>
 
@@ -1401,75 +1483,75 @@
 
     <!--page7-starts-->
     <div class="container page padding-zero">
-        <div class="col-md-12 mainlayout6 padding-zero">
-            <div class="col-md-12 padding-zero gradient6">
-                <div class="col-md-12 height text-layout">
+        <div class="col-xs-12 mainlayout6 padding-zero">
+            <div class="col-xs-12 padding-zero gradient6">
+                <div class="col-xs-12 height text-layout">
 
 
 
-                    <div class="col-md-12 padding-zero page7-text-block">
-                        <div class="col-md-9 padding-zero">
+                    <div class="col-xs-12 padding-zero page7-text-block">
+                        <div class="col-xs-9 padding-zero">
 
                             <p class="page6-subhead-text">Retire right.</p>
-                            <div class="col-md-12 padding-zero">
-                                <div class="col-md-1 padding-zero">
+                            <div class="col-xs-12 padding-zero">
+                                <div class="col-xs-1 padding-zero">
                                     <img src="images/triangle-bullet.png">
                                 </div>
-                                <div class="col-md-11 padding-zero">
+                                <div class="col-xs-11 padding-zero">
                                     <p class="page3-list">We can make sure your money that you have saved in superannuation will go the distance.</p>
                                 </div>
                             </div>
 
-                            <div class="col-md-12 padding-zero">
-                                <div class="col-md-1 padding-zero">
+                            <div class="col-xs-12 padding-zero">
+                                <div class="col-xs-1 padding-zero">
                                     <img src="images/triangle-bullet.png">
                                 </div>
-                                <div class="col-md-11 padding-zero">
+                                <div class="col-xs-11 padding-zero">
                                     <p class="page3-list">Our calculators will choose the lowest cost fund.</p>
                                 </div>
                             </div>
 
-                            <div class="col-md-12 padding-zero">
-                                <div class="col-md-1 padding-zero">
+                            <div class="col-xs-12 padding-zero">
+                                <div class="col-xs-1 padding-zero">
                                     <img src="images/triangle-bullet.png">
                                 </div>
-                                <div class="col-md-11 padding-zero">
+                                <div class="col-xs-11 padding-zero">
                                     <p class="page3-list">Calculate how much you will need when you reach your retirement age.</p>
                                 </div>
                             </div>
 
-                            <div class="col-md-12 padding-zero">
-                                <div class="col-md-1 padding-zero">
+                            <div class="col-xs-12 padding-zero">
+                                <div class="col-xs-1 padding-zero">
                                     <img src="images/triangle-bullet.png">
                                 </div>
-                                <div class="col-md-11 padding-zero">
+                                <div class="col-xs-11 padding-zero">
                                     <p class="page3-list">Calculate how much government pension you will be entitled to based on your assets at retirement</p>
                                 </div>
                             </div>
 
-                            <div class="col-md-12 padding-zero">
-                                <div class="col-md-1 padding-zero">
+                            <div class="col-xs-12 padding-zero">
+                                <div class="col-xs-1 padding-zero">
                                     <img src="images/triangle-bullet.png">
                                 </div>
-                                <div class="col-md-11 padding-zero">
+                                <div class="col-xs-11 padding-zero">
                                     <p class="page3-list">Calculate how long you are expected to live after you retire and how much you might want to bequest to family or a charity.</p>
                                 </div>
                             </div>
 
-                            <div class="col-md-12 padding-zero">
-                                <div class="col-md-1 padding-zero">
+                            <div class="col-xs-12 padding-zero">
+                                <div class="col-xs-1 padding-zero">
                                     <img src="images/triangle-bullet.png">
                                 </div>
-                                <div class="col-md-11 padding-zero">
+                                <div class="col-xs-11 padding-zero">
                                     <p class="page3-list">Be debt free at retirement.</p>
                                 </div>
                             </div>
 
-                            <div class="col-md-12 padding-zero">
-                                <div class="col-md-1 padding-zero">
+                            <div class="col-xs-12 padding-zero">
+                                <div class="col-xs-1 padding-zero">
                                     <img src="images/triangle-bullet.png">
                                 </div>
-                                <div class="col-md-11 padding-zero">
+                                <div class="col-xs-11 padding-zero">
                                     <p class="page3-list">We will calculate how you can be debt free by paying more off your loans and then making additional payments to your superannuation to get you back on track.</p>
                                 </div>
                             </div>
@@ -1477,7 +1559,7 @@
 
                         </div>
 
-                        <div class="col-md-3 padding-zero page6-img-block"> <img class="section2-text-img" src="images/retire.png"></div>
+                        <div class="col-xs-3 padding-zero page6-img-block"> <img class="section2-text-img" src="images/retire.png"></div>
 
                     </div>
 
@@ -1517,14 +1599,14 @@
 
     <!--page8-starts-->
     <div class="container page padding-zero">
-        <div class="col-md-12 mainlayout6 padding-zero">
-            <div class="col-md-12 padding-zero gradient6">
-                <div class="col-md-12 height text-layout">
+        <div class="col-xs-12 mainlayout6 padding-zero">
+            <div class="col-xs-12 padding-zero gradient6">
+                <div class="col-xs-12 height text-layout">
 
 
 
-                    <div class="col-md-12 padding-zero ">
-                        <div class="col-md-9 padding-zero layout8">
+                    <div class="col-xs-12 padding-zero ">
+                        <div class="col-xs-9 padding-zero layout8">
 
                             <p class="page5-text">That will be your choice. We will provide you the cost comparison of doing so. Manage my month to month cash flow better.</p>
 
@@ -1540,7 +1622,7 @@
                         </div>
 
 
-                        <div class="col-md-3 padding-zero page6-img-block"> <img class="section2-text-img" src="images/investment.png"></div>
+                        <div class="col-xs-3 padding-zero page6-img-block"> <img class="section2-text-img" src="images/investment.png"></div>
 
                     </div>
 
@@ -1582,16 +1664,16 @@
 
     <!--page9-starts-->
     <div class="container page padding-zero">
-        <div class="col-md-9 padding-zero layout2 back3">
-            <div class="col-md-12 padding-zero height">
-                <div class="page1-content">
+        <div class="col-xs-9 padding-zero layout2 back3">
+            <div class="col-xs-12 padding-zero height">
+                <div class="page9-content">
                     <p class="page9-text">Below are the details that you have provided about yourself:</p>
 
                     <p class="page9-subtext">
                         Please ensure these details are accurate, as the education and information we provide throughout this report will be largely based on these details. The data on pages 4 and 5 has been supplied by you, with the last update being 14/3/2016.
                     </p>
-                    <div class="col-md-12 padding-zero page9-tables">
-                        <div class="col-md-6 padding-zero">
+                    <div class="col-xs-12 padding-zero page9-tables">
+                        <div class="col-xs-6 padding-zero">
                             <table class="table table-left">
                                 <thead>
                                     <tr>
@@ -1643,7 +1725,7 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div class="col-md-6 padding-zero">
+                        <div class="col-xs-6 padding-zero">
                             <table class="table table-right">
                                 <thead>
                                     <tr>
@@ -1691,7 +1773,7 @@
 
                         </div>
                     </div>
-                    <div class="col-md-12 padding-zero page9-tables">
+                    <div class="col-xs-12 padding-zero page9-tables">
                         <table class="table">
                             <thead>
                                 <tr>
@@ -1757,7 +1839,7 @@
 
 
         </div>
-        <div class="col-md-3 padding-zero layout2 background3-1">
+        <div class="col-xs-3 padding-zero layout2 background3-1">
             <p class="page3-heading">YOUR PERSONAL DETAILS</p>
 
         </div>
@@ -1771,15 +1853,15 @@
     <!--page91-starts-->
     <div class="container page padding-zero">
 
-        <div class="col-md-3 padding-zero layout2 background9-1">
+        <div class="col-xs-3 padding-zero layout2 background9-1">
             <p class="page91-heading">YOUR SUPERANNUATION AND PENSION PLANNING DETAILS</p>
 
         </div>
-        <div class="col-md-9 padding-zero layout2 back3">
-            <div class="col-md-12 padding-zero height">
+        <div class="col-xs-9 padding-zero layout2 back3">
+            <div class="col-xs-12 padding-zero height">
                 <div class="page1-content">
 
-                    <div class="col-md-12 padding-zero page9-tables">
+                    <div class="col-xs-12 padding-zero page9-tables">
                         <table class="table">
                             <thead>
                                 <tr>
@@ -1847,7 +1929,7 @@
 
 
 
-                    <div class="col-md-12 padding-zero page9-tables">
+                    <div class="col-xs-12 padding-zero page9-tables">
                         <table class="table">
                             <thead>
                                 <tr>
@@ -1918,12 +2000,12 @@
     <!--page92-starts-->
 
     <div class="container page padding-zero">
-        <div class="col-md-12 layout9-2 padding-zero">
-            <div class="col-md-12 padding-zero gradient92">
-                <div class="col-md-12 height text-layout">
+        <div class="col-xs-12 layout9-2 padding-zero">
+            <div class="col-xs-12 padding-zero gradient92">
+                <div class="col-xs-12 height text-layout">
 
 
-                    <div class="col-md-12 padding-zero page9-tables">
+                    <div class="col-xs-12 padding-zero page9-tables">
                         <table class="table">
                             <thead>
                                 <tr>
@@ -1985,7 +2067,7 @@
 
 
 
-                    <div class="col-md-12 padding-zero page9-tables">
+                    <div class="col-xs-12 padding-zero page9-tables">
                         <table class="table">
                             <thead>
                                 <tr>
@@ -2066,12 +2148,12 @@
     <!--page93-starts-->
 
     <div class="container page padding-zero">
-        <div class="col-md-12 layout9-3 padding-zero">
-            <div class="col-md-12 padding-zero gradient92">
-                <div class="col-md-12 height text-layout">
+        <div class="col-xs-12 layout9-3 padding-zero">
+            <div class="col-xs-12 padding-zero gradient92">
+                <div class="col-xs-12 height text-layout">
 
 
-                    <div class="col-md-12 padding-zero page9-tables">
+                    <div class="col-xs-12 padding-zero page9-tables">
                         <table class="table">
                             <thead>
                                 <tr>
@@ -2145,11 +2227,11 @@
     <div class="container page padding-zero">
 
 
-        <div class="col-md-9 padding-zero layout2 back3">
-            <div class="col-md-12 padding-zero height">
+        <div class="col-xs-9 padding-zero layout2 back3">
+            <div class="col-xs-12 padding-zero height">
                 <div class="page1-content">
 
-                    <div class="col-md-12 padding-zero page9-tables">
+                    <div class="col-xs-12 padding-zero page9-tables">
                         <table class="table">
                             <thead>
                                 <tr>
@@ -2183,7 +2265,7 @@
 
                     </div>
 
-                    <div class="col-md-12 padding-zero page9-tables">
+                    <div class="col-xs-12 padding-zero page9-tables">
                         <table class="table">
                             <thead>
                                 <tr>
@@ -2225,7 +2307,7 @@
 
 
 
-                    <div class="col-md-12 padding-zero page9-tables">
+                    <div class="col-xs-12 padding-zero page9-tables">
                         <table class="table">
                             <thead>
                                 <tr>
@@ -2274,7 +2356,7 @@
 
         </div>
 
-        <div class="col-md-3 padding-zero layout2 background9-4">
+        <div class="col-xs-3 padding-zero layout2 background9-4">
             <p class="page94-heading">CALCULATING YOUR NET WORTH</p>
 
         </div>
@@ -2288,12 +2370,12 @@
     <!--page95-starts-->
 
     <div class="container page padding-zero">
-        <div class="col-md-12 layout9-5 padding-zero">
-            <div class="col-md-12 padding-zero gradient92">
-                <div class="col-md-12 height text-layout">
+        <div class="col-xs-12 layout9-5 padding-zero">
+            <div class="col-xs-12 padding-zero gradient92">
+                <div class="col-xs-12 height text-layout">
 
 
-                    <div class="col-md-12 padding-zero page9-tables">
+                    <div class="col-xs-12 padding-zero page9-tables">
                         <table class="table">
                             <thead>
                                 <tr>
@@ -2368,15 +2450,15 @@
     <!--page96-starts-->
     <div class="container page padding-zero">
 
-        <div class="col-md-3 padding-zero layout2 background9-6">
+        <div class="col-xs-3 padding-zero layout2 background9-6">
             <p class="page96-heading">OTHER EXPENSES AND COMMITMENTS</p>
 
         </div>
-        <div class="col-md-9 padding-zero layout2 back3">
-            <div class="col-md-12 padding-zero height">
+        <div class="col-xs-9 padding-zero layout2 back3">
+            <div class="col-xs-12 padding-zero height">
                 <div class="page1-content">
 
-                    <div class="col-md-12 padding-zero page9-tables">
+                    <div class="col-xs-12 padding-zero page9-tables">
                         <table class="table">
                             <thead>
                                 <tr>
@@ -2492,12 +2574,12 @@
     <!--page97-starts-->
 
     <div class="container page padding-zero">
-        <div class="col-md-12 layout9-7 padding-zero">
-            <div class="col-md-12 padding-zero gradient92">
-                <div class="col-md-12 height text-layout">
+        <div class="col-xs-12 layout9-7 padding-zero">
+            <div class="col-xs-12 padding-zero gradient92">
+                <div class="col-xs-12 height text-layout">
 
 
-                    <div class="col-md-12 padding-zero page9-tables">
+                    <div class="col-xs-12 padding-zero page9-tables">
                         <table class="table">
                             <thead>
                                 <tr>
@@ -2568,11 +2650,11 @@
     <div class="container page padding-zero">
 
 
-        <div class="col-md-9 padding-zero layout2 back3">
-            <div class="col-md-12 padding-zero height">
+        <div class="col-xs-9 padding-zero layout2 back3">
+            <div class="col-xs-12 padding-zero height">
                 <div class="page1-content">
 
-                    <div class="col-md-12 padding-zero page9-tables">
+                    <div class="col-xs-12 padding-zero page9-tables">
                         <table class="table">
                             <thead>
                                 <tr>
@@ -2624,7 +2706,7 @@
 
         </div>
 
-        <div class="col-md-3 padding-zero layout2 background9-8">
+        <div class="col-xs-3 padding-zero layout2 background9-8">
             <p class="page98-heading">TRANSITION TO RETIREMENT ANALYSIS</p>
 
         </div>
@@ -2637,18 +2719,18 @@
     <!--page99-starts-->
     <div class="container page padding-zero">
 
-        <div class="col-md-3 padding-zero layout2 background9-9">
+        <div class="col-xs-3 padding-zero layout2 background9-9">
             <p class="page99-heading">ASSET ALLOCATION DETAILS</p>
 
         </div>
 
 
 
-        <div class="col-md-9 padding-zero layout2 back3">
-            <div class="col-md-12 padding-zero height">
+        <div class="col-xs-9 padding-zero layout2 back3">
+            <div class="col-xs-12 padding-zero height">
                 <div class="page1-content">
 
-                    <div class="col-md-12 padding-zero page9-tables">
+                    <div class="col-xs-12 padding-zero page9-tables">
                         <table class="table">
                             <thead>
                                 <tr>
@@ -2756,38 +2838,38 @@
 
     <!--page10-starts-->
     <div class="container page padding-zero">
-        <div class="col-md-12 layout10 padding-zero">
+        <div class="col-xs-12 layout10 padding-zero">
 
 
-            <div class="col-md-4 padding-zero height">
+            <div class="col-xs-4 padding-zero height">
                 <p class="page3-head">Your<br/>Risk<br/>Profile</p>
                 <p></p>
                 <p></p>
 
 
             </div>
-            <div class="col-md-8 padding-zero text-layout">
+            <div class="col-xs-8 padding-zero text-layout">
 
 
                 <p class="page10-subhead">Based on your current superannuation report you are a Balanced Growth investment profile.</p>
 
                 <p class="page5-text">A Balanced Growth investment allocation generally has the following features:</p>
 
-                <div class="col-md-12 padding-zero page3-listdiv">
-                    <div class="col-md-1 padding-zero">
+                <div class="col-xs-12 padding-zero page3-listdiv">
+                    <div class="col-xs-1 padding-zero">
                         <img src="images/circle-bullet.png">
                     </div>
-                    <div class="col-md-11 padding-zero">
+                    <div class="col-xs-11 padding-zero">
                         <p class="page3-list">30% exposure to defensive (cash and fixed interest) assets</p>
                     </div>
                 </div>
 
 
-                <div class="col-md-12 padding-zero page3-listdiv">
-                    <div class="col-md-1 padding-zero">
+                <div class="col-xs-12 padding-zero page3-listdiv">
+                    <div class="col-xs-1 padding-zero">
                         <img src="images/circle-bullet.png">
                     </div>
-                    <div class="col-md-11 padding-zero">
+                    <div class="col-xs-11 padding-zero">
                         <p class="page3-list">70% exposure to growth (shares and property) assets.</p>
                     </div>
                 </div>
@@ -2800,7 +2882,7 @@
 
 
 
-                <div class="col-md-12 padding-zero ">
+                <div class="col-xs-12 padding-zero ">
                     <table class="table table-risk">
                         <thead>
                             <tr>
@@ -2889,16 +2971,16 @@
 
     <!--page11-starts-->
     <div class="container page padding-zero">
-        <div class="col-md-12 layout2 padding-zero">
+        <div class="col-xs-12 layout2 padding-zero">
 
-            <div class="col-md-9 layout2 padding-zero back3 ">
-                <div class="col-md-12 padding-zero text-layout height">
+            <div class="col-xs-9 layout2 padding-zero back3 ">
+                <div class="col-xs-12 padding-zero text-layout height">
 
                     <p class="page10-subhead">Strategy 1. Selecting the best superannuation fund to invest in.</p>
 
 
 
-                    <div class="col-md-12 padding-zero ">
+                    <div class="col-xs-12 padding-zero ">
                         <table class="table table-risk">
                             <thead>
                                 <tr>
@@ -2952,7 +3034,7 @@
 
             </div>
 
-            <div class="col-md-3 layout2 backgound11 text-center padding-zero ">
+            <div class="col-xs-3 layout2 backgound11 text-center padding-zero ">
                 <p class="page5-head">SECTION <img class="section1-img" src="images/section3.png"></p>
                 <div class="page5-border"></div>
                 <p class="page11-subhead"> MY RECOMMENDATIONS</p>
@@ -2974,20 +3056,20 @@
 
     <!--page12-starts-->
     <div class="container page padding-zero">
-        <div class="col-md-12 layout12 padding-zero">
-            <div class="col-md-12 padding-zero gradient6">
-                <div class="col-md-12 height text-layout">
+        <div class="col-xs-12 layout12 padding-zero">
+            <div class="col-xs-12 padding-zero gradient6">
+                <div class="col-xs-12 height text-layout">
 
                     <p class="page10-subhead">Strategy 2. Planning for the correct level of retirement income.</p>
 
 
-                    <div class="col-md-12 padding-zero">
+                    <div class="col-xs-12 padding-zero">
                         <img src="images/graph12.png">
                     </div>
 
 
 
-                    <div class="col-md-12 page12-text-block">
+                    <div class="col-xs-12 page12-text-block">
 
                         <p class="page12-text">By moving to ING Living Super you will be able to purchase se ETF's and direct shares that will give you greater international exposure than you currently get through your employer fund</p>
                     </div>
@@ -3016,9 +3098,9 @@
 
     <!--page13-starts-->
     <div class="container page padding-zero">
-        <div class="col-md-12 layout12 padding-zero">
-            <div class="col-md-12 padding-zero gradient6">
-                <div class="col-md-12 height text-layout">
+        <div class="col-xs-12 layout12 padding-zero">
+            <div class="col-xs-12 padding-zero gradient6">
+                <div class="col-xs-12 height text-layout">
 
                     <p class="page10-subhead">Are you on track with your future plans?</p>
 
@@ -3037,40 +3119,40 @@
                     <p class="page5-text">How do you achieve your desired retirement income or make your super last longer?</p>
 
 
-                    <div class="col-md-12 padding-zero page3-listdiv">
-                        <div class="col-md-1 padding-zero">
+                    <div class="col-xs-12 padding-zero page3-listdiv">
+                        <div class="col-xs-1 padding-zero">
                             <img src="images/triangle-bullet.png">
                         </div>
-                        <div class="col-md-11 padding-zero">
+                        <div class="col-xs-11 padding-zero">
                             <p class="page3-list">Delay retirement and make additional superannuation contributions, either through salary sacrifice and after-tax contributions.</p>
                         </div>
                     </div>
 
 
-                    <div class="col-md-12 padding-zero page3-listdiv">
-                        <div class="col-md-1 padding-zero">
+                    <div class="col-xs-12 padding-zero page3-listdiv">
+                        <div class="col-xs-1 padding-zero">
                             <img src="images/triangle-bullet.png">
                         </div>
-                        <div class="col-md-11 padding-zero">
+                        <div class="col-xs-11 padding-zero">
                             <p class="page3-list">Reduce your desired retirement income goal</p>
                         </div>
                     </div>
 
 
-                    <div class="col-md-12 padding-zero page3-listdiv">
-                        <div class="col-md-1 padding-zero">
+                    <div class="col-xs-12 padding-zero page3-listdiv">
+                        <div class="col-xs-1 padding-zero">
                             <img src="images/triangle-bullet.png">
                         </div>
-                        <div class="col-md-11 padding-zero">
+                        <div class="col-xs-11 padding-zero">
                             <p class="page3-list">Reduce your spending in the first year of retirement or</p>
                         </div>
                     </div>
 
-                    <div class="col-md-12 padding-zero page3-listdiv">
-                        <div class="col-md-1 padding-zero">
+                    <div class="col-xs-12 padding-zero page3-listdiv">
+                        <div class="col-xs-1 padding-zero">
                             <img src="images/triangle-bullet.png">
                         </div>
-                        <div class="col-md-11 padding-zero">
+                        <div class="col-xs-11 padding-zero">
                             <p class="page3-list">Switch to a growth portfolio to achieve a higher return over the long term. Based on these figures you will achieve your desired long term objective through better planning and investment advice.</p>
 
                         </div>
@@ -3105,9 +3187,9 @@
 
     <!--page14-starts-->
     <div class="container page padding-zero">
-        <div class="col-md-12 layout12 padding-zero">
-            <div class="col-md-12 padding-zero gradient6">
-                <div class="col-md-12 height text-layout">
+        <div class="col-xs-12 layout12 padding-zero">
+            <div class="col-xs-12 padding-zero gradient6">
+                <div class="col-xs-12 height text-layout">
 
                     <p class="page10-subhead">Strategy 3. Choosing the right investment mix of growth versus</p>
 
@@ -3144,7 +3226,7 @@
 
 
 
-                    <div class="col-md-12 page14-text-block">
+                    <div class="col-xs-12 page14-text-block">
 
                         <p class="page12-subhead">Asset allocation may be the most important investment decision an investor can make</p>
 
@@ -3181,9 +3263,9 @@
 
     <!--page15-starts-->
     <div class="container page padding-zero">
-        <div class="col-md-12 layout12 padding-zero">
-            <div class="col-md-12 padding-zero gradient6">
-                <div class="col-md-12 height text-layout">
+        <div class="col-xs-12 layout12 padding-zero">
+            <div class="col-xs-12 padding-zero gradient6">
+                <div class="col-xs-12 height text-layout">
 
 
 
@@ -3236,9 +3318,9 @@
 
     <!--page16-starts-->
     <div class="container page padding-zero">
-        <div class="col-md-12 layout12 padding-zero">
-            <div class="col-md-12 padding-zero gradient6">
-                <div class="col-md-12 height text-layout">
+        <div class="col-xs-12 layout12 padding-zero">
+            <div class="col-xs-12 padding-zero gradient6">
+                <div class="col-xs-12 height text-layout">
 
 
 
@@ -3297,8 +3379,8 @@
 
     <!--page17-starts-->
     <div class="container page padding-zero">
-        <div class="col-md-12 layout2 padding-zero">
-            <div class="col-md-3 layout2 backgound17 text-center padding-zero ">
+        <div class="col-xs-12 layout2 padding-zero">
+            <div class="col-xs-3 layout2 backgound17 text-center padding-zero ">
                 <p class="page5-head">SECTION <img class="section1-img" src="images/section4.png"></p>
                 <div class="page5-border"></div>
                 <p class="page17-subhead">WHAT ELSE</p>
@@ -3306,8 +3388,8 @@
                 <p class="page17-subhead3">TO KNOW</p>
 
             </div>
-            <div class="col-md-9 layout2 padding-zero back3">
-                <div class="col-md-12 padding-zero text-layout height">
+            <div class="col-xs-9 layout2 padding-zero back3">
+                <div class="col-xs-12 padding-zero text-layout height">
 
 
                     <p class="page5-subhead-text">What are the fees for this advice?</p>
@@ -3363,15 +3445,15 @@
 
     <!--page18-starts-->
     <div class="container page padding-zero">
-        <div class="col-md-12 layout18 padding-zero">
-            <div class="col-md-12 padding-zero gradient18">
-                <div class="col-md-12 height text-layout">
+        <div class="col-xs-12 layout18 padding-zero">
+            <div class="col-xs-12 padding-zero gradient18">
+                <div class="col-xs-12 height text-layout">
 
 
 
 
-                    <div class="col-md-12 padding-zero ">
-                        <div class="col-md-9 padding-zero layout8">
+                    <div class="col-xs-12 padding-zero ">
+                        <div class="col-xs-9 padding-zero layout8">
 
                             <p class="page5-text">Yes you can change your mind after placing the investments and get your money back after transaction fees and market movements. With some managed funds and insurance products the manager of the product provides a cooling off period of 14 days if you are not happy. Our financial planning fees are not refundable.</p>
 
@@ -3390,7 +3472,7 @@
                         </div>
 
 
-                        <div class="col-md-3 padding-zero page6-img-block"> <img class="section2-text-img" src="images/whatelse.png"></div>
+                        <div class="col-xs-3 padding-zero page6-img-block"> <img class="section2-text-img" src="images/whatelse.png"></div>
 
                     </div>
 
@@ -3416,91 +3498,91 @@
 
     <!--page19-starts-->
     <div class="container page padding-zero">
-        <div class="col-md-12 layout2 padding-zero">
+        <div class="col-xs-12 layout2 padding-zero">
 
-            <div class="col-md-9 layout2 padding-zero back3">
-                <div class="col-md-12 padding-zero text-layout height">
+            <div class="col-xs-9 layout2 padding-zero back3">
+                <div class="col-xs-12 padding-zero text-layout height">
 
 
                     <p class="page9-text">Below are the details that you have provided about yourself:</p>
 
-                    <div class="col-md-12 padding-zero">
-                        <div class="col-md-1 padding-zero">
+                    <div class="col-xs-12 padding-zero">
+                        <div class="col-xs-1 padding-zero">
                             <img src="images/triangle-bullet.png">
                         </div>
-                        <div class="col-md-11 padding-zero">
+                        <div class="col-xs-11 padding-zero">
                             <p class="page3-list">You have received our financial services guide</p>
                         </div>
                     </div>
 
 
-                    <div class="col-md-12 padding-zero">
-                        <div class="col-md-1 padding-zero">
+                    <div class="col-xs-12 padding-zero">
+                        <div class="col-xs-1 padding-zero">
                             <img src="images/triangle-bullet.png">
                         </div>
-                        <div class="col-md-11 padding-zero">
+                        <div class="col-xs-11 padding-zero">
                             <p class="page3-list">You have received an electronic version of all product disclosure documents and investment summaries and research reports.</p>
                         </div>
                     </div>
 
 
-                    <div class="col-md-12 padding-zero">
-                        <div class="col-md-1 padding-zero">
+                    <div class="col-xs-12 padding-zero">
+                        <div class="col-xs-1 padding-zero">
                             <img src="images/triangle-bullet.png">
                         </div>
-                        <div class="col-md-11 padding-zero">
+                        <div class="col-xs-11 padding-zero">
                             <p class="page3-list">Discussed your superannuation preferences with us and assessed your insurance needs and goals and objectives in a way that you understand</p>
                         </div>
                     </div>
 
 
 
-                    <div class="col-md-12 padding-zero">
-                        <div class="col-md-1 padding-zero">
+                    <div class="col-xs-12 padding-zero">
+                        <div class="col-xs-1 padding-zero">
                             <img src="images/triangle-bullet.png">
                         </div>
-                        <div class="col-md-11 padding-zero">
+                        <div class="col-xs-11 padding-zero">
                             <p class="page3-list">Discussed the risks of investing and understand how the sharemarket works</p>
                         </div>
                     </div>
 
 
-                    <div class="col-md-12 padding-zero">
-                        <div class="col-md-1 padding-zero">
+                    <div class="col-xs-12 padding-zero">
+                        <div class="col-xs-1 padding-zero">
                             <img src="images/triangle-bullet.png">
                         </div>
-                        <div class="col-md-11 padding-zero">
+                        <div class="col-xs-11 padding-zero">
                             <p class="page3-list">Discussed and understand how we charge</p>
                         </div>
                     </div>
 
 
-                    <div class="col-md-12 padding-zero">
-                        <div class="col-md-1 padding-zero">
+                    <div class="col-xs-12 padding-zero">
+                        <div class="col-xs-1 padding-zero">
                             <img src="images/triangle-bullet.png">
                         </div>
-                        <div class="col-md-11 padding-zero">
+                        <div class="col-xs-11 padding-zero">
                             <p class="page3-list">Read this advice document and are clear with its contents</p>
                         </div>
                     </div>
 
 
-                    <div class="col-md-12 padding-zero">
-                        <div class="col-md-1 padding-zero">
+                    <div class="col-xs-12 padding-zero">
+                        <div class="col-xs-1 padding-zero">
                             <img src="images/triangle-bullet.png">
                         </div>
-                        <div class="col-md-11 padding-zero">
+                        <div class="col-xs-11 padding-zero">
                             <p class="page3-list">Made sure all your personal information is accurate.</p>
                         </div>
                     </div>
 
 
 
-                    <div class="col-md-12 padding-zero">
-                        <div class="col-md-1 padding-zero">
+                    <div class="col-xs-12 padding-zero">
+                        <div class="col-xs-1 padding-zero">
                             <img src="images/triangle-bullet.png">
                         </div>
-                        <div class="col-md-11 padding-zero">
+                        <div class="col-xs-11 padding-zero">
                             <p class="page3-list">Asked any questions that you have.</p>
                         </div>
                     </div>
@@ -3536,7 +3618,7 @@
             </div>
 
 
-            <div class="col-md-3 layout2 backgound19 text-center padding-zero ">
+            <div class="col-xs-3 layout2 backgound19 text-center padding-zero ">
                 <p class="page5-head">SECTION <img class="section1-img" src="images/section5.png"></p>
                 <div class="page5-border"></div>
                 <p class="page19-subhead">THE STEPS TO</p>
@@ -3552,6 +3634,10 @@
 
 
     <!--page19-ends-->
+
+
+
+
 
 
 
