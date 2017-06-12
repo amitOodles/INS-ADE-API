@@ -347,7 +347,7 @@ app.get('/queryRA', function(req, res) {
             "allocatedPension": 60000
         }
     };
-    res.render(__dirname + '/indexRA.ejs', {
+    res.render(__dirname + '/indexRA_pdf.ejs', {
         data: data,
     });
 });

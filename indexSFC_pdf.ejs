@@ -24,15 +24,72 @@
         </div> -->
         <div class="row content" >
             <div class="col-xs-12 col-sm-12 col-lg-12">
+                
+                
                 <div class="row result-div secondChart">
 
+                     <div class="row">
+                        <div class="col-sm-12"><div id="containerA"  style="width: 99%; height: 320px"></div></div>
+               
+                    </div>
+                    
+                    
+                    
 
-                    <div class="col-sm-12" style="margin-bottom:10px;">
-                      <div class="col-sm-6" id="chartBox">
-                          <div id="container"  style="width: 100%; height: auto ;"></div>
+                    <div class="col-sm-12 paddingZero" style="margin-bottom:10px;">
+                      <div class="col-sm-6 paddingZero" id="chartBox">
+                          <div id="container"  style="width: 320px; height: 320px ; margin-top: 50px;"></div>
                       </div>
                       <div class="col-sm-6" id="chartBox">
-                          <div id="containerA"  style="width: 100%; height: auto;"></div>
+                         <!-- <div id="containerA"  style="width: 100%; height: auto;"></div>-->
+                          
+                      <div class="col-sm-12 pannel_left">
+                          <h2 class="discHead mr-top-zero">Discounted Super Balance</h2>
+                          <div class="one">
+                            <h3 class="leftHead skyBlue">Fund A</h3>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                  <p>{{fundA.name}}</p>
+
+                                </div>
+                                <div class="col-sm-6">
+                                  <p class="price">{{resultFundOne | currency}}</p>
+
+                                </div>
+                            </div>
+                          </div>
+                          <div class="two">
+                            <h3 class="leftHead orange">Fund B</h3>
+                            <div class="row">
+                              <div class="col-sm-6">
+                                <p class="pb-15">{{fundB.name}}</p>
+
+                              </div>
+                              <div class="col-sm-6">
+                                <p class="price pt-10">{{resultFundTwo | currency}}</p>
+
+                              </div>
+                            </div>
+                          </div>
+
+                      </div>
+                      <div class="col-sm-12 paneel_right pannel_left">
+                          <div class="right_inner">
+                            <h2>final result</h2>
+                            <div ng-show="needSS">
+                              <p class="margintop17">{{savingsName}} saves you</p>
+                              <h4 class="blu">{{savings | currency}}</h4>
+                            </div>
+                            <div ng-show="!needSS">
+                                <p>{{savingsName}} saves you</p>
+                                <h4 class="org">{{savings | currency}}</h4>
+                            </div>
+
+
+                          </div>
+                      </div>
+                    
+                          
                       </div>
                     </div>
                     <!--<div class="col-sm-12" style="display: flex;">
@@ -65,54 +122,9 @@
 
                       </div>
                     </div> -->
-                    <h2 class="discHead">Discounted Super Balance</h2>
+                  
                     <!--for pdf-->
-                    <div class="row">
-                      <div class="col-sm-8 pannel_left">
-                          <div class="one">
-                            <h3 class="leftHead skyBlue">Fund A</h3>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                  <p>{{fundA.name}}</p>
-
-                                </div>
-                                <div class="col-sm-6">
-                                  <p class="price">{{resultFundOne | currency}}</p>
-
-                                </div>
-                            </div>
-                          </div>
-                          <div class="two">
-                            <h3 class="leftHead orange">Fund B</h3>
-                            <div class="row">
-                              <div class="col-sm-6">
-                                <p>{{fundB.name}}</p>
-
-                              </div>
-                              <div class="col-sm-6">
-                                <p class="price">{{resultFundTwo | currency}}</p>
-
-                              </div>
-                            </div>
-                          </div>
-
-                      </div>
-                      <div class="col-sm-4 paneel_right">
-                          <div class="right_inner">
-                            <h2>final result</h2>
-                            <div ng-show="needSS">
-                              <p class="margintop17">{{savingsName}} saves you</p>
-                              <h4 class="blu">{{savings | currency}}</h4>
-                            </div>
-                            <div ng-show="!needSS">
-                                <p>{{savingsName}} saves you</p>
-                                <h4 class="org">{{savings | currency}}</h4>
-                            </div>
-
-
-                          </div>
-                      </div>
-                    </div>
+                   
                     <!--end here for pdf-->
                 </div>
 

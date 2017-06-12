@@ -12,6 +12,21 @@ body{
 .paddingZero{
   padding: 0 !important;
 }
+.mr-top-zero
+{
+    margin-top: 0px;
+}
+
+.pb-15
+{
+    padding-bottom: 15px !important;
+}
+
+.pt-10
+{
+    padding-top: 10px !important;
+}
+
 .margintop17{
   margin-top: 17px;
 }
@@ -32,17 +47,17 @@ body{
 }
 .orange{
   background: #ed7d31;
-  margin-top: 22px;
+  margin-top: 15px;
   margin-bottom: 17px;
 }
 .pannel_left p.price{
 font-size: 19px;
-padding: 7px 0;
+padding: 3px 0;
 }
   .pannel_left p{
     color: #fff;
 font-size: 14px;
-padding: 9px 0;
+padding: 5px 0;
 margin: 0;
 font-family: 'Helvetica' !important;
 padding-left: 11px;
@@ -75,8 +90,8 @@ padding-left: 11px;
 .paneel_right h4{
   font-size: 30px;
     font-weight: bold;
-    padding-bottom: 12px;
-    padding-top: 4px;
+ /*   padding-bottom: 12px;
+    padding-top: 4px;*/
     padding-left: 24px;
 }
 .paneel_right h4.blu{
@@ -89,7 +104,7 @@ padding-left: 11px;
     background: #090e1e;
     color: #fff;
     text-transform: uppercase;
-    padding: 22px 12px;
+    padding: 18px 12px;
     font-size: 23px;
     font-weight: bold;
     text-align: center;
@@ -114,7 +129,7 @@ padding-bottom: 9px;
       overflow:hidden;
       width: 741px;
       color:black;
-			padding: 20px;
+      padding: 0px 20px 0px 20px ;
 
 
   }
@@ -144,7 +159,7 @@ padding-bottom: 9px;
       overflow:hidden;
       width: 741px;
       color:black;
-			padding-bottom: 10px;
+  
   }
 .otrp-clear
 {
