@@ -20,7 +20,8 @@ app.service('ChartServiceHc',function(){
         title: {
             text: 'Income Tax Calculator',
             style: {
-           color:'#fff'
+           color:'#fff',
+           fontFamily: 'Helvetica'
        }
         },
         colors: ['#5b9bd5', '#ed7d31', '#a5a5a5', '#3dcbff', '#2599f0'],

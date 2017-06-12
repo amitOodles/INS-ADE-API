@@ -21,19 +21,26 @@
 
                 <div class=" result-div secondChart">
                     <div class="row">
-                            <div class="col-xs-7" id="chartBox">
-                                <div id="container"></div>
+                            <div class="col-xs-6" id="chartBox">
+                                <div id="container" style="height:350px; width:300px;"></div>
                             </div>
-                            <div class="col-sm-5">
+                            <div class="col-sm-5 marginlft4">
                             <div class=" pannel_left">
                                 <div class="one">
                                   <h3 class="leftHead skyBlue">Net Income</h3>
 
 
-                                        <p>Net income per annum</p>
-                                        <p class="price">{{ result.netAnnualIncomeAfterTax | currency }}</p>
-                                        <p>Net income per {{result.paymentFrequency}}</p>
-                                        <p class="price">{{ result.netPaymentPerPeriod | currency }}</p>
+                                  <div class="row">
+                                    <div class="col-sm-6 para">Net income per annum</div>
+                                    <div class="col-sm-6 price">{{ result.netAnnualIncomeAfterTax | currency }}</div>
+                                  </div>
+
+
+
+                                  <div class="row">
+                                    <div class="col-sm-6 para">Net income per {{result.paymentFrequency}}</div>
+                                    <div class="col-sm-6 price">{{ result.netPaymentPerPeriod | currency }}</div>
+                                  </div>
 
 
 
