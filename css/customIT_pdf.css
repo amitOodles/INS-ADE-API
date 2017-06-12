@@ -21,7 +21,7 @@ body{
 .leftHead{
   color: #161b2e;
     text-transform: uppercase;
-    font-size: 17px;
+    font-size: 16px;
     padding: 8px;
     font-family: 'Helvetica' !important;
 }
@@ -35,10 +35,19 @@ body{
   margin-top: 5px;
   margin-bottom: 3px;
 }
-.pannel_left p.price{
+.pannel_left .price{
 font-size: 19px;
 padding: 7px 0;
-padding-left: 12px;
+padding-left: 0px;
+color: #fff;
+}
+.pannel_left .para{
+  color: #fff;
+font-size: 13px;
+padding: 9px 0;
+margin: 0;
+font-family: 'Helvetica' !important;
+padding-left: 23px;
 }
   .pannel_left p{
     color: #fff;
@@ -75,7 +84,7 @@ padding-left: 11px;
 .paneel_right h4{
   font-size: 30px;
     font-weight: bold;
-    padding-bottom: 12px;
+    
     padding-top: 4px;
     padding-left: 24px;
 }
@@ -90,7 +99,7 @@ padding-left: 11px;
     color: #fff;
     text-transform: uppercase;
     padding: 22px 12px;
-    font-size: 23px;
+    font-size: 19px;
     font-weight: bold;
     text-align: center;
     margin-top: 19px;
@@ -112,10 +121,13 @@ padding-bottom: 9px;
       background-color: #161b2e;
       position: relative;
       overflow:hidden;
-      width: 741px;
+      width: 660px;
       color:black;
       padding: 20px;
   }
+.marginlft4{
+  margin-left: 4%;
+}
 
 /***********end here****************/
 .otrp-calculator{
