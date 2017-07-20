@@ -121,13 +121,13 @@ app.service('ChartServiceHcSFC',function(){
             $(container).highcharts({
                 chart: {
                     type: 'column',
-                    options3d: {
+ /*                   options3d: {
               enabled: true,
                  alpha: 7,
                  beta: 18,
                  depth: 47,
                  viewDistance: 25
-   }
+   }*/
                 },
                 title: {
                     text: 'Fund Balance Projection',
