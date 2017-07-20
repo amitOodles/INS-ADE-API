@@ -40,7 +40,7 @@ app.get('/querySSO', function(req, res) {
   };
 
     console.log("path:", __dirname);
-    res.render(__dirname + '/indexSSO.ejs', {
+    res.render(__dirname + '/indexSSO_portrait.ejs', {
         data: data,
     });
 });
@@ -125,7 +125,7 @@ app.get('/query', function(req, res) {
   "educationExpensePerYearPerChild":2000
  }
 };
-    res.render(__dirname + '/index_pdf.ejs', {
+    res.render(__dirname + '/index_portrait.ejs', {
         data: data,
     });
 });
@@ -189,7 +189,7 @@ app.get('/querySFC', function(req, res) {
         "indirectCostRationB": 1.50,
 
     };
-    res.render(__dirname + '/indexSFC_pdf.ejs', {
+    res.render(__dirname + '/indexSFC_portrait.ejs', {
         data: data,
     });
 });
@@ -223,6 +223,50 @@ app.post('/webshotSFC', function(req, res, callback) {
 
     generateImage();
 });
+
+
+app.get('/queryBPC', function(req, res) {
+
+    //var data = postDataSFC;
+    var data = {
+      "age": 30,
+    };
+    res.render(__dirname + '/indexBPC.ejs', {
+        data: data,
+    });
+});
+app.post('/webshotBPC', function(req, res, callback) {
+
+    postDataSFC = req.body;
+
+    var timeS = new Date();
+    var name = timeS.getTime() + "SFC.png";
+
+    function generateImage() {
+        webshot('http://180.151.85.194:3001/querySFC', 'uploads/' + name, { shotSize: { width: 630, height: 520 } }, function(err, data) {
+            // res.write("error saving");
+
+            if (err) {
+                var resErr = new Error("Unable to generate Insurance Adequacy chart");
+                resErr.status = 400;
+                console.log("error occured", resErr);
+                callback(resErr);
+            } else {
+                var img = fs.readFileSync('uploads/' + name);
+                console.log('uploads/' + name);
+                //fs.unlink('uploads/' + name);
+                res.writeHead(200, { 'Content-Type': 'image/png' });
+                res.end(img, 'binary');
+            }
+
+
+        });
+    }
+
+    generateImage();
+});
+
+
 app.get('/webshotTTR', function(req, res, callback) {
 
 
@@ -282,7 +326,7 @@ app.get('/queryTTR', function(req, res) {
 
     };
 
-    res.render(__dirname + '/indexTTR_pdf.ejs', {
+    res.render(__dirname + '/indexTTR_portrait.ejs', {
         data: data,
     });
 });
@@ -347,7 +391,7 @@ app.get('/queryRA', function(req, res) {
             "allocatedPension": 60000
         }
     };
-    res.render(__dirname + '/indexRA.ejs', {
+    res.render(__dirname + '/indexRA_portrait.ejs', {
         data: data,
     });
 });
@@ -544,7 +588,7 @@ app.get('/queryIT', function(req, res) {
     };
 
 
-    res.render(__dirname + '/indexIT_pdf.ejs', {
+    res.render(__dirname + '/indexIT_portrait.ejs', {
         data: data,
     });
 });
