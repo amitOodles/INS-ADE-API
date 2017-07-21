@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en" ng-app="TTRApp">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, minimum-scale=1">
+    <meta name="description" content="Calculator 1">
+    <link rel="icon" href="images/favicon.ico">
+    <title>Loan Comparison</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="css/customLCC.css">
+    <link rel="stylesheet" href="css/font-awesome.css">
+    <link rel="stylesheet" href="css/nouislider.min.css">
+
+    <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+</head>
+
+<body print-section ng-cloak>
+    <div class="otrp-calculator container-fluid " ng-controller="TTRController">
+
+        <div class=" row title ">
+            <div class="col-xs-8 col-sm-9 col-lg-9">
+                <h1>Loan Comparison</h1>
+            </div>
+          
+        </div>
+        <div class="row content">
+            <div class="col-xs-12 col-sm-12 col-lg-12">
+
+                <div class="row input-div">
+                    <div class="col-xs-12 col-sm-12 col-lg-12">
+
+
+
+
+                <div class="row" >
+                    <div class="col-xs-7">
+                        <div id="container" style="padding-top:15px;padding-bottom:10px;margin-left: -10px;"></div>
+                    </div>
+                    <div class="col-xs-5 ">
+                        <div class="box-right">
+                          <div class="row padding-left-right10">
+                            <div class="col-xs-12 headng">Total fees</div>
+                          </div>
+                          <div class="row padding-left-right10">
+                            <div class="col-xs-5 subhead">Loan 1</div>
+                            <div class="col-xs-7 subval">{{totalFeesValueLoan1 | currency}}</div>
+                          </div>
+                          <div class="row padding-left-right10">
+                            <div class="col-xs-5 subhead">Loan 2</div>
+                            <div class="col-xs-7 subval">{{totalFeesValueLoan2 | currency}}</div>
+                          </div>
+                          <div class="divider"></div>
+                          <div class="row padding-left-right10">
+                            <div class="col-xs-12 headng">Total interest</div>
+                          </div>
+                          <div class="row padding-left-right10">
+                            <div class="col-xs-5 subhead">Loan 1</div>
+                            <div class="col-xs-7 subval">{{totalInterestValueLoan1 | currency}}</div>
+                          </div>
+                          <div class="row padding-left-right10">
+                            <div class="col-xs-5 subhead">Loan 2</div>
+                            <div class="col-xs-7 subval">{{totalInterestValueLoan2 | currency}}</div>
+                          </div>
+                          <div class="divider"></div>
+                          <div class="row padding-left-right10">
+                            <div class="col-xs-12 headng">Total principal</div>
+                          </div>
+                          <div class="row padding-left-right10">
+                            <div class="col-xs-5 subhead">Loan 1</div>
+                            <div class="col-xs-7 subval">{{totalPrincipalValueLoan1 | currency}}</div>
+                          </div>
+                          <div class="row padding-left-right10">
+                            <div class="col-xs-5 subhead">Loan 2</div>
+                            <div class="col-xs-7 subval">{{totalPrincipalValueLoan2 | currency}}</div>
+                          </div>
+
+                          <div class="dark-bg">
+                            <div class="row padding-left-right10">
+                              <div class="col-xs-12 headng">Total repayment</div>
+                            </div>
+                            <div class="row padding-left-right10">
+                              <div class="col-xs-12 subhead">Loan 1</div>
+                              <div class="col-xs-12 subval">{{totalRepaymentValueLoan1 | currency}}</div>
+
+                              <div class="col-xs-12 subhead">Loan 2</div>
+                              <div class="col-xs-12 subval">{{totalRepaymentValueLoan2 | currency}}</div>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row disclaimer">
+                    <span class="calculator-disclaimer">Information provided by Financial Choice Pty Ltd is general financial advice only. General advice is defined under the new regulations to include information about financial products and financial markets and our current views and outlook for those products and markets. The general advice we provide includes the information you have requested from us directly or via our web site.</span>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <img src="images/client-logo.png" class="comp-logo" />
+                    </div>
+                </div>
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 style="text-align:center;" class="modal-title">Your Form Inputs Are Incorrect/Incomplete</h4>
+                            </div>
+                            <div class="modal-body">
+                                <ul class="modal-list">
+                                    <li ng-show="forms.ttrForm.firstName.$pristine ">Please provide your first name.</li>
+                                    <li ng-show="!forms.ttrForm.firstName.$pristine && forms.ttrForm.firstName.$invalid">Please provide a valid first name.</li>
+                                    <li ng-show="forms.ttrForm.lastName.$pristine">Please provide your last name.</li>
+                                    <li ng-show="(!forms.ttrForm.lastName.$pristine && forms.ttrForm.lastName.$invalid)">Please provide a valid last name.</li>
+                                    <li ng-show="(forms.ttrForm.email.$pristine || forms.ttrForm.email.$invalid)">Please provide a valid email address.</li>
+                                    <li ng-show="(forms.ttrForm.mobile.$pristine || forms.ttrForm.mobile.$invalid)">Please provide a valid mobile number.</li>
+                                    <li ng-show="forms.ttrForm.postalCode.$invalid">Please provide a valid 4-Digit postal code.</li>
+                                    <li ng-show="error1option">Please re-enter the values for initial asset allocation(The total of all shares should add up to 100)</li>
+                                    <li ng-show="error2option">Please re-enter the values for altered asset allocation(The total of all shares should add up to 100)</li>
+                                </ul>
+                            </div>
+                            <div class="modal-footer">
+                                <h5 style="text-align:center">Please provide the correct inputs to calculate new result, generate the result as PDF and print the result.</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row information-overlay" print-hide>
+            <div class="col-xs-12 col-sm-12 col-lg-12 ">
+                <div class="row info-title">
+                    <div class="col-xs-9 col-sm-9 col-lg-9">
+                        <h2>Calculator Information</h2>
+                    </div>
+                    <div class="col-xs-3 col-sm-3 col-lg-3">
+                        <button type="button" class="closeInfo" ng-click="infoShow(false)"></button>
+                    </div>
+                </div>
+                <hr class="submit-hr" />
+                <div class="row info-content">
+                    <div class="col-xs-12 col-sm-12 col-lg-12">
+                        <ol>
+                            <li>
+                                We assume the loan repayment includes principal and interest
+                            </li>
+                            <li>
+                                We assume the borrower will not change the loan provider in the middle of the borrowing terms
+                            </li>
+                            <li>
+                                It is assumed that the fee is uniformly spreaded in the whole year, and will be paid monthly in arrear
+                            </li>
+                            <li>
+                                It is assumed that the repayment is monthly in arrear
+                            </li>
+
+                            </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/jquery-2.2.4.min.js" type="text/javascript"></script>
+    <script src="js/angular.min.js" type="text/javascript"></script>
+    <script src="js/bootstrap-select.min.js" type="text/javascript"></script>
+    <script>
+
+    </script>
+    <script src="js/ui-bootstrap-tpls-1.3.3.min.js" type="text/javascript"></script>
+    <script src="js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="js/app.js" type="text/javascript"></script>
+    <script src="js/controllerLCC.js" type="text/javascript"></script>
+    <script src="js/nouislider.min.js" type="text/javascript"></script>
+    <script src="js/wNumb.js" type="text/javascript"></script>
+    <script src="js/AgeCalculatorService.js" type="text/javascript"></script>
+
+    <script src="js/hcLCC/highcharts.js" type="text/javascript"></script>
+    <script src="js/hcLCC/highcharts-3d.js" type="text/javascript"></script>
+    <script src="js/hcLCC/data.js" type="text/javascript"></script>
+    <script src="js/hcLCC/exporting.js" type="text/javascript"></script>
+    <script src="js/hcLCC/sand-signika.js" type="text/javascript"></script>
+    <script src="js/hcLCC/lineChartService.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.2.61/jspdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/2.0.16/jspdf.plugin.autotable.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta1/html2canvas.js"></script>
+
+
+
+
+</body>
+
+</html>

@@ -1,5 +1,6 @@
-app.controller("BPCController", ['$scope', '$timeout', 'AgeCalculator', 'LineChartService', function($scope, $timeout, AgeCalculator, PdfMaker, LineChartService) {
+app.controller("BPCController", ['$scope', '$timeout', 'AgeCalculator', 'LineChartService', function($scope, $timeout, AgeCalculator, LineChartService) {
 
+  console.log("LineChartService====> ", LineChartService)
 
     $scope.age = bpcObj.PersonalDetails.age,
     $scope.loan_term = bpcObj.fact.loan_term ,
@@ -455,6 +456,7 @@ $scope.calculateFinal=function(){
 
 
      LineChartService.createChart($scope.outputYear,$scope.cashOutflow, $scope.surplus);
+
 
 
 
