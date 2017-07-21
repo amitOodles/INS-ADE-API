@@ -1,65 +1,38 @@
-app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'LineChartService', function($scope, $timeout, AgeCalculator, PdfMaker, LineChartService) {
+app.controller("BPCController", ['$scope', '$timeout', 'AgeCalculator', 'LineChartService', function($scope, $timeout, AgeCalculator, PdfMaker, LineChartService) {
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    $scope.age = bpcObj.age;
-
-    console.log("bpcObj.age =========>>>>>>>>>>>>>>>>>>>"    ,     bpcObj.age)
-
-
-
-
-
-
-
-
-    $scope.loan_term = 20,
-    $scope.Inflation = 2.50,
+    $scope.age = bpcObj.PersonalDetails.age,
+    $scope.loan_term = bpcObj.fact.loan_term ,
+    $scope.Inflation = bpcObj.fact.Inflation,
     //$scope.member1Age = 40,
-    $scope.YourAnnualTaxableIncome = 127892.014851933,
+    $scope.YourAnnualTaxableIncome = bpcObj.YourAnnualTaxableIncome,
     $scope.lowerBond = [0, 18201, 37001 ,80001 , 180001],
     $scope.taxRate = [0, 0.19, 0.325, 0.37, 0.45 ];
-  //  $scope.taxOnIncome = taxBase($scope.YourAnnualTaxableIncome)+($scope.YourAnnualTaxableIncome-$scope.lowerBond[3]+1)*$scope.taxRate[3],  // =VLOOKUP(B3,$H$2:$K$7,4,1)+(B3-VLOOKUP(B3,$H$2:$K$7,1,1)+1)*VLOOKUP(B3,$H$2:$K$7,3,1)
     $scope.netAnnualIncomeAfterTax = $scope.YourAnnualTaxableIncome - $scope.taxOnIncome,
-    $scope.SalaryExcludeTaxAndSuperPerYearMember1= 120000,
-    $scope.member2Age = 35,
-    $scope.SalaryExcludeTaxAndSuperPerYearMember2 = 80000,
-    $scope.InvestmentIncomePerYear = 10000,
-    $scope.RentalIncomeInvestmentPropertyPerWeek = 550,
-    $scope.OtherIncomePerYear = 10000,
-    $scope.AreYouSingleOrCouple = "Couple",
-    $scope.NumberOfDependents = "2",
-    $scope.CreditCardOutstandingBalance = 10000,
-    $scope.DoYouHaveAnExistingLoan = "Yes",
-    $scope.CurrentLoanBalance = 200000,
-    $scope.CurrentInterestRatePerYear = 6,
-    $scope.RemainingLoanTermYears = 10,
+    $scope.SalaryExcludeTaxAndSuperPerYearMember1= bpcObj.income.SalaryExcludeTaxAndSuperPerYearMember1,
+    $scope.member2Age = bpcObj.PersonalDetails.member2Age,
+    $scope.SalaryExcludeTaxAndSuperPerYearMember2 = bpcObj.income.SalaryExcludeTaxAndSuperPerYearMember2,
+    $scope.InvestmentIncomePerYear = bpcObj.income.InvestmentIncomePerYear,
+    $scope.RentalIncomeInvestmentPropertyPerWeek = bpcObj.income.RentalIncomeInvestmentPropertyPerWeek,
+    $scope.OtherIncomePerYear = bpcObj.income.OtherIncomePerYear,
+    $scope.AreYouSingleOrCouple = bpcObj.PersonalDetails.AreYouSingleOrCouple,
+    $scope.NumberOfDependents = bpcObj.fact.NumberOfDependents,
+    $scope.CreditCardOutstandingBalance = bpcObj.expense.CreditCardOutstandingBalance,
+    $scope.DoYouHaveAnExistingLoan = bpcObj.expense.DoYouHaveAnExistingLoan,
+    $scope.CurrentLoanBalance = bpcObj.expense.CurrentLoanBalance,
+    $scope.CurrentInterestRatePerYear = bpcObj.expense.CurrentInterestRatePerYear,
+    $scope.RemainingLoanTermYears = bpcObj.expense.RemainingLoanTermYears,
     $scope.InterestRate049 = Math.pow(1+$scope.CurrentInterestRatePerYear/100, (1/12))-1 , //(1+H8)^(1/12)-1
     $scope.ProjectedMonthlyRepayment = $scope.CurrentLoanBalance/((1-Math.pow(1+$scope.InterestRate049,-$scope.RemainingLoanTermYears*12))/$scope.InterestRate049),
-    $scope.DoYouHaveMoreLoan = "No",
-    $scope.CurrentLoanBalanceInMoreLoan = 300000,
-    $scope.CurrentInterestRatePerYearInMoreLoan = 7,
-    $scope.RemainingLoanTermYearsInMoreLoan = 15,
+    $scope.DoYouHaveMoreLoan = bpcObj.expense.DoYouHaveMoreLoan,
+    $scope.CurrentLoanBalanceInMoreLoan = bpcObj.expense.CurrentLoanBalanceInMoreLoan,
+    $scope.CurrentInterestRatePerYearInMoreLoan = bpcObj.expense.CurrentInterestRatePerYearInMoreLoan,
+    $scope.RemainingLoanTermYearsInMoreLoan = bpcObj.expense.RemainingLoanTermYearsInMoreLoan,
     $scope.InterestRate057 = Math.pow(1+$scope.CurrentInterestRatePerYearInMoreLoan, 1/12) - 1;
     $scope.ProjectedMonthlyRepaymentInMoreLoan = $scope.CurrentLoanBalanceInMoreLoan/((1-Math.pow(1+$scope.InterestRate057, -$scope.RemainingLoanTermYearsInMoreLoan*12))/$scope.InterestRate057),
-    $scope.GenderOfMember1 = "Male",
-    $scope.GenderOfMember2 = "Female",
-    $scope.EstimatedInterestRate = 7;
+    $scope.GenderOfMember1 = bpcObj.PersonalDetails.GenderOfMember1,
+    $scope.GenderOfMember2 = bpcObj.PersonalDetails.GenderOfMember2,
+    $scope.EstimatedInterestRate = bpcObj.fact.EstimatedInterestRate;
 
     $scope.personalDetails = {
         firstName: "Dexter",
@@ -123,11 +96,11 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'LineCha
       $scope.marriedStatusOption = getstatus;
       if($scope.marriedStatusOption == true){
           $scope.AreYouSingleOrCouple = "Couple";
-          console.log($scope.AreYouSingleOrCouple, getstatus)
+          //console.log($scope.AreYouSingleOrCouple, getstatus)
 
       }else{
         $scope.AreYouSingleOrCouple = "Single";
-        console.log($scope.AreYouSingleOrCouple, getstatus)
+        //console.log($scope.AreYouSingleOrCouple, getstatus)
       }
 
     }
@@ -268,17 +241,6 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'LineCha
     $scope.NetNPVArray = [];
 
 
-
-/***********************************************************
-             slider range and input
-************************************************************/
-
-
-
-
-
-
-
 $scope.calculateFinal=function(){
 
 
@@ -412,7 +374,7 @@ $scope.calculateFinal=function(){
          //Remaining balance 2
                                                                                                                                                              //X4+AA4+SUM(AB4:AD4)-SUM(AE4:AH4)
                                                                                                                                                              //=X8+AA8+SUM(AB8:AD8)-SUM(AE8:AH8)
-    //153678.515+SUM(10000:10000)-SUM(140608:0)  =25216.745
+
          $scope.RemainingBalance2[i] = $scope.afterTaxSallaryMember1AryExpectedCashYear[i]+$scope.afterTaxSallaryMember2AryExpectedCashYear[i]+($scope.InvestmentIncome[i]+$scope.RentalIncome[i]+$scope.otherIncome[i])-($scope.EstimatedLivingCost[i]+$scope.CreditCardLiability[i]+$scope.Loan1Repayment[i]+$scope.Loan2Repayment[i]);
 
          //output year
@@ -452,7 +414,7 @@ $scope.calculateFinal=function(){
      for(var i=0; i<$scope.NetNPVArray.length; i++){
        $scope.NetNPV += $scope.NetNPVArray[i];
      }
-     console.log("$scope.NetNPV ==>", $scope.NetNPV)
+     //console.log("$scope.NetNPV ==>", $scope.NetNPV)
      //console.log("$scope.NetNPVArray ==>  ", $scope.NetNPVArray);
      //console.log("$scope.RemainingBalance2 ==>" , $scope.RemainingBalance2)
      //console.log($scope.afterTaxSallaryMember2AryExpectedCashYear)
@@ -479,18 +441,22 @@ $scope.calculateFinal=function(){
      console.log("Loan2Repayment  ", $scope.Loan2Repayment)
      console.log("RemainingBalance  ", $scope.RemainingBalance)
      console.log("afterTaxSallaryMember1AryExpectedCashYear  ",  $scope.afterTaxSallaryMember1AryExpectedCashYear)
-     console.log("afterTaxSallaryMember2AryExpectedCashYear  ", $scope.afterTaxSallaryMember2AryExpectedCashYear)
+    console.log("afterTaxSallaryMember2AryExpectedCashYear  ", $scope.afterTaxSallaryMember2AryExpectedCashYear)
      console.log("RemainingBalance2  ",  $scope.RemainingBalance2)
      console.log("femaleTableCondtionalSurvivalProb  ", $scope.femaleTableCondtionalSurvivalProb)
      console.log("femaleTablePx05  ", $scope.femaleTablePx05)
      console.log("maleTablePx05  ", $scope.maleTablePx05)
      console.log("outputYear  ", $scope.outputYear)
-     console.log("cashInflow   ", $scope.cashInflow )
-     console.log("cashOutflow  ==> ", $scope.cashOutflow)
-     console.log("surplus  ", $scope.surplus)
-     console.log('discountRate  ', $scope.discountRate);
+      console.log("cashInflow   ", $scope.cashInflow )
+      console.log("cashOutflow  ==> ", $scope.cashOutflow)
+      console.log("surplus  ", $scope.surplus)
+      console.log('discountRate  ', $scope.discountRate);
 
-     //LineChartService.createChart($scope.outputYear,$scope.cashOutflow, $scope.surplus);
+
+
+     LineChartService.createChart($scope.outputYear,$scope.cashOutflow, $scope.surplus);
+
+
 
 
 

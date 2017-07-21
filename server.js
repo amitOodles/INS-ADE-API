@@ -229,7 +229,39 @@ app.get('/queryBPC', function(req, res) {
 
     //var data = postDataSFC;
     var data = {
-      "age": 30,
+
+      "YourAnnualTaxableIncome" : 127892.014851933,
+      PersonalDetails : {
+        GenderOfMember1 : "Male",
+        AreYouSingleOrCouple : "Couple",
+        GenderOfMember2 : "Female",
+        age : 40,
+        member2Age : 35,
+      },
+      fact : {
+        NumberOfDependents : "2",
+        loan_term : 20,
+        EstimatedInterestRate : 7,
+        Inflation : 2.50,
+      },
+      income : {
+        InvestmentIncomePerYear : 10000,
+        RentalIncomeInvestmentPropertyPerWeek : 550,
+        OtherIncomePerYear : 10000,
+        SalaryExcludeTaxAndSuperPerYearMember1 : 120000,
+        SalaryExcludeTaxAndSuperPerYearMember2 : 80000
+      },
+      expense : {
+        DoYouHaveAnExistingLoan : "Yes",
+        CurrentLoanBalance : 200000,
+        CurrentInterestRatePerYear : 6,
+        RemainingLoanTermYears : 10,
+        DoYouHaveMoreLoan : "No",
+        CurrentLoanBalanceInMoreLoan : 300000,
+        CurrentInterestRatePerYearInMoreLoan : 7,
+        RemainingLoanTermYearsInMoreLoan : 15,
+        CreditCardOutstandingBalance : 10000,
+      }
     };
     res.render(__dirname + '/indexBPC.ejs', {
         data: data,
@@ -240,10 +272,10 @@ app.post('/webshotBPC', function(req, res, callback) {
     postDataSFC = req.body;
 
     var timeS = new Date();
-    var name = timeS.getTime() + "SFC.png";
+    var name = timeS.getTime() + "BPC.png";
 
     function generateImage() {
-        webshot('http://180.151.85.194:3001/querySFC', 'uploads/' + name, { shotSize: { width: 630, height: 520 } }, function(err, data) {
+        webshot('http://180.151.85.194:3001/queryBPC', 'uploads/' + name, { shotSize: { width: 630, height: 520 } }, function(err, data) {
             // res.write("error saving");
 
             if (err) {

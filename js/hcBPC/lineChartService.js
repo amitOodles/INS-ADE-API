@@ -1,7 +1,7 @@
 
-
 app.service('LineChartService',function(){
   this.createChart = function(outputYear,cashOutflow, surplus){
+    alert('testing')
 
     Highcharts.setOptions({lang: {
             thousandsSep: ','
@@ -78,5 +78,10 @@ app.service('LineChartService',function(){
         }]
 
     });
+    
 
-}});
+}
+  this.name = function(){
+    return "test";
+  }
+});
